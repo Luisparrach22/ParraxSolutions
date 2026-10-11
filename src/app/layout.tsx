@@ -41,6 +41,19 @@ export const metadata: Metadata = {
   },
   robots: { index: true, follow: true },
   formatDetection: { telephone: false },
+  icons: {
+    icon: [
+      {
+        url: "/assets/logo-mark.svg",
+        media: "(prefers-color-scheme: light)",
+      },
+      {
+        url: "/assets/logo-mark-white.svg",
+        media: "(prefers-color-scheme: dark)",
+      },
+    ],
+    apple: "/apple-icon.png",
+  },
 };
 
 export const viewport: Viewport = {
