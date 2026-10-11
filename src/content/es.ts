@@ -58,8 +58,8 @@ export const es = {
       pipelineSub: ['Tienda · TPV · Email', 'Reglas de negocio', 'Contabilidad · CRM'],
       rows: [
         { ref: 'PED-1042', text: 'Pedido validado', status: 'Completado', state: 'done' },
-        { ref: 'FAC-2026-118', text: 'Factura enviada a contabilidad', status: 'Completado', state: 'done' },
-        { ref: 'CLI-0381', text: 'Cliente sincronizado con el CRM', status: 'En curso', state: 'active' },
+        { ref: 'FAC-118', text: 'Factura sincronizada', status: 'Completado', state: 'done' },
+        { ref: 'CLI-381', text: 'Cliente enlazado al CRM', status: 'En curso', state: 'active' },
       ],
     },
   },

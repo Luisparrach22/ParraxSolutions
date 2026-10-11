@@ -85,9 +85,9 @@ export function WhyParrax({ t }: { t: Dictionary['why'] }) {
             >
               <span className="font-mono text-xs text-slate-500 sm:text-sm">0{i + 1}</span>
               <div>
-                <h3 className="flex items-center gap-2 text-base font-semibold text-white sm:text-h3">
+                <h3 className="text-base font-semibold text-white sm:text-h3">
                   {item.title}
-                  <NodeDot size="xs" className="opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  <NodeDot size="xs" className="ml-2 inline-block align-middle opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 </h3>
                 <p className="mt-1.5 max-w-[52ch] text-xs leading-relaxed text-slate-400 sm:mt-2 sm:text-[0.9375rem] sm:leading-7">{item.text}</p>
               </div>

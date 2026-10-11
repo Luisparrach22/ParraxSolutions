@@ -33,10 +33,10 @@ const config: Config = {
       },
       fontSize: {
         // Escala tipográfica adaptativa con lectura cómoda en pantallas de 360px a 1440px
-        display: ['clamp(1.875rem, 5.5vw, 3.875rem)', { lineHeight: '1.08', letterSpacing: '-0.025em', fontWeight: '600' }],
-        h2: ['clamp(1.5rem, 4vw, 2.75rem)', { lineHeight: '1.15', letterSpacing: '-0.02em', fontWeight: '600' }],
-        h3: ['clamp(1.125rem, 2.5vw, 1.25rem)', { lineHeight: '1.35', letterSpacing: '-0.01em', fontWeight: '600' }],
-        lead: ['clamp(1rem, 2vw, 1.1875rem)', { lineHeight: '1.6' }],
+        display: ['clamp(1.75rem, 5.2vw, 3.875rem)', { lineHeight: '1.16', letterSpacing: '-0.025em', fontWeight: '600' }],
+        h2: ['clamp(1.375rem, 3.8vw, 2.75rem)', { lineHeight: '1.22', letterSpacing: '-0.02em', fontWeight: '600' }],
+        h3: ['clamp(1.0625rem, 2.5vw, 1.25rem)', { lineHeight: '1.38', letterSpacing: '-0.01em', fontWeight: '600' }],
+        lead: ['clamp(0.9375rem, 2vw, 1.1875rem)', { lineHeight: '1.65' }],
         micro: ['0.75rem', { lineHeight: '1rem', letterSpacing: '0.14em', fontWeight: '500' }],
       },
       borderRadius: {

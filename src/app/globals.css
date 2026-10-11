@@ -39,7 +39,7 @@
 
   h1, h2, h3, h4 {
     @apply text-white;
-    text-wrap: balance;
+    text-wrap: pretty;
   }
 
   p { text-wrap: pretty; }

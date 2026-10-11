@@ -19,7 +19,7 @@ export function Hero({ t }: { t: Dictionary['hero'] }) {
           <Reveal delay={60}>
             <h1 id="hero-title" className="mt-4 text-display text-white sm:mt-5">
               <span>{t.titleA}</span>{' '}
-              <span className="block text-slate-400 sm:inline">{t.titleB}</span>
+              <span className="text-slate-400">{t.titleB}</span>
             </h1>
           </Reveal>
           <Reveal delay={120}>

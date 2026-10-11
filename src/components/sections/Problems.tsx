@@ -12,7 +12,7 @@ export function Problems({ t }: { t: Dictionary['problems'] }) {
               <span aria-hidden="true" className="h-px w-6 bg-slate-600" />
               {t.eyebrow}
             </p>
-            <h2 id="problems-title" className="mt-3 text-2xl font-semibold tracking-tight text-white md:text-[1.75rem]">
+            <h2 id="problems-title" className="mt-3 text-xl font-semibold tracking-tight text-white sm:text-2xl md:text-[1.75rem]">
               {t.title}
             </h2>
           </div>
