@@ -30,7 +30,7 @@ export default function PrivacidadPage() {
               <li><strong>Identidad:</strong> <Rich text="[Nombre / Razón Social del Titular]" /> (Parrax Solutions)</li>
               <li><strong>NIF/CIF:</strong> <Rich text="[NIF / CIF]" /></li>
               <li><strong>Dirección:</strong> <Rich text="[Domicilio social completo]" /></li>
-              <li><strong>Email de contacto / DPO:</strong> <Rich text="[privacidad@parraxsolutions.com]" /></li>
+              <li><strong>Email de contacto / DPO:</strong> <a href="mailto:privacidad@parraxsolutions.com" className="text-white underline underline-offset-4">privacidad@parraxsolutions.com</a></li>
             </ul>
           </section>
 
@@ -66,7 +66,7 @@ export default function PrivacidadPage() {
           <section className="space-y-3">
             <h2 className="text-lg font-medium text-white">5. Derechos del usuario</h2>
             <p>
-              Tienes derecho a acceder, rectificar y suprimir tus datos, así como solicitar la limitación del tratamiento, oponerte al mismo o solicitar la portabilidad. Puedes ejercer tus derechos enviando un correo a <Rich text="[privacidad@parraxsolutions.com]" /> adjuntando copia de tu documento identificativo. Asimismo, tienes derecho a reclamar ante la Agencia Española de Protección de Datos (AEPD, <a href="https://www.aepd.es" target="_blank" rel="noopener noreferrer" className="text-white underline">www.aepd.es</a>).
+              Tienes derecho a acceder, rectificar y suprimir tus datos, así como solicitar la limitación del tratamiento, oponerte al mismo o solicitar la portabilidad. Puedes ejercer tus derechos enviando un correo a <a href="mailto:privacidad@parraxsolutions.com" className="text-white underline underline-offset-4">privacidad@parraxsolutions.com</a> adjuntando copia de tu documento identificativo. Asimismo, tienes derecho a reclamar ante la Agencia Española de Protección de Datos (AEPD, <a href="https://www.aepd.es" target="_blank" rel="noopener noreferrer" className="text-white underline">www.aepd.es</a>).
             </p>
           </section>
         </div>
