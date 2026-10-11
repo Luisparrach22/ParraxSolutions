@@ -7,8 +7,9 @@ const calendarUrl = process.env.NEXT_PUBLIC_CALENDAR_URL;
 export function Contact({ t }: { t: Dictionary['contact'] }) {
   return (
     <section id="contacto" aria-labelledby="contact-title" className="relative overflow-hidden bg-obsidian py-section-sm md:py-section">
-      {/* Ancla para los CTA de auditoría (preselecciona el tipo en el formulario) */}
+      {/* Anclas para CTAs (preseleccionan el tipo correspondiente en el formulario) */}
       <span id="solicitar-auditoria" className="absolute top-0" aria-hidden="true" />
+      <span id="agendar-sesion" className="absolute top-0" aria-hidden="true" />
       <div aria-hidden="true" className="grid-lines pointer-events-none absolute inset-0 [mask-image:linear-gradient(to_bottom,transparent,#000_30%,#000_70%,transparent)]" />
 
       <div className="container-x relative grid gap-10 lg:grid-cols-12 lg:gap-8">
@@ -38,7 +39,7 @@ export function Contact({ t }: { t: Dictionary['contact'] }) {
             </ol>
           </Reveal>
 
-          {/* Reserva directa en calendario (placeholder hasta tener el enlace real) */}
+          {/* Reserva directa en calendario */}
           <Reveal delay={140} className="mt-8 rounded-lg border border-dashed border-slate-700 p-5 sm:mt-10 sm:p-6">
             <p className="font-medium text-white">{t.calendar.title}</p>
             <p className="mt-1 text-sm text-slate-400">{t.calendar.text}</p>
@@ -47,8 +48,13 @@ export function Contact({ t }: { t: Dictionary['contact'] }) {
                 {t.calendar.cta}
               </Button>
             ) : (
-              <div className="mt-5 flex h-24 items-center justify-center rounded border border-obsidian-line bg-obsidian-raised text-sm text-slate-400">
-                <Rich text={t.calendar.placeholder} />
+              <div className="mt-5">
+                <Button href="#contacto-formulario" variant="ghost" arrow className="w-full sm:w-auto">
+                  {t.calendar.cta}
+                </Button>
+                <p className="mt-2.5 text-xs text-slate-500">
+                  <Rich text={t.calendar.placeholder} />
+                </p>
               </div>
             )}
           </Reveal>
@@ -78,7 +84,7 @@ export function Contact({ t }: { t: Dictionary['contact'] }) {
         </div>
 
         <Reveal delay={100} className="lg:col-span-7">
-          <div className="rounded-lg border border-obsidian-line bg-obsidian-raised">
+          <div id="contacto-formulario" className="rounded-lg border border-obsidian-line bg-obsidian-raised scroll-mt-[calc(var(--nav-h)+24px)]">
             <ContactForm t={t.form} />
           </div>
         </Reveal>

@@ -47,7 +47,15 @@ export function MobileCtaBar({ label, sub }: { label: string; sub: string }) {
           </span>
         </p>
         <Link
-          href="/#contacto"
+          href="/#agendar-sesion"
+          onClick={(e) => {
+            if (pathname === '/') {
+              e.preventDefault();
+              const el = document.getElementById('agendar-sesion') || document.getElementById('contacto');
+              el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              if (window.location.hash !== '#agendar-sesion') window.history.pushState(null, '', '#agendar-sesion');
+            }
+          }}
           className="inline-flex min-h-[44px] shrink-0 items-center gap-1.5 rounded bg-node px-4 text-sm font-medium text-obsidian transition-colors active:bg-node-hover"
         >
           {label}

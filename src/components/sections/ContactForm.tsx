@@ -55,17 +55,30 @@ export function ContactForm({ t }: { t: FormT }) {
   const errors = validate(values, t);
   const show = (f: Field) => (touched[f] || submitted) && errors[f];
 
-  // Los CTA "Solicitar auditoría" apuntan a #solicitar-auditoria y preseleccionan el tipo.
-  // Escuchamos también los clics: si el hash ya era #solicitar-auditoria, "hashchange" no se dispara.
+  // Los CTA apuntan a #solicitar-auditoria o #agendar-sesion / #contacto y preseleccionan el tipo correspondiente.
   useEffect(() => {
     const toAudit = () => setValues((v) => (v.type === 'auditoria' ? v : { ...v, type: 'auditoria' }));
+    const toSesion = () => setValues((v) => (v.type === 'sesion' ? v : { ...v, type: 'sesion' }));
+
     const sync = () => {
-      if (window.location.hash === '#solicitar-auditoria') toAudit();
+      const hash = window.location.hash;
+      if (hash === '#solicitar-auditoria') toAudit();
+      if (hash === '#agendar-sesion') toSesion();
     };
+
     const onClick = (e: MouseEvent) => {
       const a = (e.target as HTMLElement | null)?.closest?.('a[href]');
-      if (a && a.getAttribute('href')?.endsWith('#solicitar-auditoria')) toAudit();
+      const href = a?.getAttribute('href') || '';
+      if (href.endsWith('#solicitar-auditoria')) toAudit();
+      if (href.endsWith('#agendar-sesion')) toSesion();
+      if (href.endsWith('#contacto') || href.endsWith('/#contacto')) {
+        const text = a?.textContent?.toLowerCase() || '';
+        if (text.includes('sesi') || text.includes('agendar')) {
+          toSesion();
+        }
+      }
     };
+
     sync();
     window.addEventListener('hashchange', sync);
     document.addEventListener('click', onClick, true);

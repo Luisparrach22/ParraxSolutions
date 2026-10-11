@@ -249,7 +249,7 @@ export const es = {
     outcomeTitle: "Qué cambia en tu día a día",
     ctaTitle: "¿Lo vemos aplicado a tu caso?",
     ctaText:
-      "En una sesión de 30 minutos revisamos tu situación y te decimos con honestidad si esto es lo que necesitas.",
+      "En una sesión de 20 minutos revisamos tu situación y te decimos con honestidad si esto es lo que necesitas.",
     pages: {
       "sistemas-de-gestion": {
         lead: "Un sistema de gestión hecho para tu empresa sustituye la combinación de hojas de cálculo, correos y programas sueltos con la que se gestiona hoy la operación.",
@@ -533,25 +533,25 @@ export const es = {
     eyebrow: "Contacto",
     title: "Cuéntanos qué quieres resolver",
     intro:
-      "Una sesión estratégica de 30 minutos, sin coste. Salimos de ella con un diagnóstico inicial y, si tiene sentido, una propuesta.",
+      "Una sesión estratégica de 20 minutos, sin coste. Salimos de ella con un diagnóstico inicial y, si tiene sentido, una propuesta.",
     stepsTitle: "Qué pasa después",
     steps: [
       "Te respondemos en 24–48 h laborables.",
-      "Sesión de 30 minutos por videollamada para entender tu caso.",
+      "Sesión de 20 minutos por videollamada para entender tu caso.",
       "Si encaja, propuesta por escrito con alcance, plazo y precio.",
     ],
     calendar: {
       title: "¿Prefieres reservar directamente?",
-      text: "Elige un hueco en nuestro calendario.",
-      placeholder: "Integración de calendario disponible próximamente",
-      cta: "Abrir calendario",
+      text: "Elige un hueco en nuestro calendario para una sesión de 20 minutos.",
+      placeholder: "O completa el formulario a continuación para coordinar la llamada.",
+      cta: "Agendar sesión de 20 min",
     },
     directEmail: "O escríbenos a",
     email: "contacto@parraxsolutions.com",
     form: {
       typeLegend: "Qué te interesa",
       types: [
-        { value: "sesion", label: "Sesión estratégica" },
+        { value: "sesion", label: "Sesión estratégica (20 min)" },
         { value: "auditoria", label: "Auditoría digital gratuita" },
       ],
       name: "Nombre",

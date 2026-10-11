@@ -89,7 +89,7 @@ export default async function SolutionDetailPage({ params }: Props) {
           </Reveal>
 
           <Reveal delay={120} className="mt-7 flex flex-col gap-3 sm:flex-row">
-            <Button href="/#contacto" size="lg" arrow className="w-full sm:w-auto">
+            <Button href="/#agendar-sesion" size="lg" arrow className="w-full sm:w-auto">
               Agendar sesión estratégica
             </Button>
             <Button href="/#metodo" size="lg" variant="ghost" className="w-full sm:w-auto">
@@ -153,7 +153,7 @@ export default async function SolutionDetailPage({ params }: Props) {
               {t.solutionDetails.ctaText}
             </p>
             <div className="mt-6 flex justify-center">
-              <Button href="/#contacto" size="lg" arrow className="w-full sm:w-auto">
+              <Button href="/#agendar-sesion" size="lg" arrow className="w-full sm:w-auto">
                 Agendar sesión estratégica
               </Button>
             </div>

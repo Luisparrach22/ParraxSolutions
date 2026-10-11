@@ -1,5 +1,7 @@
+'use client';
+
 import Link from 'next/link';
-import type { ComponentPropsWithoutRef, ReactNode } from 'react';
+import type { ComponentPropsWithoutRef, MouseEvent, ReactNode } from 'react';
 import { cn } from '@/lib/cn';
 
 type Variant = 'primary' | 'ghost' | 'ghost-light' | 'solid-light';
@@ -70,9 +72,33 @@ export function Button(props: ButtonAsLink | ButtonAsButton) {
   const classes = cn(base, variants[variant], sizes[size], className);
 
   if ('href' in rest && rest.href !== undefined) {
-    const { href, ...anchorProps } = rest as ButtonAsLink;
+    const { href, onClick, ...anchorProps } = rest as ButtonAsLink;
+
+    const handleClick = (e: MouseEvent<HTMLAnchorElement>) => {
+      if (onClick) onClick(e);
+      if (e.defaultPrevented) return;
+
+      if (href.includes('#')) {
+        const id = href.split('#')[1];
+        if (id && typeof window !== 'undefined') {
+          const isHome = window.location.pathname === '/';
+          if (isHome || href.startsWith('#')) {
+            const el = document.getElementById(id);
+            if (el) {
+              e.preventDefault();
+              const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+              el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+              if (window.location.hash !== `#${id}`) {
+                window.history.pushState(null, '', `#${id}`);
+              }
+            }
+          }
+        }
+      }
+    };
+
     return (
-      <Link href={href} className={classes} {...anchorProps}>
+      <Link href={href} onClick={handleClick} className={classes} {...anchorProps}>
         <Inner arrow={arrow} variant={variant}>{children}</Inner>
       </Link>
     );

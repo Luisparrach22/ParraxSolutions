@@ -77,7 +77,9 @@ export function Navbar({ t, a11y }: NavbarProps) {
 
     html.style.overflow = 'hidden';
     body.style.overflow = 'hidden';
-    firstLinkRef.current?.focus();
+    if (window.matchMedia('(min-width: 1024px)').matches) {
+      firstLinkRef.current?.focus();
+    }
 
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -107,25 +109,24 @@ export function Navbar({ t, a11y }: NavbarProps) {
 
   /**
    * Navegación a anclas de la home. Si ya estamos en la home, cerramos el menú,
-   * liberamos el scroll y desplazamos de forma fiable (también en iOS Safari,
-   * donde el ancla nativa falla si el body sigue bloqueado). En otras páginas
-   * dejamos que <Link> navegue a "/#seccion".
+   * liberamos el scroll y desplazamos de forma fiable.
    */
   const go = useCallback(
     (e: MouseEvent<HTMLAnchorElement>, href: string) => {
       setOpen(false);
+      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
+
       const id = href.split('#')[1];
       if (!isHome || !id) return;
       const el = document.getElementById(id);
       if (!el) return;
       e.preventDefault();
-      document.documentElement.style.overflow = '';
-      document.body.style.overflow = '';
       const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      requestAnimationFrame(() => {
+      setTimeout(() => {
         el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
         if (window.location.hash !== `#${id}`) window.history.pushState(null, '', `#${id}`);
-      });
+      }, 50);
     },
     [isHome],
   );
@@ -133,17 +134,22 @@ export function Navbar({ t, a11y }: NavbarProps) {
   return (
     <header
       className={cn(
-        'fixed inset-x-0 top-0 z-50 h-[var(--nav-h)] border-b transition-colors duration-300',
-        scrolled || open || !isHome ? 'border-obsidian-line bg-obsidian/95 backdrop-blur-md' : 'border-transparent bg-transparent',
+        'fixed inset-x-0 top-0 z-50 transition-colors duration-300',
+        open
+          ? 'fixed inset-0 h-dvh flex flex-col bg-obsidian lg:inset-x-0 lg:bottom-auto lg:h-[var(--nav-h)]'
+          : 'h-[var(--nav-h)] border-b',
+        !open && (scrolled || !isHome ? 'border-obsidian-line bg-obsidian/95 backdrop-blur-md' : 'border-transparent bg-transparent'),
       )}
     >
-      <nav aria-label="Principal" className="container-x flex h-full items-center justify-between gap-4">
+      <nav aria-label="Principal" className="container-x flex h-[var(--nav-h)] shrink-0 items-center justify-between gap-4 border-b border-obsidian-line lg:border-none">
         <Link
           href="/"
           aria-label={a11y.home}
           className="shrink-0"
           onClick={(e) => {
             setOpen(false);
+            document.documentElement.style.overflow = '';
+            document.body.style.overflow = '';
             if (isHome) {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -189,7 +195,7 @@ export function Navbar({ t, a11y }: NavbarProps) {
         </ul>
 
         <div className="flex items-center gap-2.5">
-          <Button href="/#contacto" size="md" className="hidden sm:inline-flex" onClick={(e) => go(e, '/#contacto')}>
+          <Button href="/#agendar-sesion" size="md" className="hidden sm:inline-flex" onClick={(e) => go(e, '/#agendar-sesion')}>
             <span className="lg:hidden">{t.ctaShort}</span>
             <span className="hidden lg:inline">{t.cta}</span>
           </Button>
@@ -219,7 +225,7 @@ export function Navbar({ t, a11y }: NavbarProps) {
         ref={menuRef}
         hidden={!open}
         className={cn(
-          'fixed inset-x-0 bottom-0 top-[var(--nav-h)] overflow-y-auto overscroll-contain bg-obsidian lg:hidden',
+          'flex-1 overflow-y-auto overscroll-contain bg-obsidian lg:hidden',
           open && 'menu-enter',
         )}
       >
@@ -273,7 +279,7 @@ export function Navbar({ t, a11y }: NavbarProps) {
           </div>
 
           <div className="mt-8 border-t border-obsidian-line pt-6">
-            <Button href="/#contacto" size="lg" className="w-full" onClick={(e) => go(e, '/#contacto')}>
+            <Button href="/#agendar-sesion" size="lg" className="w-full" onClick={(e) => go(e, '/#agendar-sesion')}>
               {t.cta}
             </Button>
             <p className="mt-4 text-center text-sm text-slate-500">

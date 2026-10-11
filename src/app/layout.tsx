@@ -110,7 +110,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <Footer t={t.footer} email={t.contact.email} />
         <MobileCtaBar
           label={t.nav.ctaShort}
-          sub="Sesión de 30 min, sin coste"
+          sub="Sesión de 20 min, sin coste"
         />
       </body>
     </html>
