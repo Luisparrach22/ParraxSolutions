@@ -22,6 +22,24 @@ export function Footer({ t, email }: { t: Dictionary['footer']; email: string })
               <Rich text={email} />
             </a>
           </p>
+          {t.instagram && (
+            <p className="mt-2 text-sm text-slate-300">
+              <a
+                href={t.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex min-h-[44px] items-center gap-2 text-xs sm:text-sm text-slate-400 transition-colors hover:text-white sm:min-h-0"
+                aria-label="Instagram de Parrax Solutions"
+              >
+                <svg className="h-4 w-4 shrink-0 transition-transform group-hover:scale-110 group-hover:text-node" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                </svg>
+                <span>{t.instagramHandle || '@parraxsolutions'}</span>
+              </a>
+            </p>
+          )}
         </div>
 
         <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 md:col-span-7 md:col-start-6">
@@ -43,7 +61,7 @@ export function Footer({ t, email }: { t: Dictionary['footer']; email: string })
       </div>
 
       <div className="border-t border-obsidian-line">
-        <div className="container-x flex flex-col gap-3 py-6 text-xs text-slate-400 md:flex-row md:items-center md:justify-between">
+        <div className="container-x flex flex-col gap-3 py-6 pb-24 text-xs text-slate-400 sm:pb-6 md:flex-row md:items-center md:justify-between">
           <p>
             © {year} Parrax Solutions. {t.rights}
           </p>

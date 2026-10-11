@@ -550,6 +550,8 @@ export const es = {
       },
     ],
     location: 'España · Presencial en Venezuela',
+    instagram: 'https://instagram.com/parraxsolutions',
+    instagramHandle: '@parraxsolutions',
     legalLine: 'Parrax Solutions · Consultoría & desarrollo tecnológico',
     rights: 'Todos los derechos reservados.',
   },

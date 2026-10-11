@@ -53,16 +53,32 @@ export function Contact({ t }: { t: Dictionary['contact'] }) {
             )}
           </Reveal>
 
-          <p className="mt-6 text-sm text-slate-400">
-            {t.directEmail}{' '}
-            <a href={`mailto:${plain(t.email)}`} className="text-white underline decoration-slate-600 underline-offset-4 hover:decoration-node">
-              <Rich text={t.email} />
+          <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-slate-400">
+            <p>
+              {t.directEmail}{' '}
+              <a href={`mailto:${plain(t.email)}`} className="text-white underline decoration-slate-600 underline-offset-4 hover:decoration-node">
+                <Rich text={t.email} />
+              </a>
+            </p>
+            <a
+              href="https://instagram.com/parraxsolutions"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-[44px] items-center gap-1.5 text-slate-400 transition-colors hover:text-white sm:min-h-0"
+              aria-label="Instagram de Parrax Solutions"
+            >
+              <svg className="h-4 w-4 shrink-0 text-node" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+              </svg>
+              <span>@parraxsolutions</span>
             </a>
-          </p>
+          </div>
         </div>
 
         <Reveal delay={100} className="lg:col-span-7">
-          <div className="-mx-2 rounded-lg border border-obsidian-line bg-obsidian-raised sm:mx-0">
+          <div className="rounded-lg border border-obsidian-line bg-obsidian-raised">
             <ContactForm t={t.form} />
           </div>
         </Reveal>
