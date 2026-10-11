@@ -13,7 +13,7 @@ export const es = {
     title: 'Parrax Solutions · Software a medida, automatización e integraciones para empresas',
     titleTemplate: '%s · Parrax Solutions',
     description:
-      'Diseñamos y construimos sistemas de gestión, automatizaciones e integraciones a medida para pymes y medianas empresas en España. El código es tuyo, sin cuotas por usuario.',
+      'Diseñamos y construimos sistemas de gestión, automatizaciones e integraciones a medida para pymes y medianas empresas en España y presencial en Venezuela. El código es tuyo, sin cuotas por usuario.',
     ogAlt: 'Parrax Solutions — Software a medida que conecta tu operación',
   },
 
@@ -517,7 +517,7 @@ export const es = {
   },
 
   footer: {
-    tagline: 'Software a medida, automatización e integraciones para empresas en España y mercados hispanohablantes.',
+    tagline: 'Software a medida, automatización e integraciones para empresas en España y presencial en Venezuela.',
     columns: [
       {
         title: 'Soluciones',
@@ -549,7 +549,7 @@ export const es = {
         ],
       },
     ],
-    location: 'España',
+    location: 'España · Presencial en Venezuela',
     legalLine: 'Parrax Solutions · Consultoría & desarrollo tecnológico',
     rights: 'Todos los derechos reservados.',
   },
