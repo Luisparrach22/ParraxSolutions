@@ -471,7 +471,7 @@ export const es = {
       cta: 'Abrir calendario',
     },
     directEmail: 'O escríbenos a',
-    email: 'hola@parraxsolutions.com',
+    email: 'contacto@parraxsolutions.com',
     form: {
       typeLegend: 'Qué te interesa',
       types: [

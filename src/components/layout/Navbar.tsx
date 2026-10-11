@@ -276,8 +276,8 @@ export function Navbar({ t, a11y }: NavbarProps) {
             </Button>
             <p className="mt-4 text-center text-sm text-slate-500">
               O escríbenos a{' '}
-              <a href="mailto:hola@parraxsolutions.com" className="text-slate-300 underline underline-offset-4">
-                hola@parraxsolutions.com
+              <a href="mailto:contacto@parraxsolutions.com" className="text-slate-300 underline underline-offset-4">
+                contacto@parraxsolutions.com
               </a>
             </p>
           </div>
