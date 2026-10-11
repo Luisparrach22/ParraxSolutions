@@ -31,7 +31,7 @@ export default function AvisoLegalPage() {
               <li><strong>Denominación social / Titular:</strong> <Rich text="[Nombre / Razón Social del Titular]" /></li>
               <li><strong>NIF / CIF:</strong> <Rich text="[NIF / CIF]" /></li>
               <li><strong>Domicilio social:</strong> <Rich text="[Domicilio social completo en España]" /></li>
-              <li><strong>Correo electrónico de contacto:</strong> <Rich text="[hola@parraxsolutions.com]" /></li>
+              <li><strong>Correo electrónico de contacto:</strong> hola@parraxsolutions.com</li>
               <li><strong>Inscripción registral:</strong> <Rich text="[Datos de inscripción en el Registro Mercantil si aplica]" /></li>
             </ul>
           </section>
