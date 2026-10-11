@@ -71,10 +71,12 @@ export function Navbar({ t, a11y }: NavbarProps) {
   useEffect(() => {
     if (!open) return;
     const html = document.documentElement;
-    const prevHtml = html.style.overflow;
-    const prevBody = document.body.style.overflow;
+    const body = document.body;
+    const prevHtmlOverflow = html.style.overflow;
+    const prevBodyOverflow = body.style.overflow;
+
     html.style.overflow = 'hidden';
-    document.body.style.overflow = 'hidden';
+    body.style.overflow = 'hidden';
     firstLinkRef.current?.focus();
 
     const onKey = (e: KeyboardEvent) => {
@@ -97,8 +99,8 @@ export function Navbar({ t, a11y }: NavbarProps) {
     };
     window.addEventListener('keydown', onKey);
     return () => {
-      html.style.overflow = prevHtml;
-      document.body.style.overflow = prevBody;
+      html.style.overflow = prevHtmlOverflow;
+      body.style.overflow = prevBodyOverflow;
       window.removeEventListener('keydown', onKey);
     };
   }, [open]);
