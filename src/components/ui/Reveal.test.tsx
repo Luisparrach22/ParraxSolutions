@@ -2,7 +2,8 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { act, cleanup, render, screen } from '@testing-library/react';
 import { renderToString } from 'react-dom/server';
-import { Reveal } from './Reveal';
+type RevealModule = typeof import('./Reveal');
+let Reveal: RevealModule['Reveal'];
 
 let observers: { callback: IntersectionObserverCallback; observed: Element[] }[] = [];
 
@@ -14,7 +15,9 @@ class FakeIntersectionObserver {
   observe(el: Element) {
     this.observed.push(el);
   }
-  unobserve() {}
+  unobserve(el: Element) {
+    this.observed = this.observed.filter((o) => o !== el);
+  }
   disconnect() {}
 }
 
@@ -23,7 +26,10 @@ function mockLayout({ top, reducedMotion = false }: { top: number; reducedMotion
   vi.stubGlobal('matchMedia', (query: string) => ({ matches: reducedMotion && query.includes('reduce') }));
 }
 
-beforeEach(() => {
+beforeEach(async () => {
+  // Módulo nuevo en cada test: el observador compartido es estado de módulo.
+  vi.resetModules();
+  ({ Reveal } = await import('./Reveal'));
   observers = [];
   vi.stubGlobal('IntersectionObserver', FakeIntersectionObserver);
   Object.defineProperty(window, 'innerHeight', { value: 800, configurable: true });
@@ -55,7 +61,7 @@ describe('Reveal', () => {
     expect(observers[0].observed).toEqual([block()]);
 
     act(() => {
-      observers[0].callback([{ isIntersecting: true, target: block() } as unknown as IntersectionObserverEntry], {} as IntersectionObserver);
+      observers[0].callback([{ isIntersecting: true, target: block() } as unknown as IntersectionObserverEntry], observers[0] as unknown as IntersectionObserver);
     });
     expect(block().dataset.reveal).toBe('visible');
   });
@@ -73,6 +79,19 @@ describe('Reveal', () => {
     delete (window as { IntersectionObserver?: unknown }).IntersectionObserver;
     renderReveal();
     expect(block().dataset.reveal).toBe('');
+  });
+
+  it('todos los bloques comparten un único IntersectionObserver (PERF-004)', () => {
+    mockLayout({ top: 2000 });
+    render(
+      <>
+        <Reveal><p>Uno</p></Reveal>
+        <Reveal><p>Dos</p></Reveal>
+        <Reveal><p>Tres</p></Reveal>
+      </>,
+    );
+    expect(observers).toHaveLength(1);
+    expect(observers[0].observed).toHaveLength(3);
   });
 
   it('si se desmonta antes de entrar en pantalla no lo deja oculto', () => {

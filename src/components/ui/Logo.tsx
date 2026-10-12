@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { cn } from '@/lib/cn';
 
 type LogoProps = {
@@ -65,6 +64,8 @@ const logoFiles = {
 /**
  * Logotipos oficiales. Nunca se recolorean, estiran ni se les añaden efectos:
  * solo se escala proporcionalmente a partir de la altura.
+ * Son SVG estáticos sin optimizar, así que basta un <img>: next/image solo añadiría
+ * su código de cliente al bundle (PERF-003).
  */
 export function Logo({
   variant,
@@ -80,13 +81,14 @@ export function Logo({
   const width = Math.round(height * ratios[variant]);
 
   return (
-    <Image
+    <img
       src={src}
       alt={alt}
       width={width}
       height={height}
-      priority={priority}
-      unoptimized
+      loading={priority ? 'eager' : 'lazy'}
+      fetchPriority={priority ? 'high' : undefined}
+      decoding="async"
       className={cn('block select-none', className)}
       style={{ width, height }}
       draggable={false}
