@@ -35,6 +35,12 @@ const nextConfig = {
           { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
         ],
       },
+      {
+        // Logos de marca (sin hash en el nombre): 1 día en caché y revalidación en segundo plano.
+        // Si se cambia un logo sin renombrarlo, puede verse el anterior hasta 1 día (PERF-006).
+        source: '/:dir(svg|assets)/:path*',
+        headers: [{ key: 'Cache-Control', value: 'public, max-age=86400, stale-while-revalidate=604800' }],
+      },
     ];
   },
 };
