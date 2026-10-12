@@ -125,6 +125,13 @@ describe('POST /api/contact · respuestas', () => {
   });
 });
 
+describe('POST /api/contact · configuración', () => {
+  it('limita la duración de la función por encima de los timeouts del mailer', async () => {
+    const { maxDuration } = await import('./route');
+    expect(maxDuration).toBe(30);
+  });
+});
+
 describe('POST /api/contact · honeypot', () => {
   it('responde 200 sin enviar nada si el campo oculto está relleno', async () => {
     const res = await post({ ...validBody, website: 'https://spam.example' });

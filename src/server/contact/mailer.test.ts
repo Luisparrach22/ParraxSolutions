@@ -44,6 +44,9 @@ describe('sendContactEmail · SMTP', () => {
     expect(createTransport).toHaveBeenCalledWith({
       service: 'gmail',
       auth: { user: 'web@example.test', pass: 'abcdefghijklmnop' },
+      connectionTimeout: 10_000,
+      greetingTimeout: 10_000,
+      socketTimeout: 10_000,
     });
     expect(sendMail).toHaveBeenCalledWith({
       from: '"Parrax Solutions Web" <web@example.test>',
@@ -101,7 +104,14 @@ describe('sendContactEmail · Resend', () => {
       text: 'Texto',
       html: '<p>HTML</p>',
     });
+    expect(init.signal).toBeInstanceOf(AbortSignal);
     expect(createTransport).not.toHaveBeenCalled();
+  });
+
+  it('devuelve false si Resend no responde a tiempo', async () => {
+    fetchMock.mockRejectedValue(new DOMException('The operation timed out.', 'TimeoutError'));
+    await expect(sendContactEmail(email, replyTo)).resolves.toBe(false);
+    expect(console.error).toHaveBeenCalled();
   });
 
   it('usa CONTACT_FROM_EMAIL como remitente si está definido', async () => {

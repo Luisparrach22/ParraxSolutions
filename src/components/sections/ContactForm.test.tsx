@@ -108,6 +108,7 @@ describe('ContactForm · envío', () => {
     expect(url).toBe('/api/contact');
     expect(init.method).toBe('POST');
     expect(init.headers).toEqual({ 'Content-Type': 'application/json' });
+    expect(init.signal).toBeInstanceOf(AbortSignal);
     expect(JSON.parse(init.body as string)).toEqual({
       type: 'sesion',
       name: 'Ana López',
@@ -157,6 +158,15 @@ describe('ContactForm · envío', () => {
     fillValidForm();
     submit();
     expect((await screen.findByRole('alert')).textContent).toBe(t.errors.server);
+  });
+
+  it('si la API no responde a tiempo sale del estado «Enviando…» con el mensaje genérico', async () => {
+    fetchMock.mockRejectedValue(new DOMException('The operation timed out.', 'TimeoutError'));
+    render(<ContactForm t={t} />);
+    fillValidForm();
+    submit();
+    expect((await screen.findByRole('alert')).textContent).toBe(t.errors.server);
+    expect(screen.getByRole('button', { name: t.submit })).toBeTruthy();
   });
 
   it('muestra el error de conexión si la red falla', async () => {

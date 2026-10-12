@@ -9,6 +9,9 @@ import { sendContactEmail } from '@/server/contact/mailer';
  * Endpoint del formulario de contacto.
  * En desarrollo sin credenciales de email, se valida y registra en log.
  */
+// Límite de ejecución de la función: cubre los timeouts del mailer con margen (PERF-002).
+export const maxDuration = 30;
+
 const ok = () => NextResponse.json<ContactResponse>({ ok: true });
 const fail = (error: ContactErrorCode, status: number) => NextResponse.json<ContactResponse>({ ok: false, error }, { status });
 

@@ -17,6 +17,9 @@ export const CONTACT_LIMITS = {
   message: { min: 20, max: 4000 },
 } as const;
 
+/** Tiempo máximo que el formulario espera la respuesta de la API (por debajo del maxDuration de la ruta). */
+export const CONTACT_REQUEST_TIMEOUT_MS = 25_000;
+
 /** Contrato de respuesta de POST /api/contact. */
 export type ContactErrorCode = 'invalid_json' | 'validation' | 'rate_limited' | 'send_failed';
 export type ContactResponse = { ok: true } | { ok: false; error: ContactErrorCode };

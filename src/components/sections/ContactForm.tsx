@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useEffect, useId, useRef, useState, type FormEvent, type ReactNode } from 'react';
 import type { Dictionary } from '@/i18n/config';
 import { cn } from '@/lib/cn';
-import { CONTACT_LIMITS, invalidContactFields, type ContactField, type ContactResponse } from '@/lib/contact-schema';
+import { CONTACT_LIMITS, CONTACT_REQUEST_TIMEOUT_MS, invalidContactFields, type ContactField, type ContactResponse } from '@/lib/contact-schema';
 import { Button, NodeDot, Rich } from '@/components/ui';
 
 type FormT = Dictionary['contact']['form'];
@@ -116,6 +116,7 @@ export function ContactForm({ t }: { t: FormT }) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(values),
+        signal: AbortSignal.timeout(CONTACT_REQUEST_TIMEOUT_MS),
       });
       if (res.ok) {
         setStatus('success');
@@ -125,8 +126,9 @@ export function ContactForm({ t }: { t: FormT }) {
       const code = data && !data.ok ? data.error : undefined;
       setSubmitError(code === 'rate_limited' ? 'rateLimited' : code === 'validation' ? 'validation' : 'server');
       setStatus('error');
-    } catch {
-      setSubmitError('network');
+    } catch (err) {
+      // Si se agota el tiempo, la solicitud pudo llegar: no se sugiere un problema de conexión.
+      setSubmitError((err as { name?: unknown } | null)?.name === 'TimeoutError' ? 'server' : 'network');
       setStatus('error');
     }
   }

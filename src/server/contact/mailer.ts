@@ -1,6 +1,9 @@
 import nodemailer from 'nodemailer';
 import type { ContactEmail } from './email-template';
 
+/** Tiempo máximo por fase de la conexión con el proveedor de correo (PERF-002). */
+export const MAIL_TIMEOUT_MS = 10_000;
+
 /**
  * Envío de email:
  * 1. SMTP directo (Gmail u otro servidor) si se configuran SMTP_USER y SMTP_PASS.
@@ -25,6 +28,9 @@ export async function sendContactEmail(email: ContactEmail, replyTo: string): Pr
           user: smtpUser,
           pass: smtpPass,
         },
+        connectionTimeout: MAIL_TIMEOUT_MS,
+        greetingTimeout: MAIL_TIMEOUT_MS,
+        socketTimeout: MAIL_TIMEOUT_MS,
       });
 
       await transporter.sendMail({
@@ -50,6 +56,7 @@ export async function sendContactEmail(email: ContactEmail, replyTo: string): Pr
         method: 'POST',
         headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
         body: JSON.stringify({ from, to: to.split(',').map((s) => s.trim()), reply_to: replyTo, subject, text, html }),
+        signal: AbortSignal.timeout(MAIL_TIMEOUT_MS),
       });
       if (!res.ok) {
         console.error('[contacto] error enviando email vía Resend', res.status, await res.text().catch(() => ''));
