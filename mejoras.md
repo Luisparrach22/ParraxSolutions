@@ -1,8 +1,49 @@
 # Informe de auditoría y hoja de ruta de mejoras — Parrax Solutions Web
 
 > Fecha de la auditoría: 2026-10-12 · Commit auditado: `c018150` (rama `main`)
-> Documento generado a partir de las fases 1–4 de auditoría. **Ninguna tarea está completada.** T-04 está **en curso** (CI verde en `main`; falta la protección de rama); el resto, «Pendiente». Ver §8 (T-04) para el detalle.
+> Documento generado a partir de las fases 1–4 de auditoría. El progreso de la implementación está en el **Estado de implementación** justo debajo; el resto del documento conserva el análisis original.
 > No contiene secretos: las credenciales se citan solo por nombre de variable y tipo.
+
+---
+
+## Estado de implementación (actualizado 2026-10-12)
+
+Leyenda: ✅ completada · 🟢 implementada y verificada en local (falta verificarla en producción tras el despliegue) · 🟡 parcial · ⏸️ pendiente de una acción o decisión del propietario · ⛔ descartada con justificación.
+Cada tarea de código se verificó con `typecheck`, la suite de pruebas (141 casos al cierre) y `next build`; donde se indica, también con `next start` local y Chrome headless (perfil aislado, sin envío de correos).
+
+| Tarea | Estado | Commit | Resultado y evidencia |
+|---|---|---|---|
+| T-01 Textos legales | ⏸️ | — | Requiere los datos del titular (FUNC-001) y revisión legal (FUNC-004). |
+| T-02 Credencial de envío | ⏸️ | — | Requiere crear la credencial dedicada. El DNS está en Cloudflare (Email Routing solo recibe): para enviar con Resend hay que añadir en Cloudflare sus registros (subdominio `send`, DKIM `resend._domainkey`) y definir `CONTACT_FROM_EMAIL`; el código ya soporta Resend. Después, revocar la contraseña de aplicación de Gmail. |
+| T-03 Higiene de secretos | ✅ | `39551e3` | Sin `@gmail.com` en el árbol; `.env*` ignorados salvo `.env.example` (SEC-007, SEC-008). El email sigue en el **historial** de git. |
+| T-04 Pruebas y CI | 🟡 | `54acdf0` | CI verde en `main` (run 38302845030). Falta la regla de protección de rama en GitHub; el E2E con Playwright quedó aplazado. |
+| T-05 Esquema y validación | ✅ | `205e02b` | `src/lib/contact-schema.ts` compartido; SEC-004 y FUNC-003 corregidos con pruebas de regresión; `maxLength` y contador en el formulario. |
+| T-06 Contrato de errores | ✅ | `ee44e28` | `ContactResponse` tipado; mensajes distintos para 429, 422, error de servidor y de red (API-001, FIAB-003). |
+| T-07 Entrada de la API | 🟢 | `9790dc6` | 403 `Origin` ajeno / `Sec-Fetch-Site: cross-site`, 415 si no es JSON, 413 > 64 KB (también en streaming) (SEC-005, SEC-009). Verificado con `next start`. **Pendiente:** confirmar que el formulario real envía bien en producción. |
+| T-08 Antiabuso | 🟡 | `6128bdd` | Hecho: poda limitada a 1/min y expulsión O(1) (PERF-007); dependencia de Vercel documentada (SEC-003). **Pendiente del propietario:** almacén compartido (Upstash/Vercel KV), Turnstile (Cloudflare) y regla de firewall en Vercel (SEC-001). Turnstile exigirá añadir `challenges.cloudflare.com` a la CSP. |
+| T-09 Persistencia y fallos | 🟡 | `247275c` | Hecho: en producción sin transporte → error, no éxito falso (SEC-010); logs sin mensajes ni cuerpos del proveedor (SEC-011). **Pendiente:** decidir dónde guardar las solicitudes y las alertas (FIAB-002). Si Vercel no tuviera variables de correo, el formulario ahora responderá 502 en vez de fingir éxito. |
+| T-10 Timeouts | ✅ | `3dd532c` | SMTP 10 s por fase (probado con nodemailer real contra un socket mudo: falla a los 10,0 s), Resend 10 s, formulario 25 s, `maxDuration` 30 s (PERF-002). |
+| T-11 Contenido sin hidratación | 🟢 | `17d6bec` | Con los chunks JS bloqueados: antes 9/11 títulos ocultos en la home, ahora 0. LCP de laboratorio (móvil emulado, CPU ×4, ~1,6 Mbps, 3 ejecuciones): **~2,29 s → ~0,63 s** (FIAB-001, PERF-001). Falta medir con usuarios reales. |
+| T-12 Dominio canónico | ⏸️ | — | Cambiar `NEXT_PUBLIC_SITE_URL` a `https://www.parraxsolutions.com` en Vercel (o hacer primario el apex) (FUNC-002). |
+| T-13 Preselección por ancla | ✅ | `a355baa` | Sin listener global ni heurística por texto; «Enviar otra solicitud» conserva el tipo (ARQ-003, OPT-002). |
+| T-14 JS del cliente | ✅ | `3f0faa9` | Medido con `next analyze`: casi todo el JS es la base de React/Next. `Logo` con `<img>`: −6 KB gzip en todas las páginas (home 191,5 → 185,6 KB). `Reveal` con un único observador (PERF-004). Separar `Button` en servidor/cliente se probó y se descartó (0 ahorro de JS, +5 KB de HTML). |
+| T-15 Animaciones | ⏸️ | — | Medido (Chrome headless, sin limitar CPU): ~60 recálculos de estilo/s y 190–400 ms de CPU cada 4 s con las animaciones, 0 sin ellas. Pausarlas fuera de pantalla no lo resolvería: en todas las posiciones de scroll hay alguna visible (incluido el pulso de la barra fija móvil). **Requiere decisión de diseño** (limitar repeticiones o quitar el pulso de la barra fija) (PERF-005). |
+| T-16 Caché de logos | 🟢 | `2d51959` | `/svg/*` y `/assets/*`: `max-age=86400, stale-while-revalidate=604800`, verificado con `next start` (PERF-006). Falta comprobar la cabecera en Vercel. |
+| T-17 Scroll a anclas | ✅ | `d9100fc` | `src/lib/scroll-to-anchor.ts` único (emite `hashchange`); rama de foco inalcanzable eliminada respetando el commit `002382b` (ARQ-002, UX-001). |
+| T-18 Contenido centralizado | ✅ | `eb654c9` | Email e Instagram en `config/site.ts`; textos sueltos al diccionario; `SplashIntro.tsx` eliminado (ARQ-004, ARQ-005). Los cuerpos de las páginas legales siguen en JSX hasta T-01. |
+| T-19 Cabeceras y JSON-LD | 🟢 | `0060051` | CSP sin `unsafe-eval` en producción, `connect-src 'self'`, `img-src 'self' data:`, `object-src 'none'`, `base-uri`, `form-action`; HSTS sin `preload`; JSON-LD escapado. Chrome headless: 0 violaciones CSP en todas las rutas (SEC-006, SEC-012, SEC-015). CSP con nonce no implementada (opcional). Falta revisar las cabeceras en producción. |
+| T-20 README y entorno | ✅ | `eb1b16c` | README con todas las variables reales, pruebas y CI; `engines.node >=24.15.0` (CONF-001). Vercel usará Node 24 o superior. SEC-013 (avisos solo de desarrollo) sigue sin corrección segura disponible. |
+| T-21 Prueba de picos | ✅ | `261eb42` | Carga que no supera la validación (nunca envía correos) y bloqueo de destinos remotos sin `ALLOW_REMOTE_TARGET=1`. Local: 5 × 422 y 55 × 429 (SEC-014). |
+| T-22 Opcionales | 🟡 | `c724a86` | OPT-001 hecho (sitemap sin `lastmod`). ⛔ PERF-010: un transporte sin pool reconecta por mensaje igualmente y un pool en serverless es contraproducente. ⛔ OPT-003: el footer ya ofrece toda la navegación sin JS. PERF-009 depende de T-09. |
+
+### Acciones pendientes del propietario (en orden recomendado)
+1. **T-02**: crear la credencial de envío dedicada (Resend con dominio verificado en Cloudflare, o cuenta dedicada), configurar las variables en Vercel como *Sensitive* y revocar la contraseña de aplicación personal.
+2. **T-12**: fijar `NEXT_PUBLIC_SITE_URL` al dominio que responde sin redirección.
+3. **T-01**: aportar los datos legales del titular y validar las políticas.
+4. **T-04**: activar la protección de la rama `main` exigiendo el check «Typecheck, tests y build».
+5. **T-08 / T-09**: decidir almacén compartido, Turnstile, firewall de Vercel y dónde persistir las solicitudes.
+6. **T-15**: decidir el ajuste de diseño de las animaciones infinitas.
+7. Tras el despliegue: verificar en producción el envío real del formulario (T-07), las cabeceras de seguridad y caché (T-16, T-19) y el LCP con usuarios reales (T-11).
 
 ---
 
