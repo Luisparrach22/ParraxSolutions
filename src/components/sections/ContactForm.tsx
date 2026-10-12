@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useEffect, useId, useRef, useState, type FormEvent, type ReactNode } from 'react';
 import type { Dictionary } from '@/i18n/config';
 import { cn } from '@/lib/cn';
-import { CONTACT_LIMITS, invalidContactFields, type ContactField } from '@/lib/contact-schema';
+import { CONTACT_LIMITS, invalidContactFields, type ContactField, type ContactResponse } from '@/lib/contact-schema';
 import { Button, NodeDot, Rich } from '@/components/ui';
 
 type FormT = Dictionary['contact']['form'];
@@ -19,6 +19,7 @@ type Values = {
   website: string; // honeypot anti-spam
 };
 type Field = ContactField;
+type SubmitError = 'server' | 'rateLimited' | 'validation' | 'network';
 type Errors = Partial<Record<Field, string>>;
 
 const FIELD_ORDER: Field[] = ['name', 'company', 'email', 'message', 'urgency', 'privacy'];
@@ -52,6 +53,7 @@ export function ContactForm({ t }: { t: FormT }) {
   const [touched, setTouched] = useState<Partial<Record<Field, boolean>>>({});
   const [submitted, setSubmitted] = useState(false);
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+  const [submitError, setSubmitError] = useState<SubmitError>('server');
 
   const errors = validate(values, t);
   const show = (f: Field) => (touched[f] || submitted) && errors[f];
@@ -115,9 +117,16 @@ export function ContactForm({ t }: { t: FormT }) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(values),
       });
-      if (!res.ok) throw new Error(String(res.status));
-      setStatus('success');
+      if (res.ok) {
+        setStatus('success');
+        return;
+      }
+      const data = (await res.json().catch(() => null)) as ContactResponse | null;
+      const code = data && !data.ok ? data.error : undefined;
+      setSubmitError(code === 'rate_limited' ? 'rateLimited' : code === 'validation' ? 'validation' : 'server');
+      setStatus('error');
     } catch {
+      setSubmitError('network');
       setStatus('error');
     }
   }
@@ -244,7 +253,7 @@ export function ContactForm({ t }: { t: FormT }) {
 
       {status === 'error' && (
         <p role="alert" className="rounded border border-red-400/40 bg-red-400/5 px-4 py-3 text-sm text-red-200">
-          {t.errors.server}
+          {t.errors[submitError]}
         </p>
       )}
 

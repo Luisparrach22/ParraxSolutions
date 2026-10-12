@@ -586,6 +586,12 @@ export const es = {
         summary: "Revisa los campos marcados antes de enviar.",
         server:
           "No hemos podido enviar el formulario. Inténtalo de nuevo o escríbenos por email.",
+        rateLimited:
+          "Hemos recibido varias solicitudes seguidas desde tu conexión. Espera unos minutos o escríbenos por email.",
+        validation:
+          "Algunos datos no son válidos. Revisa los campos e inténtalo de nuevo.",
+        network:
+          "No hemos podido conectar con el servidor. Comprueba tu conexión e inténtalo de nuevo.",
       },
       success: {
         title: "Solicitud recibida",

@@ -134,24 +134,37 @@ describe('ContactForm · envío', () => {
     expect(fetchMock).toHaveBeenCalledOnce();
   });
 
-  // Comportamiento actual (ver API-001): todos los códigos de error muestran el mismo mensaje genérico.
-  it.each([400, 422, 429, 502])('con respuesta %i muestra el error y conserva los datos', async (status) => {
-    fetchMock.mockResolvedValue(new Response('{"ok":false}', { status }));
+  // API-001: cada error de la API tiene su propio mensaje.
+  it.each([
+    [400, 'invalid_json', t.errors.server],
+    [422, 'validation', t.errors.validation],
+    [429, 'rate_limited', t.errors.rateLimited],
+    [502, 'send_failed', t.errors.server],
+  ])('con respuesta %i (%s) muestra su mensaje y conserva los datos', async (status, error, message) => {
+    fetchMock.mockResolvedValue(new Response(JSON.stringify({ ok: false, error }), { status }));
     render(<ContactForm t={t} />);
     fillValidForm();
     submit();
 
-    expect(await screen.findByText(t.errors.server)).toBeTruthy();
+    expect((await screen.findByRole('alert')).textContent).toBe(message);
     expect((screen.getByLabelText(new RegExp(`^${t.name}`)) as HTMLInputElement).value).toBe('Ana López');
     expect(screen.getByRole('button', { name: t.submit })).toBeTruthy();
   });
 
-  it('muestra el error si la red falla', async () => {
+  it('usa el mensaje genérico si la respuesta de error no es JSON', async () => {
+    fetchMock.mockResolvedValue(new Response('<html>Bad Gateway</html>', { status: 504 }));
+    render(<ContactForm t={t} />);
+    fillValidForm();
+    submit();
+    expect((await screen.findByRole('alert')).textContent).toBe(t.errors.server);
+  });
+
+  it('muestra el error de conexión si la red falla', async () => {
     fetchMock.mockRejectedValue(new TypeError('Failed to fetch'));
     render(<ContactForm t={t} />);
     fillValidForm();
     submit();
-    expect(await screen.findByText(t.errors.server)).toBeTruthy();
+    expect((await screen.findByRole('alert')).textContent).toBe(t.errors.network);
   });
 
   it('«Enviar otra solicitud» vuelve a un formulario vacío', async () => {
