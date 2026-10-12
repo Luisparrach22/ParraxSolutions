@@ -104,11 +104,18 @@ describe('POST /api/contact · respuestas', () => {
     expect(console.info).not.toHaveBeenCalled();
   });
 
-  // Defecto conocido SEC-004: la urgencia "toString" supera la validación y la plantilla lanza
-  // un TypeError (500 sin controlar). Al corregirlo en T-05, convertir en `it`.
-  it.fails('[SEC-004] 422 con una urgencia heredada de Object.prototype', async () => {
-    const res = await post({ ...validBody, urgency: 'toString' });
+  // Regresión SEC-004: una urgencia heredada de Object.prototype provocaba un 500.
+  it.each(['toString', '__proto__'])('[SEC-004] 422 con la urgencia heredada "%s"', async (urgency) => {
+    const res = await post({ ...validBody, urgency });
     expect(res.status).toBe(422);
+    expect(sendContactEmail).not.toHaveBeenCalled();
+  });
+
+  // Regresión FUNC-003: los campos demasiado largos se rechazan, no se recortan.
+  it('[FUNC-003] 422 con un mensaje de más de 4000 caracteres', async () => {
+    const res = await post({ ...validBody, message: 'm'.repeat(4001) });
+    expect(res.status).toBe(422);
+    expect(sendContactEmail).not.toHaveBeenCalled();
   });
 
   // Comportamiento actual documentado para SEC-005 (se corrige en T-07): se acepta text/plain.

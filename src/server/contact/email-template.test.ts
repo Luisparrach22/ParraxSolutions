@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { buildContactEmail } from './email-template';
-import type { ContactRequest } from './validation';
+import type { ValidContactRequest } from './validation';
 
-const base: ContactRequest = {
+const base: ValidContactRequest = {
   type: 'sesion',
   name: 'Ana López',
   company: 'Acme SL',

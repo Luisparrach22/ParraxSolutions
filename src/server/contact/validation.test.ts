@@ -36,20 +36,18 @@ describe('parseContactRequest', () => {
     expect(parseContactRequest({ privacy: 1 }).privacy).toBe(false);
   });
 
-  it('limita la longitud de cada campo (comportamiento actual: recorte)', () => {
+  it('no recorta los campos largos: los conserva para que la validación los rechace (FUNC-003)', () => {
     const data = parseContactRequest({
       name: 'n'.repeat(500),
       company: 'c'.repeat(500),
       email: 'e'.repeat(500),
       message: 'm'.repeat(5000),
-      urgency: 'u'.repeat(50),
       type: 'auditoria'.repeat(5),
     });
-    expect(data.name).toHaveLength(120);
-    expect(data.company).toHaveLength(160);
-    expect(data.email).toHaveLength(200);
-    expect(data.message).toHaveLength(4000);
-    expect(data.urgency).toHaveLength(20);
+    expect(data.name).toHaveLength(500);
+    expect(data.company).toHaveLength(500);
+    expect(data.email).toHaveLength(500);
+    expect(data.message).toHaveLength(5000);
     expect(data.type).toBe('sesion');
   });
 });
@@ -61,6 +59,23 @@ describe('isValidContactRequest', () => {
 
   it('acepta los valores mínimos exactos', () => {
     expect(isValidContactRequest({ ...valid, name: 'Al', company: 'Io', message: 'x'.repeat(20) })).toBe(true);
+  });
+
+  it('acepta los valores máximos exactos', () => {
+    const email = `${'a'.repeat(200 - '@acme.es'.length)}@acme.es`;
+    expect(email).toHaveLength(200);
+    expect(
+      isValidContactRequest({ ...valid, name: 'n'.repeat(120), company: 'c'.repeat(160), email, message: 'm'.repeat(4000) }),
+    ).toBe(true);
+  });
+
+  it.each([
+    ['nombre de 121 caracteres', { name: 'n'.repeat(121) }],
+    ['empresa de 161 caracteres', { company: 'c'.repeat(161) }],
+    ['email de 201 caracteres', { email: `${'a'.repeat(201 - '@acme.es'.length)}@acme.es` }],
+    ['mensaje de 4001 caracteres', { message: 'm'.repeat(4001) }],
+  ])('rechaza por exceso de longitud: %s', (_label, override) => {
+    expect(isValidContactRequest({ ...valid, ...override })).toBe(false);
   });
 
   it.each([
@@ -89,18 +104,16 @@ describe('isValidContactRequest', () => {
     expect(isValidContactRequest({ ...valid, email })).toBe(true);
   });
 
-  // Defecto conocido SEC-004 (mejoras.md): `in` también encuentra claves heredadas de Object.prototype.
-  // `it.fails` pasa mientras el defecto exista; al corregirlo en T-05, convertir en `it`.
-  it.fails.each(['toString', 'constructor', 'valueOf', '__proto__'])(
+  // Regresión SEC-004: las claves heredadas de Object.prototype no son urgencias válidas.
+  it.each(['toString', 'constructor', 'valueOf', '__proto__'])(
     '[SEC-004] rechaza la urgencia heredada "%s"',
     (urgency) => {
       expect(isValidContactRequest({ ...valid, urgency })).toBe(false);
     },
   );
 
-  // Defecto conocido FUNC-003 (mejoras.md): un mensaje demasiado largo se recorta y se acepta
-  // en lugar de rechazarse. Al corregirlo en T-05, convertir en `it`.
-  it.fails('[FUNC-003] rechaza un mensaje de más de 4000 caracteres en lugar de recortarlo', () => {
+  // Regresión FUNC-003: un mensaje demasiado largo se rechaza en lugar de recortarse.
+  it('[FUNC-003] rechaza un mensaje de más de 4000 caracteres en lugar de recortarlo', () => {
     const data = parseContactRequest({ ...valid, message: 'm'.repeat(4001) });
     expect(isValidContactRequest(data)).toBe(false);
   });

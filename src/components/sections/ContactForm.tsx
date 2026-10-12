@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useEffect, useId, useRef, useState, type FormEvent, type ReactNode } from 'react';
 import type { Dictionary } from '@/i18n/config';
 import { cn } from '@/lib/cn';
+import { CONTACT_LIMITS, invalidContactFields, type ContactField } from '@/lib/contact-schema';
 import { Button, NodeDot, Rich } from '@/components/ui';
 
 type FormT = Dictionary['contact']['form'];
@@ -17,21 +18,21 @@ type Values = {
   privacy: boolean;
   website: string; // honeypot anti-spam
 };
-type Field = Exclude<keyof Values, 'type' | 'website'>;
+type Field = ContactField;
 type Errors = Partial<Record<Field, string>>;
 
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const FIELD_ORDER: Field[] = ['name', 'company', 'email', 'message', 'urgency', 'privacy'];
 
 function validate(v: Values, t: FormT): Errors {
-  const e: Errors = {};
-  if (v.name.trim().length < 2) e.name = t.errors.name;
-  if (v.company.trim().length < 2) e.company = t.errors.company;
-  if (!EMAIL_RE.test(v.email.trim())) e.email = t.errors.email;
-  if (v.message.trim().length < 20) e.message = t.errors.message;
-  if (!v.urgency) e.urgency = t.errors.urgency;
-  if (!v.privacy) e.privacy = t.errors.privacy;
-  return e;
+  const invalid = invalidContactFields({
+    name: v.name.trim(),
+    company: v.company.trim(),
+    email: v.email.trim(),
+    message: v.message.trim(),
+    urgency: v.urgency,
+    privacy: v.privacy,
+  });
+  return Object.fromEntries(invalid.map((f) => [f, t.errors[f]]));
 }
 
 export function ContactForm({ t }: { t: FormT }) {
@@ -174,13 +175,13 @@ export function ContactForm({ t }: { t: FormT }) {
       </fieldset>
 
       <div className="grid gap-5 sm:grid-cols-2 sm:gap-6">
-        <TextField id={`${uid}-name`} field="name" label={t.name} placeholder={t.namePh} autoComplete="name" value={values.name} error={show('name')} required={t.required} onChange={(v) => set('name', v)} onBlur={() => blur('name')} />
-        <TextField id={`${uid}-company`} field="company" label={t.company} placeholder={t.companyPh} autoComplete="organization" value={values.company} error={show('company')} required={t.required} onChange={(v) => set('company', v)} onBlur={() => blur('company')} />
+        <TextField id={`${uid}-name`} field="name" label={t.name} placeholder={t.namePh} autoComplete="name" maxLength={CONTACT_LIMITS.name.max} value={values.name} error={show('name')} required={t.required} onChange={(v) => set('name', v)} onBlur={() => blur('name')} />
+        <TextField id={`${uid}-company`} field="company" label={t.company} placeholder={t.companyPh} autoComplete="organization" maxLength={CONTACT_LIMITS.company.max} value={values.company} error={show('company')} required={t.required} onChange={(v) => set('company', v)} onBlur={() => blur('company')} />
       </div>
 
-      <TextField id={`${uid}-email`} field="email" type="email" inputMode="email" label={t.email} placeholder={t.emailPh} autoComplete="email" value={values.email} error={show('email')} required={t.required} onChange={(v) => set('email', v)} onBlur={() => blur('email')} />
+      <TextField id={`${uid}-email`} field="email" type="email" inputMode="email" label={t.email} placeholder={t.emailPh} autoComplete="email" maxLength={CONTACT_LIMITS.email.max} value={values.email} error={show('email')} required={t.required} onChange={(v) => set('email', v)} onBlur={() => blur('email')} />
 
-      <TextField id={`${uid}-message`} field="message" multiline label={t.message} placeholder={t.messagePh} value={values.message} error={show('message')} required={t.required} onChange={(v) => set('message', v)} onBlur={() => blur('message')} />
+      <TextField id={`${uid}-message`} field="message" multiline label={t.message} placeholder={t.messagePh} maxLength={CONTACT_LIMITS.message.max} value={values.message} error={show('message')} required={t.required} onChange={(v) => set('message', v)} onBlur={() => blur('message')} />
 
       {/* Urgencia */}
       <fieldset aria-describedby={show('urgency') ? `${uid}-urgency-err` : undefined} aria-invalid={show('urgency') ? true : undefined}>
@@ -265,6 +266,7 @@ type TextFieldProps = {
   type?: string;
   inputMode?: 'email' | 'text';
   autoComplete?: string;
+  maxLength?: number;
   multiline?: boolean;
   error?: string | false | undefined;
   required: string;
@@ -272,7 +274,7 @@ type TextFieldProps = {
   onBlur: () => void;
 };
 
-function TextField({ id, field, label, value, placeholder, type = 'text', inputMode, autoComplete, multiline, error, required, onChange, onBlur }: TextFieldProps) {
+function TextField({ id, field, label, value, placeholder, type = 'text', inputMode, autoComplete, maxLength, multiline, error, required, onChange, onBlur }: TextFieldProps) {
   const errId = `${id}-err`;
   const cls = cn(
     'mt-2 block w-full rounded border bg-obsidian px-3.5 sm:px-4 text-base sm:text-[0.9375rem] text-white placeholder:text-slate-500 transition-colors',
@@ -286,6 +288,7 @@ function TextField({ id, field, label, value, placeholder, type = 'text', inputM
     value,
     placeholder,
     autoComplete,
+    maxLength,
     'aria-required': true as const,
     'aria-invalid': error ? (true as const) : undefined,
     'aria-describedby': error ? errId : undefined,
@@ -301,6 +304,11 @@ function TextField({ id, field, label, value, placeholder, type = 'text', inputM
         <textarea {...common} onChange={(e) => onChange(e.target.value)} />
       ) : (
         <input {...common} type={type} inputMode={inputMode} onChange={(e) => onChange(e.target.value)} />
+      )}
+      {multiline && maxLength && (
+        <p className="mt-1.5 text-right font-mono text-xs text-slate-500">
+          {value.length}/{maxLength}
+        </p>
       )}
       {error && <FieldError id={errId}>{error}</FieldError>}
     </div>

@@ -67,6 +67,21 @@ describe('ContactForm · validación en cliente', () => {
     expect(errId && document.getElementById(errId)?.textContent).toContain(t.errors.name);
   });
 
+  it('limita la longitud de los campos con los mismos máximos que el servidor', () => {
+    render(<ContactForm t={t} />);
+    expect(screen.getByLabelText(new RegExp(`^${t.name}`)).getAttribute('maxlength')).toBe('120');
+    expect(screen.getByLabelText(new RegExp(`^${t.company}`)).getAttribute('maxlength')).toBe('160');
+    expect(screen.getByLabelText(new RegExp(`^${t.email}`)).getAttribute('maxlength')).toBe('200');
+    expect(screen.getByLabelText(/^¿Qué quieres resolver\?/).getAttribute('maxlength')).toBe('4000');
+  });
+
+  it('muestra un contador de caracteres en el mensaje', () => {
+    render(<ContactForm t={t} />);
+    expect(screen.getByText('0/4000')).toBeTruthy();
+    fireEvent.change(screen.getByLabelText(/^¿Qué quieres resolver\?/), { target: { value: 'Hola' } });
+    expect(screen.getByText('4/4000')).toBeTruthy();
+  });
+
   it('muestra el error de un campo al perder el foco', () => {
     render(<ContactForm t={t} />);
     const email = screen.getByLabelText(new RegExp(`^${t.email}`));
