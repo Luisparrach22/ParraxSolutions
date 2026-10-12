@@ -3,6 +3,7 @@ import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vite
 import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import type { AnchorHTMLAttributes } from 'react';
 import { es } from '@/content/es';
+import { Button } from '@/components/ui';
 import { ContactForm } from './ContactForm';
 
 // next/link necesita el router de Next; en aislamiento basta con un <a>.
@@ -202,14 +203,46 @@ describe('ContactForm · tipo de solicitud', () => {
     expect((screen.getByLabelText(t.types[1].label) as HTMLInputElement).checked).toBe(true);
   });
 
-  it('cambia el tipo al pulsar un enlace a #solicitar-auditoria', async () => {
+  it('cambia el tipo al pulsar un CTA (Button) que apunta a #solicitar-auditoria', async () => {
+    vi.stubGlobal('matchMedia', () => ({ matches: false }));
     render(
       <>
-        <a href="/#solicitar-auditoria">Solicitar auditoría</a>
+        <Button href="#solicitar-auditoria">Solicitar auditoría</Button>
+        <section id="solicitar-auditoria" />
         <ContactForm t={t} />
       </>,
     );
     fireEvent.click(screen.getByText('Solicitar auditoría'));
     await waitFor(() => expect((screen.getByLabelText(t.types[1].label) as HTMLInputElement).checked).toBe(true));
+  });
+
+  it('vuelve a «sesión» con un hashchange a #agendar-sesion', async () => {
+    window.location.hash = '#solicitar-auditoria';
+    render(<ContactForm t={t} />);
+    window.history.pushState(null, '', '#agendar-sesion');
+    window.dispatchEvent(new HashChangeEvent('hashchange'));
+    await waitFor(() => expect((screen.getByLabelText(t.types[0].label) as HTMLInputElement).checked).toBe(true));
+  });
+
+  it('no depende del texto del enlace: un enlace a #contacto no cambia el tipo (ARQ-003)', () => {
+    window.location.hash = '#solicitar-auditoria';
+    render(
+      <>
+        <a href="#contacto">Agendar sesión</a>
+        <ContactForm t={t} />
+      </>,
+    );
+    fireEvent.click(screen.getByText('Agendar sesión'));
+    expect((screen.getByLabelText(t.types[1].label) as HTMLInputElement).checked).toBe(true);
+  });
+
+  it('«Enviar otra solicitud» conserva el tipo elegido (OPT-002)', async () => {
+    fetchMock.mockResolvedValue(new Response('{"ok":true}', { status: 200 }));
+    render(<ContactForm t={t} />);
+    fireEvent.click(screen.getByLabelText(t.types[1].label));
+    fillValidForm();
+    submit();
+    fireEvent.click(await screen.findByRole('button', { name: t.success.again }));
+    expect((screen.getByLabelText(t.types[1].label) as HTMLInputElement).checked).toBe(true);
   });
 });

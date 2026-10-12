@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useEffect, useId, useRef, useState, type FormEvent, type ReactNode } from 'react';
 import type { Dictionary } from '@/i18n/config';
 import { cn } from '@/lib/cn';
-import { CONTACT_LIMITS, CONTACT_REQUEST_TIMEOUT_MS, invalidContactFields, type ContactField, type ContactResponse } from '@/lib/contact-schema';
+import { CONTACT_LIMITS, CONTACT_REQUEST_TIMEOUT_MS, invalidContactFields, type ContactField, type ContactResponse, type ContactType } from '@/lib/contact-schema';
 import { Button, NodeDot, Rich } from '@/components/ui';
 
 type FormT = Dictionary['contact']['form'];
@@ -23,6 +23,12 @@ type SubmitError = 'server' | 'rateLimited' | 'validation' | 'network';
 type Errors = Partial<Record<Field, string>>;
 
 const FIELD_ORDER: Field[] = ['name', 'company', 'email', 'message', 'urgency', 'privacy'];
+
+/** Anclas de los CTA que preseleccionan el tipo de solicitud. */
+const ANCHOR_TYPES: Record<string, ContactType> = {
+  '#solicitar-auditoria': 'auditoria',
+  '#agendar-sesion': 'sesion',
+};
 
 function validate(v: Values, t: FormT): Errors {
   const invalid = invalidContactFields({
@@ -58,37 +64,16 @@ export function ContactForm({ t }: { t: FormT }) {
   const errors = validate(values, t);
   const show = (f: Field) => (touched[f] || submitted) && errors[f];
 
-  // Los CTA apuntan a #solicitar-auditoria o #agendar-sesion / #contacto y preseleccionan el tipo correspondiente.
+  // Los CTA apuntan a #solicitar-auditoria o #agendar-sesion y preseleccionan el tipo.
+  // La navegación interna (scrollToAnchor) emite hashchange, así que basta con escuchar ese evento.
   useEffect(() => {
-    const toAudit = () => setValues((v) => (v.type === 'auditoria' ? v : { ...v, type: 'auditoria' }));
-    const toSesion = () => setValues((v) => (v.type === 'sesion' ? v : { ...v, type: 'sesion' }));
-
     const sync = () => {
-      const hash = window.location.hash;
-      if (hash === '#solicitar-auditoria') toAudit();
-      if (hash === '#agendar-sesion') toSesion();
+      const type = ANCHOR_TYPES[window.location.hash];
+      if (type) setValues((v) => (v.type === type ? v : { ...v, type }));
     };
-
-    const onClick = (e: MouseEvent) => {
-      const a = (e.target as HTMLElement | null)?.closest?.('a[href]');
-      const href = a?.getAttribute('href') || '';
-      if (href.endsWith('#solicitar-auditoria')) toAudit();
-      if (href.endsWith('#agendar-sesion')) toSesion();
-      if (href.endsWith('#contacto') || href.endsWith('/#contacto')) {
-        const text = a?.textContent?.toLowerCase() || '';
-        if (text.includes('sesi') || text.includes('agendar')) {
-          toSesion();
-        }
-      }
-    };
-
     sync();
     window.addEventListener('hashchange', sync);
-    document.addEventListener('click', onClick, true);
-    return () => {
-      window.removeEventListener('hashchange', sync);
-      document.removeEventListener('click', onClick, true);
-    };
+    return () => window.removeEventListener('hashchange', sync);
   }, []);
 
   useEffect(() => {
@@ -134,7 +119,8 @@ export function ContactForm({ t }: { t: FormT }) {
   }
 
   function reset() {
-    setValues({ type: 'sesion', name: '', company: '', email: '', message: '', urgency: '', privacy: false, website: '' });
+    // Se conserva el tipo elegido (OPT-002).
+    setValues((v) => ({ type: v.type, name: '', company: '', email: '', message: '', urgency: '', privacy: false, website: '' }));
     setTouched({});
     setSubmitted(false);
     setStatus('idle');
