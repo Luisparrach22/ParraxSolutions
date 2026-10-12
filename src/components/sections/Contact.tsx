@@ -1,8 +1,7 @@
 import type { Dictionary } from '@/i18n/config';
 import { Button, NodeDot, Reveal, Rich, plain } from '@/components/ui';
+import { calendarUrl } from '@/config/site';
 import { ContactForm } from './ContactForm';
-
-const calendarUrl = process.env.NEXT_PUBLIC_CALENDAR_URL;
 
 export function Contact({ t }: { t: Dictionary['contact'] }) {
   return (
