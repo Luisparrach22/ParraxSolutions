@@ -17,6 +17,8 @@ const ok = () => NextResponse.json<ContactResponse>({ ok: true });
 const fail = (error: ContactErrorCode, status: number) => NextResponse.json<ContactResponse>({ ok: false, error }, { status });
 
 export async function POST(request: Request) {
+  // En Vercel, x-forwarded-for lo reescribe la plataforma con la IP real del cliente (no es
+  // falsificable). Fuera de Vercel solo es fiable detrás de un proxy que la sobrescriba (SEC-003).
   const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || request.headers.get('x-real-ip') || 'local';
   if (rateLimited(ip)) {
     return fail('rate_limited', 429);
