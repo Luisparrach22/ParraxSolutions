@@ -36,16 +36,69 @@ Cada tarea de código se verificó con `typecheck`, la suite de pruebas (141 cas
 | T-21 Prueba de picos | ✅ | `261eb42` | Carga que no supera la validación (nunca envía correos) y bloqueo de destinos remotos sin `ALLOW_REMOTE_TARGET=1`. Local: 5 × 422 y 55 × 429 (SEC-014). |
 | T-22 Opcionales | 🟡 | `c724a86` | OPT-001 hecho (sitemap sin `lastmod`). ⛔ PERF-010: un transporte sin pool reconecta por mensaje igualmente y un pool en serverless es contraproducente. ⛔ OPT-003: el footer ya ofrece toda la navegación sin JS. PERF-009 depende de T-09. |
 
-### Acciones pendientes del propietario (en orden recomendado)
-1. **T-02**: crear la credencial de envío dedicada (Resend con dominio verificado en Cloudflare, o cuenta dedicada), configurar las variables en Vercel como *Sensitive* y revocar la contraseña de aplicación personal.
-2. **T-12**: fijar `NEXT_PUBLIC_SITE_URL` al dominio que responde sin redirección.
-3. **T-01**: aportar los datos legales del titular y validar las políticas.
-4. **T-04**: activar la protección de la rama `main` exigiendo el check «Typecheck, tests y build».
-5. **T-08 / T-09**: decidir almacén compartido, Turnstile, firewall de Vercel y dónde persistir las solicitudes.
-6. **T-15**: decidir el ajuste de diseño de las animaciones infinitas.
-7. Hacer un envío real de prueba del formulario en producción (no se hizo para no mandar correos) y revisar el LCP con usuarios reales (T-11) cuando haya datos.
+### Verificado en producción
+Tras el despliegue de `4fc76ad` (CI verde, run 38306646422): cabeceras CSP y HSTS, caché de logos, sitemap sin `lastmod`, `/api/contact` acepta el origen legítimo (422 con datos inválidos, no 403), 0 violaciones CSP en Chrome en todas las rutas y contenido visible con todo el JS bloqueado. No se ha hecho ningún envío válido del formulario (para no mandar correos).
 
-Verificado en producción tras el despliegue de `4fc76ad` (CI verde, run 38306646422): cabeceras CSP/HSTS, caché de logos, sitemap sin `lastmod`, aceptación del origen legítimo en `/api/contact`, 0 violaciones CSP en Chrome y contenido visible con el JS bloqueado.
+---
+
+## Guía para retomar (próxima sesión)
+
+**Para una conversación nueva con Claude:** «Lee `mejoras.md` (sección *Guía para retomar*) y ayúdame con la tarea X». Todo el contexto necesario está aquí y en el historial de git (un commit por tarea, con el porqué en el mensaje).
+
+**Comprobaciones del proyecto:** `npm run typecheck` · `npm test` (141 pruebas, simulan SMTP y `fetch`: nunca envían correos) · `npm run build`. La CI ejecuta las tres en cada push a `main` y en cada pull request.
+
+**Entorno conocido:** dominio `parraxsolutions.com` con DNS en **Cloudflare** (solo DNS, sin proxy; Email Routing recibe el correo entrante). La web se sirve desde **Vercel**: el apex redirige a `www`. El repositorio está **público** en este momento. El correo del formulario sale hoy por **Gmail SMTP** con la contraseña de aplicación de una cuenta personal (SEC-002).
+
+### Pendientes del propietario, en orden
+
+Cada bloque indica qué hace el propietario y qué hará Claude después.
+
+#### 1. Envío de prueba del formulario (5 min) — confirma que producción sigue enviando
+- [ ] Enviar una solicitud real desde `https://www.parraxsolutions.com/#contacto` y comprobar que llega el correo.
+- Si aparece el mensaje de error: falta configurar el correo en Vercel (desde `247275c`, sin transporte el formulario ya no finge éxito). Revisar en Vercel → *Settings → Environment Variables* que existan `SMTP_USER` y `SMTP_PASS`, o hacer el paso 2.
+
+#### 2. T-02 · Credencial de envío dedicada (30–45 min) — SEC-002, CONF-002
+- [ ] Crear una cuenta en Resend y añadir el dominio `parraxsolutions.com`.
+- [ ] Añadir en Cloudflare los registros DNS que indique Resend (normalmente MX y TXT en el subdominio `send` y un TXT DKIM `resend._domainkey`). Deben quedar en modo **DNS only** (nube gris). No afectan al SPF del dominio raíz que usa Email Routing.
+- [ ] Esperar a que Resend marque el dominio como *Verified*.
+- [ ] En Vercel (Production), marcadas como *Sensitive*: `RESEND_API_KEY`, `CONTACT_FROM_EMAIL` (p. ej. `Parrax Web <web@parraxsolutions.com>`) y `CONTACT_TO_EMAIL` (buzón que recibe las solicitudes).
+- [ ] **Eliminar `SMTP_USER` y `SMTP_PASS` de Vercel.** Mientras existan, el código usa SMTP antes que Resend (`src/server/contact/mailer.ts`).
+- [ ] Redesplegar y repetir el envío de prueba del paso 1.
+- [ ] Revocar la contraseña de aplicación en `myaccount.google.com/apppasswords`.
+- Claude después: nada obligatorio en el código; actualizar `.env.example`, el README y este documento para dejar Resend como opción principal, y la política de privacidad (encargado del tratamiento) en T-01.
+
+#### 3. T-12 · Dominio canónico (5 min) — FUNC-002
+- [ ] En Vercel (Production): `NEXT_PUBLIC_SITE_URL=https://www.parraxsolutions.com` y redesplegar. Alternativa: hacer primario el apex en Vercel y mantener la variable sin `www`.
+- Verificación (Claude puede hacerla): `<link rel="canonical">`, `og:url` y `<loc>` del sitemap deben responder 200 sin redirección.
+- Nota: `src/server/contact/request-guards.ts` acepta el host de la petición y el de `siteUrl`, así que el formulario funciona con cualquiera de las dos opciones.
+
+#### 4. T-01 · Textos legales (requiere datos del titular) — FUNC-001, FUNC-004
+- [ ] Aportar: nombre o razón social, NIF/CIF, domicilio, datos del Registro Mercantil (si es sociedad), email de contacto legal y plazo de conservación de las solicitudes.
+- [ ] Confirmar los proveedores reales: Vercel (alojamiento), proveedor de correo (Resend o Google) y, si se decide en T-09, el almacenamiento de solicitudes.
+- Claude después: rellenar `src/app/aviso-legal/page.tsx` y `politica-de-privacidad/page.tsx`, corregir `cookies/page.tsx` (la web no usa cookies ni almacenamiento local), añadir una prueba que falle si quedan marcadores `[…]` en las rutas legales y, opcionalmente, pasar los textos al diccionario (resto de ARQ-004). La revisión jurídica final corresponde al propietario.
+
+#### 5. T-04 · Protección de la rama `main` (5 min)
+- [ ] GitHub → *Settings → Branches* (o *Rules → Rulesets*) → regla para `main` → *Require status checks to pass* → seleccionar **«Typecheck, tests y build»**.
+- ⚠️ Con esta regla, los cambios entran por pull request (hoy se sube directamente a `main`). Para que Claude cree y siga las PR, conviene instalar GitHub CLI (`brew install gh` y `gh auth login`).
+- Pendiente de decidir: si se añade un E2E del formulario con Playwright (aplazado en T-04).
+
+#### 6. T-08 / T-09 · Antiabuso y persistencia (decisiones) — SEC-001, FIAB-002
+- [ ] Elegir el almacén compartido para el rate limit y la copia de las solicitudes: Upstash Redis (integración de Vercel Marketplace) es la opción más sencilla y sirve para ambas.
+- [ ] Crear un widget de **Cloudflare Turnstile** (gratuito; mismo proveedor que el DNS) y guardar en Vercel `NEXT_PUBLIC_TURNSTILE_SITE_KEY` y `TURNSTILE_SECRET_KEY`.
+- [ ] (Opcional) Regla de rate limit del firewall de Vercel para `POST /api/contact`.
+- [ ] Decidir dónde llegan las alertas de `send_failed` (email, Slack…).
+- Claude después: rate limit en el almacén compartido (por IP + tope global diario), verificación de Turnstile en el servidor (añadir `https://challenges.cloudflare.com` a `script-src` y `frame-src` de la CSP), guardar cada solicitud antes del envío, alerta de fallos y, después, envío diferido opcional (PERF-009). Requiere aprobar las dependencias nuevas y actualizar la política de privacidad (T-01).
+
+#### 7. T-15 · Animaciones (decisión de diseño, prioridad baja) — PERF-005
+- Coste medido: ~60 recálculos de estilo por segundo y ~5–10 % de un núcleo con la página quieta. No es urgente.
+- [ ] Elegir: (a) dejarlo así, (b) que las animaciones de flujo se repitan unas pocas veces y se detengan, o (c) quitar el pulso del punto de la barra fija móvil.
+- Claude después: aplicar la opción elegida en `src/app/globals.css` / `NodeDot` y repetir la medición.
+
+#### 8. Repositorio público
+- [ ] Decidir si vuelve a ser privado. Mientras sea público, este documento describe vulnerabilidades aún abiertas (SEC-001, SEC-002) y el historial de git contiene el email personal (SEC-007). Si se mantiene público: hacer antes los pasos 2 y 6 y valorar reescribir el historial.
+
+#### 9. Seguimiento
+- [ ] Revisar el LCP con usuarios reales (Vercel Speed Insights o CrUX) cuando haya datos (T-11).
 
 ---
 
@@ -111,55 +164,55 @@ Contenido visual de las secciones (`Hero`, `HeroMockup`, `SolutionVisual`, `Meth
 ## 3. Inventario de hallazgos
 
 Leyenda de verificación: **C** confirmado · **PC** parcialmente confirmado · **P** probable · **PV** pendiente de verificación · **NC** no confirmado/no activo.
-Esfuerzo: B baja · M media · A alta. Estado de resolución: todos **Pendiente**, salvo QA-001 y la parte de CI de CONF-001, **en curso** con T-04.
+Esfuerzo: B baja · M media · A alta. Resolución a 2026-10-12: ✅ resuelto · 🟡 parcial · ⏸️ pendiente del propietario o de una decisión · ⛔ descartado (ver «Estado de implementación»).
 
-| ID | Título | Categoría | Severidad / Prioridad | Verif. | Componente | Esfuerzo | Tarea |
-|---|---|---|---|---|---|---|---|
-| SEC-001 | Abuso del formulario y agotamiento de la cuota de Gmail | Seguridad | Media | PC | API contacto | M | T-08 |
-| SEC-002 | Contraseña de aplicación de una cuenta personal de Gmail | Seguridad | Media | C | Mailer / configuración | M | T-02 |
-| SEC-003 | Confianza en `x-forwarded-for` para el rate limit | Seguridad | Informativa (Media fuera de Vercel) | C código / NC prod | API contacto | B | T-08 |
-| SEC-004 | Bypass de validación de `urgency` con claves heredadas → 500 | Seguridad / Validación | Baja | C | Validación | B | T-05 |
-| SEC-005 | Envío *cross-site* sin comprobar `Origin` ni `Content-Type` | Seguridad | Baja | C | API contacto | B | T-07 |
-| SEC-006 | CSP con `unsafe-inline` y `unsafe-eval` en producción | Seguridad | Baja | C | `next.config.mjs` | M | T-19 |
-| SEC-007 | Email personal real en `.env.example` versionado | Seguridad / Privacidad | Baja | C | Configuración | B | T-03 |
-| SEC-008 | `.gitignore` no cubre `.env.production` / `.env.development` | Seguridad | Baja | C | Configuración | B | T-03 |
-| SEC-009 | Sin límite propio de tamaño del cuerpo | Seguridad / Recursos | Informativa | C código / mitigado en Vercel | API contacto | B | T-07 |
-| SEC-010 | Éxito silencioso sin transporte de correo en producción | Seguridad / Integridad | Informativa | C | Mailer | B | T-09 |
-| SEC-011 | Logs con objetos de error completos del proveedor | Seguridad / Privacidad | Informativa | C | Mailer | B | T-09 |
-| SEC-012 | HSTS `includeSubDomains; preload` incoherente | Configuración | Informativa | NC | `next.config.mjs` | B | T-19 |
-| SEC-013 | Vulnerabilidades en dependencias de desarrollo | Dependencias | Informativa | C | `package.json` | B | T-20 |
-| SEC-014 | Spike test envía solicitudes válidas (emails reales si apunta a prod) | Operación | Informativa | C | `audit/spike-test.js` | B | T-21 |
-| SEC-015 | JSON-LD sin escapar `<` | Seguridad (latente) | Informativa | C | Layout / soluciones | B | T-19 |
-| PERF-001 | Contenido del hero oculto hasta hidratar (LCP) | Rendimiento | Alta | C código / impacto PV | Hero / Reveal | B | T-11 |
-| PERF-002 | Sin timeouts en SMTP, Resend ni `fetch` del cliente | Rendimiento / Fiabilidad | Media | C | Mailer / ContactForm | B | T-10 |
-| PERF-003 | 192 KB gzip de JS en la home | Rendimiento | Media | PV | Bundle cliente | M | T-14 |
-| PERF-004 | 54 instancias de `Reveal` con observador propio | Rendimiento | Baja | C | Reveal | B | T-14 |
-| PERF-005 | Animaciones infinitas no compuestas | Rendimiento | Baja | PV | `globals.css` | B | T-15 |
-| PERF-006 | Logos con `max-age=0, must-revalidate` | Rendimiento | Baja | C | `public/svg` | B | T-16 |
-| PERF-007 | Poda O(n) por petición en el rate limiter saturado | Rendimiento | Baja | C | `rate-limit.ts` | B | T-08 |
-| PERF-008 | Payload RSC ≈55 % del HTML de la home | Rendimiento | Informativa | C | Home | M | T-14 |
-| PERF-009 | Envío de email síncrono en la petición | Rendimiento / Arquitectura | Informativa | C | API contacto | M | T-22 |
-| PERF-010 | Transporte SMTP creado por petición | Rendimiento | Informativa | C | Mailer | B | T-22 |
-| FUNC-001 | Textos legales con datos del titular sin completar en producción | Funcional / Legal | Alta | C | Páginas legales | B | T-01 |
-| FUNC-002 | Canonical, sitemap y `og:url` apuntan a dominio que redirige | Configuración / SEO | Media | C | `config/site.ts` / Vercel | B | T-12 |
-| FUNC-003 | Truncado silencioso de campos; sin `maxLength` en cliente | Funcional / Integridad | Media | C | Validación / ContactForm | B | T-05 |
-| FUNC-004 | Políticas de privacidad y cookies no reflejan el tratamiento real | Legal / Contenido | Media | PV | Páginas legales | B | T-01 |
-| FIAB-001 | Contenido invisible si el JS falla tras añadir `.js` | Fiabilidad / A11y | Alta | P | Layout / Reveal | B | T-11 |
-| FIAB-002 | Solicitudes sin persistencia ni alertas de fallo | Fiabilidad / Integridad | Media | P | API contacto | M | T-09 |
-| FIAB-003 | Límite por IP compartido tras NAT corporativo | Fiabilidad / UX | Baja | P | Rate limit | B | T-06, T-08 |
-| API-001 | El cliente muestra el mismo error para 400/422/429/502 | Contrato API / UX | Media | C | ContactForm | B | T-06 |
-| ARQ-001 | Reglas del formulario duplicadas en tres lugares | Arquitectura | Media | C | ContactForm / validation / es.ts | B | T-05 |
-| ARQ-002 | Lógica de scroll a anclas triplicada | Arquitectura | Baja | C | Button / Navbar / MobileCtaBar | B | T-17 |
-| ARQ-003 | Preselección del tipo según el texto del enlace | Arquitectura / Fiabilidad | Baja | P | ContactForm | B | T-13 |
-| ARQ-004 | Textos y datos fuera del diccionario o duplicados | Arquitectura | Baja | C | Varios | B | T-18 |
-| ARQ-005 | Código muerto: `SplashIntro.tsx` | Deuda técnica | Baja | C | Layout | B | T-18 |
-| UX-001 | Rama de foco del menú móvil inalcanzable | Accesibilidad | Baja | C | Navbar | B | T-17 |
-| QA-001 | Ausencia de pruebas automatizadas y CI | Calidad | Alta | C | Proyecto | M | T-04 (en curso) |
-| CONF-001 | README desactualizado; sin `engines`; sin lint/CI | Configuración | Baja | C | Raíz | B | T-04, T-20 |
-| CONF-002 | Remitente Resend por defecto solo entrega al dueño de la cuenta | Configuración | Baja | PV | Mailer | B | T-02 |
-| OPT-001 | `lastModified` del sitemap = fecha de build | Mejora opcional | Opcional | C | `sitemap.ts` | B | T-22 |
-| OPT-002 | «Enviar otra solicitud» pierde el tipo preseleccionado | Mejora opcional | Opcional | C | ContactForm | B | T-13 |
-| OPT-003 | Menú móvil inaccesible sin JS | Mejora opcional | Opcional | C | Navbar | B | T-22 |
+| ID | Título | Categoría | Severidad / Prioridad | Verif. | Componente | Esfuerzo | Tarea | Resolución |
+|---|---|---|---|---|---|---|---|---|
+| SEC-001 | Abuso del formulario y agotamiento de la cuota de Gmail | Seguridad | Media | PC | API contacto | M | T-08 | 🟡 Parcial (falta almacén compartido y Turnstile) |
+| SEC-002 | Contraseña de aplicación de una cuenta personal de Gmail | Seguridad | Media | C | Mailer / configuración | M | T-02 | ⏸️ Propietario (T-02) |
+| SEC-003 | Confianza en `x-forwarded-for` para el rate limit | Seguridad | Informativa (Media fuera de Vercel) | C código / NC prod | API contacto | B | T-08 | ✅ Documentado; no aplica en Vercel |
+| SEC-004 | Bypass de validación de `urgency` con claves heredadas → 500 | Seguridad / Validación | Baja | C | Validación | B | T-05 | ✅ Resuelto |
+| SEC-005 | Envío *cross-site* sin comprobar `Origin` ni `Content-Type` | Seguridad | Baja | C | API contacto | B | T-07 | ✅ Resuelto |
+| SEC-006 | CSP con `unsafe-inline` y `unsafe-eval` en producción | Seguridad | Baja | C | `next.config.mjs` | M | T-19 | ✅ Resuelto (nonce opcional) |
+| SEC-007 | Email personal real en `.env.example` versionado | Seguridad / Privacidad | Baja | C | Configuración | B | T-03 | ✅ Resuelto en el árbol (sigue en el historial) |
+| SEC-008 | `.gitignore` no cubre `.env.production` / `.env.development` | Seguridad | Baja | C | Configuración | B | T-03 | ✅ Resuelto |
+| SEC-009 | Sin límite propio de tamaño del cuerpo | Seguridad / Recursos | Informativa | C código / mitigado en Vercel | API contacto | B | T-07 | ✅ Resuelto |
+| SEC-010 | Éxito silencioso sin transporte de correo en producción | Seguridad / Integridad | Informativa | C | Mailer | B | T-09 | ✅ Resuelto |
+| SEC-011 | Logs con objetos de error completos del proveedor | Seguridad / Privacidad | Informativa | C | Mailer | B | T-09 | ✅ Resuelto |
+| SEC-012 | HSTS `includeSubDomains; preload` incoherente | Configuración | Informativa | NC | `next.config.mjs` | B | T-19 | ✅ Resuelto |
+| SEC-013 | Vulnerabilidades en dependencias de desarrollo | Dependencias | Informativa | C | `package.json` | B | T-20 | ⏸️ Sin corrección segura disponible |
+| SEC-014 | Spike test envía solicitudes válidas (emails reales si apunta a prod) | Operación | Informativa | C | `audit/spike-test.js` | B | T-21 | ✅ Resuelto |
+| SEC-015 | JSON-LD sin escapar `<` | Seguridad (latente) | Informativa | C | Layout / soluciones | B | T-19 | ✅ Resuelto |
+| PERF-001 | Contenido del hero oculto hasta hidratar (LCP) | Rendimiento | Alta | C código / impacto PV | Hero / Reveal | B | T-11 | ✅ Resuelto (LCP lab 2,29 → 0,63 s) |
+| PERF-002 | Sin timeouts en SMTP, Resend ni `fetch` del cliente | Rendimiento / Fiabilidad | Media | C | Mailer / ContactForm | B | T-10 | ✅ Resuelto |
+| PERF-003 | 192 KB gzip de JS en la home | Rendimiento | Media | PV | Bundle cliente | M | T-14 | ✅ Mejorado (−6 KB gzip) |
+| PERF-004 | 54 instancias de `Reveal` con observador propio | Rendimiento | Baja | C | Reveal | B | T-14 | ✅ Resuelto |
+| PERF-005 | Animaciones infinitas no compuestas | Rendimiento | Baja | PV | `globals.css` | B | T-15 | ⏸️ Decisión de diseño |
+| PERF-006 | Logos con `max-age=0, must-revalidate` | Rendimiento | Baja | C | `public/svg` | B | T-16 | ✅ Resuelto |
+| PERF-007 | Poda O(n) por petición en el rate limiter saturado | Rendimiento | Baja | C | `rate-limit.ts` | B | T-08 | ✅ Resuelto |
+| PERF-008 | Payload RSC ≈55 % del HTML de la home | Rendimiento | Informativa | C | Home | M | T-14 | — Sin cambios (informativo) |
+| PERF-009 | Envío de email síncrono en la petición | Rendimiento / Arquitectura | Informativa | C | API contacto | M | T-22 | ⏸️ Depende de T-09 |
+| PERF-010 | Transporte SMTP creado por petición | Rendimiento | Informativa | C | Mailer | B | T-22 | ⛔ Descartado |
+| FUNC-001 | Textos legales con datos del titular sin completar en producción | Funcional / Legal | Alta | C | Páginas legales | B | T-01 | ⏸️ Propietario (datos legales) |
+| FUNC-002 | Canonical, sitemap y `og:url` apuntan a dominio que redirige | Configuración / SEO | Media | C | `config/site.ts` / Vercel | B | T-12 | ⏸️ Propietario (variable en Vercel) |
+| FUNC-003 | Truncado silencioso de campos; sin `maxLength` en cliente | Funcional / Integridad | Media | C | Validación / ContactForm | B | T-05 | ✅ Resuelto |
+| FUNC-004 | Políticas de privacidad y cookies no reflejan el tratamiento real | Legal / Contenido | Media | PV | Páginas legales | B | T-01 | ⏸️ Propietario (revisión legal) |
+| FIAB-001 | Contenido invisible si el JS falla tras añadir `.js` | Fiabilidad / A11y | Alta | P | Layout / Reveal | B | T-11 | ✅ Resuelto |
+| FIAB-002 | Solicitudes sin persistencia ni alertas de fallo | Fiabilidad / Integridad | Media | P | API contacto | M | T-09 | ⏸️ Decisión de almacenamiento |
+| FIAB-003 | Límite por IP compartido tras NAT corporativo | Fiabilidad / UX | Baja | P | Rate limit | B | T-06, T-08 | 🟡 Parcial (mensaje de 429 hecho) |
+| API-001 | El cliente muestra el mismo error para 400/422/429/502 | Contrato API / UX | Media | C | ContactForm | B | T-06 | ✅ Resuelto |
+| ARQ-001 | Reglas del formulario duplicadas en tres lugares | Arquitectura | Media | C | ContactForm / validation / es.ts | B | T-05 | ✅ Resuelto |
+| ARQ-002 | Lógica de scroll a anclas triplicada | Arquitectura | Baja | C | Button / Navbar / MobileCtaBar | B | T-17 | ✅ Resuelto |
+| ARQ-003 | Preselección del tipo según el texto del enlace | Arquitectura / Fiabilidad | Baja | P | ContactForm | B | T-13 | ✅ Resuelto |
+| ARQ-004 | Textos y datos fuera del diccionario o duplicados | Arquitectura | Baja | C | Varios | B | T-18 | 🟡 Parcial (faltan los textos legales) |
+| ARQ-005 | Código muerto: `SplashIntro.tsx` | Deuda técnica | Baja | C | Layout | B | T-18 | ✅ Resuelto |
+| UX-001 | Rama de foco del menú móvil inalcanzable | Accesibilidad | Baja | C | Navbar | B | T-17 | ✅ Resuelto |
+| QA-001 | Ausencia de pruebas automatizadas y CI | Calidad | Alta | C | Proyecto | M | T-04 | 🟡 Parcial (falta protección de rama) |
+| CONF-001 | README desactualizado; sin `engines`; sin lint/CI | Configuración | Baja | C | Raíz | B | T-04, T-20 | ✅ Resuelto |
+| CONF-002 | Remitente Resend por defecto solo entrega al dueño de la cuenta | Configuración | Baja | PV | Mailer | B | T-02 | ⏸️ Propietario (T-02) |
+| OPT-001 | `lastModified` del sitemap = fecha de build | Mejora opcional | Opcional | C | `sitemap.ts` | B | T-22 | ✅ Resuelto |
+| OPT-002 | «Enviar otra solicitud» pierde el tipo preseleccionado | Mejora opcional | Opcional | C | ContactForm | B | T-13 | ✅ Resuelto |
+| OPT-003 | Menú móvil inaccesible sin JS | Mejora opcional | Opcional | C | Navbar | B | T-22 | ⛔ Descartado |
 
 ---
 
@@ -724,6 +777,8 @@ No se requieren pruebas de autorización (no existen usuarios ni roles).
 ---
 
 ## 13. Orden recomendado de trabajo
+
+> Orden original de la auditoría. Las tareas T-03, T-05–T-07, T-10, T-11, T-13, T-14 y T-16–T-21 ya están hechas; para lo que queda, seguir la **Guía para retomar** del principio del documento.
 
 1. **T-01** — Completar y alinear aviso legal, privacidad y cookies (FUNC-001, FUNC-004).
 2. **T-03** — Limpiar `.env.example` y ampliar `.gitignore` (SEC-007, SEC-008).
