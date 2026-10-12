@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import { siteUrl } from '@/config/site';
 import { getDictionary } from '@/i18n/config';
 import { Button, NodeDot, Reveal, Section } from '@/components/ui';
+import { jsonLd as serializeJsonLd } from '@/lib/json-ld';
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -60,7 +61,7 @@ export default async function SolutionDetailPage({ params }: Props) {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }} />
 
       {/* Hero de la solución */}
       <section className="relative overflow-hidden bg-obsidian pt-[calc(var(--nav-h)+24px)] pb-12 md:pb-24">

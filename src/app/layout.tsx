@@ -12,6 +12,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { MobileCtaBar } from "@/components/layout/MobileCtaBar";
 import "./globals.css";
+import { jsonLd } from "@/lib/json-ld";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -88,7 +89,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(organizationJsonLd),
+            __html: jsonLd(organizationJsonLd),
           }}
         />
       </head>
