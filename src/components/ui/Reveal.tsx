@@ -11,24 +11,26 @@ type RevealProps = {
 
 /**
  * Fade + translate sutil al entrar en viewport.
- * El contenido es visible sin JS (la clase .js se añade en <head>) y con
- * prefers-reduced-motion se muestra sin animación (ver globals.css).
+ * El contenido se renderiza visible: solo se oculta (data-reveal="pending") si al
+ * hidratar está por debajo de la pantalla, para animarlo cuando el usuario llegue.
+ * Así nunca queda oculto si el JS no carga, y lo visible al abrir la página no
+ * espera a la hidratación (FIAB-001, PERF-001). Con prefers-reduced-motion no se anima.
  */
 export function Reveal({ as: Tag = 'div', delay = 0, className, children }: RevealProps) {
   const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const el = ref.current;
-    if (!el) return;
-    if (!('IntersectionObserver' in window)) {
-      el.dataset.visible = 'true';
-      return;
-    }
+    if (!el || !('IntersectionObserver' in window)) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (el.getBoundingClientRect().top < window.innerHeight) return;
+
+    el.dataset.reveal = 'pending';
     const io = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
           if (entry.isIntersecting) {
-            (entry.target as HTMLElement).dataset.visible = 'true';
+            (entry.target as HTMLElement).dataset.reveal = 'visible';
             io.unobserve(entry.target);
           }
         }
@@ -36,7 +38,11 @@ export function Reveal({ as: Tag = 'div', delay = 0, className, children }: Reve
       { rootMargin: '0px 0px -8% 0px', threshold: 0.08 },
     );
     io.observe(el);
-    return () => io.disconnect();
+    return () => {
+      io.disconnect();
+      // Si se desmonta antes de entrar en pantalla, no lo dejamos oculto.
+      if (el.dataset.reveal === 'pending') el.dataset.reveal = 'visible';
+    };
   }, []);
 
   return (

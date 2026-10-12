@@ -85,12 +85,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       suppressHydrationWarning
     >
       <head>
-        {/* Activa las animaciones de entrada solo si hay JS (contenido visible sin JS) */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: "document.documentElement.classList.add('js')",
-          }}
-        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

@@ -103,23 +103,25 @@
   }
 }
 
-/* ---------- Reveal on scroll (solo con JS y sin reduced-motion) ---------- */
-.js [data-reveal] {
-  opacity: 0;
-  transform: translateY(16px);
+/* ---------- Reveal on scroll ----------
+   El contenido es visible por defecto (sin JS, si el JS falla o con reduced-motion).
+   Reveal solo marca como «pending» los bloques que están por debajo de la pantalla
+   al hidratar, y los anima al entrar en el viewport (FIAB-001, PERF-001). */
+[data-reveal] {
   transition:
     opacity 0.6s cubic-bezier(0.2, 0.7, 0.2, 1),
     transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
   transition-delay: var(--reveal-delay, 0ms);
 }
-.js [data-reveal][data-visible='true'] {
-  opacity: 1;
-  transform: none;
+[data-reveal='pending'] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .js [data-reveal] { opacity: 1; transform: none; transition: none; }
+  [data-reveal] { opacity: 1; transform: none; transition: none; }
   *, *::before, *::after {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
