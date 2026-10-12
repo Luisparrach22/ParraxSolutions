@@ -1,7 +1,7 @@
 # Informe de auditoría y hoja de ruta de mejoras — Parrax Solutions Web
 
 > Fecha de la auditoría: 2026-10-12 · Commit auditado: `c018150` (rama `main`)
-> Documento generado a partir de las fases 1–4 de auditoría. **Ninguna tarea está completada.** T-04 está **en curso** (implementada en local, pendiente de verificación en CI); el resto, «Pendiente». Ver §8 (T-04) para el detalle.
+> Documento generado a partir de las fases 1–4 de auditoría. **Ninguna tarea está completada.** T-04 está **en curso** (CI verde en `main`; falta la protección de rama); el resto, «Pendiente». Ver §8 (T-04) para el detalle.
 > No contiene secretos: las credenciales se citan solo por nombre de variable y tipo.
 
 ---
@@ -429,7 +429,8 @@ Las 11 anclas usadas tienen `id` destino; rutas internas sin enlaces rotos detec
     - Defectos conocidos documentados con `it.fails` (pasan mientras el defecto exista; se comprobó que fallan por el motivo documentado): SEC-004 (×5), FUNC-003, SEC-010, SEC-005. **Deben convertirse en `it`** al corregirlos en T-05, T-07 y T-09.
     - Workflow `.github/workflows/ci.yml` (Node 24, `npm ci`, typecheck, tests, build) en `push` a `main` y `pull_request`.
   - Desviaciones respecto al plan: no se modificó `rate-limit.ts` (el estado se reinicia con `vi.resetModules()` en los tests); el E2E con Playwright se **aplaza** (dependencia y navegadores pesados; el formulario queda cubierto con pruebas de componente en jsdom); no se añadió linter (sigue pendiente en CONF-001 / T-20).
-  - Pendiente para cerrar T-04: (1) ejecución verde de la CI en GitHub sobre `main` (requiere commit y push); (2) regla de protección de rama en GitHub que exija el check «Typecheck, tests y build» (configuración del repositorio, fuera del código); (3) decidir si el E2E del formulario se añade aquí o en una tarea posterior.
+  - CI verificada: ejecución [38302845030](https://github.com/Luisparrach22/ParraxSolutions/actions/runs/38302845030) sobre `54acdf0` en `main` — **success** (instalación, typecheck, pruebas y build correctos).
+  - Pendiente para cerrar T-04: (1) regla de protección de rama en GitHub que exija el check «Typecheck, tests y build» (hoy `main` no está protegida; configuración del repositorio, fuera del código); (2) decidir si el E2E del formulario se añade aquí o en una tarea posterior.
 
 **T-05 · Esquema compartido y validación estricta del formulario**
 - Resuelve: ARQ-001, SEC-004, FUNC-003.
@@ -685,7 +686,7 @@ No se requieren pruebas de autorización (no existen usuarios ni roles).
 2. **T-03** — Limpiar `.env.example` y ampliar `.gitignore` (SEC-007, SEC-008).
 3. **T-02** — Migrar el envío a una credencial dedicada y revocar la contraseña de aplicación personal (SEC-002, CONF-002).
 4. **T-12** — Fijar un dominio canónico único (FUNC-002).
-5. **T-04** — Añadir tests de caracterización y CI (QA-001, CONF-001 parcial). *En curso: implementada en local; pendiente de CI verde en `main` y protección de rama.*
+5. **T-04** — Añadir tests de caracterización y CI (QA-001, CONF-001 parcial). *En curso: CI verde en `main`; pendiente de protección de rama.*
 6. **T-05** — Esquema compartido del formulario y validación estricta (ARQ-001, SEC-004, FUNC-003).
 7. **T-06** — Contrato de errores de la API y mensajes en el cliente (API-001, FIAB-003).
 8. **T-10** — Timeouts en SMTP, Resend y cliente (PERF-002).
