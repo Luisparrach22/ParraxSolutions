@@ -45,6 +45,8 @@ node audit/stress-test.js
 
 Envía ráfagas POST consecutivas al endpoint de contacto para evaluar rate-limiting (`HTTP 429`) y resiliencia.
 
+La carga útil **no supera la validación** (`privacy: false`), así que nunca envía correos: se esperan 5 respuestas `422` y el resto `429`. Por defecto solo se ejecuta contra `localhost`; para apuntar a otro host hay que definir `ALLOW_REMOTE_TARGET=1` de forma explícita.
+
 ```bash
 node audit/spike-test.js
 ```

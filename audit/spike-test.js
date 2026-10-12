@@ -1,6 +1,11 @@
 /**
  * Parrax Solutions - Prueba Nativa de Picos en /api/contact (Sin dependencias externas)
  * Evalúa el comportamiento frente a ráfagas y verifica el rate-limiting (HTTP 429).
+ *
+ * Seguridad (SEC-014): la carga útil NO supera la validación (privacy: false), así que
+ * nunca se envía un correo; el rate limit se aplica antes de validar, por lo que se
+ * esperan 5 respuestas 422 y el resto 429. Además, por defecto solo se ejecuta contra
+ * localhost: para otro host hay que definir ALLOW_REMOTE_TARGET=1 de forma explícita.
  */
 const http = require('http');
 const https = require('https');
@@ -12,6 +17,12 @@ const CONCURRENCY = parseInt(process.env.CONCURRENCY || '15', 10);
 
 async function runSpikeTest() {
   const parsed = new URL(`${TARGET_URL}/api/contact`);
+  const isLocal = ['localhost', '127.0.0.1', '[::1]'].includes(parsed.hostname);
+  if (!isLocal && process.env.ALLOW_REMOTE_TARGET !== '1') {
+    console.error(`⛔ Objetivo remoto (${parsed.host}). Esta prueba lanza ráfagas contra /api/contact;`);
+    console.error('   ejecútala en local o define ALLOW_REMOTE_TARGET=1 si de verdad quieres apuntar a otro host.');
+    process.exit(1);
+  }
   const client = parsed.protocol === 'https:' ? https : http;
 
   console.log(`\n======================================================`);
@@ -27,7 +38,8 @@ async function runSpikeTest() {
     email: 'qa@audit.test',
     message: 'Prueba de carga automatizada para validación de latencia y rate limit.',
     urgency: 'urgente',
-    privacy: true,
+    // Nunca supera la validación: ningún envío de correo, ni siquiera contra producción.
+    privacy: false,
   });
 
   const latencies = [];
@@ -93,7 +105,7 @@ async function runSpikeTest() {
   console.log(`Errores de socket:   ${errors}`);
   console.log(`\nDistribución de Estados:`);
   Object.entries(statusCounts).forEach(([st, cnt]) => {
-    const desc = st === '200' ? 'OK (procesada)' : st === '429' ? 'Rate Limited (bloqueada correctamente)' : 'Otro';
+    const desc = st === '422' ? 'Validación (dentro del límite, sin envío)' : st === '429' ? 'Rate Limited (bloqueada correctamente)' : st === '200' ? 'OK (¡se ha enviado un correo!)' : 'Otro';
     console.log(`  HTTP ${st} [${desc}]: ${cnt} peticiones (${((cnt / completed) * 100).toFixed(1)}%)`);
   });
   console.log(`\nLatencia:`);
