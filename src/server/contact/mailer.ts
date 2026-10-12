@@ -5,10 +5,21 @@ import type { ContactEmail } from './email-template';
 export const MAIL_TIMEOUT_MS = 10_000;
 
 /**
+ * Resumen de un error del proveedor apto para logs: solo tipo y códigos.
+ * El mensaje completo puede contener direcciones de email o respuestas del servidor (SEC-011).
+ */
+export function describeMailError(err: unknown) {
+  if (typeof err !== 'object' || err === null) return { name: typeof err };
+  const e = err as { name?: unknown; code?: unknown; responseCode?: unknown };
+  return { name: e.name, code: e.code, responseCode: e.responseCode };
+}
+
+/**
  * Envío de email:
  * 1. SMTP directo (Gmail u otro servidor) si se configuran SMTP_USER y SMTP_PASS.
  * 2. Vía API REST de Resend si se configuran RESEND_API_KEY y CONTACT_TO_EMAIL.
- * 3. Sin credenciales no se envía nada (en producción se avisa en log).
+ * 3. Sin credenciales: en desarrollo no se envía nada y se considera correcto;
+ *    en producción es un error de configuración y se devuelve false (SEC-010).
  * Ver .env.example.
  *
  * Devuelve false si el envío falla.
@@ -42,7 +53,7 @@ export async function sendContactEmail(email: ContactEmail, replyTo: string): Pr
         html,
       });
     } catch (err) {
-      console.error('[contacto] error enviando email vía SMTP', err);
+      console.error('[contacto] error enviando email vía SMTP', describeMailError(err));
       return false;
     }
   } else if (process.env.RESEND_API_KEY && process.env.CONTACT_TO_EMAIL) {
@@ -59,15 +70,16 @@ export async function sendContactEmail(email: ContactEmail, replyTo: string): Pr
         signal: AbortSignal.timeout(MAIL_TIMEOUT_MS),
       });
       if (!res.ok) {
-        console.error('[contacto] error enviando email vía Resend', res.status, await res.text().catch(() => ''));
+        console.error('[contacto] error enviando email vía Resend', { status: res.status });
         return false;
       }
     } catch (err) {
-      console.error('[contacto] error de red enviando email vía Resend', err);
+      console.error('[contacto] error de red enviando email vía Resend', describeMailError(err));
       return false;
     }
   } else if (process.env.NODE_ENV === 'production') {
-    console.warn('[contacto] Ni SMTP ni Resend están configurados: la solicitud solo se registra en el log');
+    console.error('[contacto] Ni SMTP ni Resend están configurados: la solicitud no se ha enviado');
+    return false;
   }
 
   return true;

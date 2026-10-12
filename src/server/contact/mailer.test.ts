@@ -150,18 +150,35 @@ describe('sendContactEmail · sin transporte configurado', () => {
     expect(console.warn).not.toHaveBeenCalled();
   });
 
-  it('en producción solo avisa en el log (comportamiento actual)', async () => {
+  // Regresión SEC-010: en producción, sin transporte, no se finge un envío correcto.
+  it('[SEC-010] en producción devuelve false y registra el error de configuración', async () => {
     vi.stubEnv('NODE_ENV', 'production');
-    await sendContactEmail(email, replyTo);
-    expect(console.warn).toHaveBeenCalledOnce();
+    await expect(sendContactEmail(email, replyTo)).resolves.toBe(false);
+    expect(console.error).toHaveBeenCalledOnce();
     expect(createTransport).not.toHaveBeenCalled();
     expect(fetchMock).not.toHaveBeenCalled();
   });
+});
 
-  // Defecto conocido SEC-010 (mejoras.md): sin transporte en producción se informa de éxito.
-  // Al corregirlo en T-09, convertir en `it`.
-  it.fails('[SEC-010] en producción devuelve false si no hay transporte configurado', async () => {
-    vi.stubEnv('NODE_ENV', 'production');
-    await expect(sendContactEmail(email, replyTo)).resolves.toBe(false);
+describe('sendContactEmail · logs (SEC-011)', () => {
+  const leaked = 'cliente-secreto@empresa.es';
+
+  it('no registra el mensaje del error SMTP, solo tipo y códigos', async () => {
+    setEnv({ SMTP_USER: 'web@example.test', SMTP_PASS: 'secret' });
+    sendMail.mockRejectedValue(Object.assign(new Error(`550 Recipient ${leaked} rejected`), { code: 'EENVELOPE', responseCode: 550 }));
+    await sendContactEmail(email, replyTo);
+    const logged = JSON.stringify((console.error as unknown as ReturnType<typeof vi.fn>).mock.calls);
+    expect(logged).not.toContain(leaked);
+    expect(logged).toContain('EENVELOPE');
+    expect(logged).toContain('550');
+  });
+
+  it('no registra el cuerpo de la respuesta de error de Resend', async () => {
+    setEnv({ RESEND_API_KEY: 're_test', CONTACT_TO_EMAIL: 'a@example.test' });
+    fetchMock.mockResolvedValue(new Response(`{"message":"invalid to: ${leaked}"}`, { status: 422 }));
+    await sendContactEmail(email, replyTo);
+    const logged = JSON.stringify((console.error as unknown as ReturnType<typeof vi.fn>).mock.calls);
+    expect(logged).not.toContain(leaked);
+    expect(logged).toContain('422');
   });
 });
