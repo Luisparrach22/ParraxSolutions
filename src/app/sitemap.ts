@@ -2,13 +2,12 @@ import type { MetadataRoute } from 'next';
 import { siteUrl } from '@/config/site';
 import { defaultLocale, getDictionary } from '@/i18n/config';
 
+// Sin lastModified: una fecha de build en todas las URLs es inexacta en cada despliegue (OPT-001).
 export default function sitemap(): MetadataRoute.Sitemap {
   const t = getDictionary(defaultLocale);
-  const now = new Date();
 
   const solutionRoutes = t.solutions.items.map((item) => ({
     url: `${siteUrl}/soluciones/${item.slug}`,
-    lastModified: now,
     changeFrequency: 'monthly' as const,
     priority: 0.8,
   }));
@@ -16,26 +15,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
       url: `${siteUrl}/`,
-      lastModified: now,
       changeFrequency: 'weekly' as const,
       priority: 1.0,
     },
     ...solutionRoutes,
     {
       url: `${siteUrl}/aviso-legal`,
-      lastModified: now,
       changeFrequency: 'yearly' as const,
       priority: 0.2,
     },
     {
       url: `${siteUrl}/politica-de-privacidad`,
-      lastModified: now,
       changeFrequency: 'yearly' as const,
       priority: 0.2,
     },
     {
       url: `${siteUrl}/cookies`,
-      lastModified: now,
       changeFrequency: 'yearly' as const,
       priority: 0.2,
     },
