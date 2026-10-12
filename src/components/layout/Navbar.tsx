@@ -7,6 +7,7 @@ import type { Dictionary } from '@/i18n/config';
 import { cn } from '@/lib/cn';
 import { Button, Logo, NodeDot } from '@/components/ui';
 import { scrollToAnchor } from '@/lib/scroll-to-anchor';
+import { contactEmail, instagram } from '@/config/site';
 
 type NavbarProps = {
   t: Dictionary['nav'];
@@ -274,25 +275,25 @@ export function Navbar({ t, a11y }: NavbarProps) {
               {t.cta}
             </Button>
             <p className="mt-4 text-center text-sm text-slate-500">
-              O escríbenos a{' '}
-              <a href="mailto:contacto@parraxsolutions.com" className="text-slate-300 underline underline-offset-4">
-                contacto@parraxsolutions.com
+              {t.writeUs}{' '}
+              <a href={`mailto:${contactEmail}`} className="text-slate-300 underline underline-offset-4">
+                {contactEmail}
               </a>
             </p>
             <p className="mt-3 text-center">
               <a
-                href="https://instagram.com/parraxsolutions"
+                href={instagram.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex min-h-[44px] items-center gap-2 text-xs font-medium text-slate-400 transition-colors hover:text-white"
-                aria-label="Instagram @parraxsolutions"
+                aria-label={`Instagram ${instagram.handle}`}
               >
                 <svg className="h-4 w-4 shrink-0 text-node" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
                   <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
                   <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
                 </svg>
-                <span>Instagram: @parraxsolutions</span>
+                <span>Instagram: {instagram.handle}</span>
               </a>
             </p>
           </div>

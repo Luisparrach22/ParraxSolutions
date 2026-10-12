@@ -102,10 +102,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         </a>
         <Navbar t={t.nav} a11y={t.a11y} />
         <main id="contenido">{children}</main>
-        <Footer t={t.footer} email={t.contact.email} />
+        <Footer t={t.footer} />
         <MobileCtaBar
           label={t.nav.ctaShort}
-          sub="Sesión de 20 min, sin coste"
+          sub={t.nav.ctaSub}
         />
       </body>
     </html>

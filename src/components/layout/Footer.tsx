@@ -1,8 +1,9 @@
 import Link from 'next/link';
 import type { Dictionary } from '@/i18n/config';
-import { Logo, NodeDot, Rich, plain } from '@/components/ui';
+import { Logo, NodeDot, Rich } from '@/components/ui';
+import { contactEmail, instagram } from '@/config/site';
 
-export function Footer({ t, email }: { t: Dictionary['footer']; email: string }) {
+export function Footer({ t }: { t: Dictionary['footer'] }) {
   const year = new Date().getFullYear();
   return (
     <footer className="border-t border-obsidian-line bg-obsidian" aria-labelledby="footer-heading">
@@ -18,14 +19,13 @@ export function Footer({ t, email }: { t: Dictionary['footer']; email: string })
             {t.location}
           </p>
           <p className="mt-1.5 text-sm text-slate-300">
-            <a href={`mailto:${plain(email)}`} className="inline-flex min-h-[44px] items-center underline decoration-slate-600 underline-offset-4 hover:decoration-node sm:min-h-0">
-              <Rich text={email} />
+            <a href={`mailto:${contactEmail}`} className="inline-flex min-h-[44px] items-center underline decoration-slate-600 underline-offset-4 hover:decoration-node sm:min-h-0">
+              {contactEmail}
             </a>
           </p>
-          {t.instagram && (
-            <p className="mt-2 text-sm text-slate-300">
+          <p className="mt-2 text-sm text-slate-300">
               <a
-                href={t.instagram}
+                href={instagram.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group inline-flex min-h-[44px] items-center gap-2 text-xs sm:text-sm text-slate-400 transition-colors hover:text-white sm:min-h-0"
@@ -36,10 +36,9 @@ export function Footer({ t, email }: { t: Dictionary['footer']; email: string })
                   <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
                   <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
                 </svg>
-                <span>{t.instagramHandle || '@parraxsolutions'}</span>
+                <span>{instagram.handle}</span>
               </a>
             </p>
-          )}
         </div>
 
         <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 md:col-span-7 md:col-start-6">

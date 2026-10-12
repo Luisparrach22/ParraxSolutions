@@ -1,6 +1,6 @@
 import type { Dictionary } from '@/i18n/config';
-import { Button, NodeDot, Reveal, Rich, plain } from '@/components/ui';
-import { calendarUrl } from '@/config/site';
+import { Button, NodeDot, Reveal, Rich } from '@/components/ui';
+import { calendarUrl, contactEmail, instagram } from '@/config/site';
 import { ContactForm } from './ContactForm';
 
 export function Contact({ t }: { t: Dictionary['contact'] }) {
@@ -61,12 +61,12 @@ export function Contact({ t }: { t: Dictionary['contact'] }) {
           <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-slate-400">
             <p>
               {t.directEmail}{' '}
-              <a href={`mailto:${plain(t.email)}`} className="text-white underline decoration-slate-600 underline-offset-4 hover:decoration-node">
-                <Rich text={t.email} />
+              <a href={`mailto:${contactEmail}`} className="text-white underline decoration-slate-600 underline-offset-4 hover:decoration-node">
+                {contactEmail}
               </a>
             </p>
             <a
-              href="https://instagram.com/parraxsolutions"
+              href={instagram.url}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex min-h-[44px] items-center gap-1.5 text-slate-400 transition-colors hover:text-white sm:min-h-0"
@@ -77,7 +77,7 @@ export function Contact({ t }: { t: Dictionary['contact'] }) {
                 <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
                 <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
               </svg>
-              <span>@parraxsolutions</span>
+              <span>{instagram.handle}</span>
             </a>
           </div>
         </div>

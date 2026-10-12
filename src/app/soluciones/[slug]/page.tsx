@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { siteUrl } from '@/config/site';
-import { getDictionary } from '@/i18n/config';
+import { defaultLocale, getDictionary } from '@/i18n/config';
 import { Button, NodeDot, Reveal, Section } from '@/components/ui';
 import { jsonLd as serializeJsonLd } from '@/lib/json-ld';
 
@@ -10,7 +10,7 @@ type Props = {
   params: Promise<{ slug: string }>;
 };
 
-const t = getDictionary('es');
+const t = getDictionary(defaultLocale);
 
 export async function generateStaticParams() {
   return t.solutions.items.map((item) => ({
@@ -92,10 +92,10 @@ export default async function SolutionDetailPage({ params }: Props) {
 
           <Reveal delay={120} className="mt-7 flex flex-col gap-3 sm:flex-row">
             <Button href="/#agendar-sesion" size="lg" arrow className="w-full sm:w-auto">
-              Agendar sesión estratégica
+              {t.solutionDetails.ctaPrimary}
             </Button>
             <Button href="/#metodo" size="lg" variant="ghost" className="w-full sm:w-auto">
-              Conocer nuestro método
+              {t.solutionDetails.ctaSecondary}
             </Button>
           </Reveal>
         </div>
@@ -156,7 +156,7 @@ export default async function SolutionDetailPage({ params }: Props) {
             </p>
             <div className="mt-6 flex justify-center">
               <Button href="/#agendar-sesion" size="lg" arrow className="w-full sm:w-auto">
-                Agendar sesión estratégica
+                {t.solutionDetails.ctaPrimary}
               </Button>
             </div>
           </Reveal>

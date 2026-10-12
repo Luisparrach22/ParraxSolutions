@@ -35,6 +35,8 @@ export const es = {
     ],
     cta: "Agendar sesión estratégica",
     ctaShort: "Agendar sesión",
+    ctaSub: "Sesión de 20 min, sin coste",
+    writeUs: "O escríbenos a",
   },
 
   hero: {
@@ -248,6 +250,8 @@ export const es = {
     fitTitle: "Encaja si…",
     outcomeTitle: "Qué cambia en tu día a día",
     ctaTitle: "¿Lo vemos aplicado a tu caso?",
+    ctaPrimary: "Agendar sesión estratégica",
+    ctaSecondary: "Conocer nuestro método",
     ctaText:
       "En una sesión de 20 minutos revisamos tu situación y te decimos con honestidad si esto es lo que necesitas.",
     pages: {
@@ -547,7 +551,6 @@ export const es = {
       cta: "Agendar sesión de 20 min",
     },
     directEmail: "O escríbenos a",
-    email: "contacto@parraxsolutions.com",
     form: {
       typeLegend: "Qué te interesa",
       types: [
@@ -651,8 +654,6 @@ export const es = {
       },
     ],
     location: "España · Venezuela",
-    instagram: "https://instagram.com/parraxsolutions",
-    instagramHandle: "@parraxsolutions",
     legalLine: "Parrax Solutions · Consultoría & desarrollo tecnológico",
     rights: "Todos los derechos reservados.",
   },

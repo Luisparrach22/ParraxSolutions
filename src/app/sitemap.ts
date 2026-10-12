@@ -1,9 +1,9 @@
 import type { MetadataRoute } from 'next';
 import { siteUrl } from '@/config/site';
-import { getDictionary } from '@/i18n/config';
+import { defaultLocale, getDictionary } from '@/i18n/config';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const t = getDictionary('es');
+  const t = getDictionary(defaultLocale);
   const now = new Date();
 
   const solutionRoutes = t.solutions.items.map((item) => ({

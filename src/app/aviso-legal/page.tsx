@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Rich } from '@/components/ui';
+import { contactEmail } from '@/config/site';
 
 export const metadata: Metadata = {
   title: 'Aviso Legal · Parrax Solutions',
@@ -31,7 +32,7 @@ export default function AvisoLegalPage() {
               <li><strong>Denominación social / Titular:</strong> <Rich text="[Nombre / Razón Social del Titular]" /></li>
               <li><strong>NIF / CIF:</strong> <Rich text="[NIF / CIF]" /></li>
               <li><strong>Domicilio social / Cobertura:</strong> España · Venezuela</li>
-              <li><strong>Correo electrónico de contacto:</strong> <a href="mailto:contacto@parraxsolutions.com" className="text-white underline underline-offset-4">contacto@parraxsolutions.com</a></li>
+              <li><strong>Correo electrónico de contacto:</strong> <a href={`mailto:${contactEmail}`} className="text-white underline underline-offset-4">{contactEmail}</a></li>
               <li><strong>Inscripción registral:</strong> <Rich text="[Datos de inscripción en el Registro Mercantil si aplica]" /></li>
             </ul>
           </section>

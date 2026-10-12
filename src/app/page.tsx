@@ -1,4 +1,4 @@
-import { getDictionary } from '@/i18n/config';
+import { defaultLocale, getDictionary } from '@/i18n/config';
 import { Hero } from '@/components/sections/Hero';
 import { QuickServices } from '@/components/sections/QuickServices';
 import { Problems } from '@/components/sections/Problems';
@@ -11,7 +11,7 @@ import { Security } from '@/components/sections/Security';
 import { Contact } from '@/components/sections/Contact';
 
 export default function HomePage() {
-  const t = getDictionary('es');
+  const t = getDictionary(defaultLocale);
   return (
     <>
       <Hero t={t.hero} />
