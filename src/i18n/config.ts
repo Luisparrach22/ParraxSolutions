@@ -20,5 +20,3 @@ const dictionaries: Record<Locale, Dictionary> = { es };
 export function getDictionary(locale: Locale = defaultLocale): Dictionary {
   return dictionaries[locale];
 }
-
-export const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? 'https://parraxsolutions.com').replace(/\/$/, '');

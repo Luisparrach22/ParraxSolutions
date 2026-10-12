@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { getDictionary, siteUrl } from '@/i18n/config';
+import { siteUrl } from '@/config/site';
+import { getDictionary } from '@/i18n/config';
 import { Button, NodeDot, Reveal, Section } from '@/components/ui';
 
 type Props = {

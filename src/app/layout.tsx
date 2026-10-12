@@ -6,8 +6,8 @@ import {
   getDictionary,
   htmlLang,
   ogLocale,
-  siteUrl,
 } from "@/i18n/config";
+import { siteUrl } from "@/config/site";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { MobileCtaBar } from "@/components/layout/MobileCtaBar";

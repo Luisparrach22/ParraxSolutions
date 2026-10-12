@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next';
-import { getDictionary, siteUrl } from '@/i18n/config';
+import { siteUrl } from '@/config/site';
+import { getDictionary } from '@/i18n/config';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const t = getDictionary('es');
