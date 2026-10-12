@@ -21,7 +21,14 @@ export const CONTACT_LIMITS = {
 export const CONTACT_REQUEST_TIMEOUT_MS = 25_000;
 
 /** Contrato de respuesta de POST /api/contact. */
-export type ContactErrorCode = 'invalid_json' | 'validation' | 'rate_limited' | 'send_failed';
+export type ContactErrorCode =
+  | 'invalid_json'
+  | 'validation'
+  | 'rate_limited'
+  | 'send_failed'
+  | 'forbidden_origin'
+  | 'unsupported_media_type'
+  | 'payload_too_large';
 export type ContactResponse = { ok: true } | { ok: false; error: ContactErrorCode };
 
 export const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;

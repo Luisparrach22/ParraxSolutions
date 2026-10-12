@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import type { ContactErrorCode, ContactResponse } from '@/lib/contact-schema';
 import { rateLimited } from '@/server/contact/rate-limit';
+import { isCrossSiteRequest, isJsonRequest, readBodyWithLimit } from '@/server/contact/request-guards';
 import { isValidContactRequest, parseContactRequest } from '@/server/contact/validation';
 import { buildContactEmail } from '@/server/contact/email-template';
 import { sendContactEmail } from '@/server/contact/mailer';
@@ -21,9 +22,20 @@ export async function POST(request: Request) {
     return fail('rate_limited', 429);
   }
 
+  if (isCrossSiteRequest(request)) {
+    return fail('forbidden_origin', 403);
+  }
+  if (!isJsonRequest(request)) {
+    return fail('unsupported_media_type', 415);
+  }
+  const raw = await readBodyWithLimit(request);
+  if (raw === null) {
+    return fail('payload_too_large', 413);
+  }
+
   let body: Record<string, unknown>;
   try {
-    body = await request.json();
+    body = JSON.parse(raw);
   } catch {
     return fail('invalid_json', 400);
   }

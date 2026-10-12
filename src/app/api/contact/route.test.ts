@@ -118,10 +118,73 @@ describe('POST /api/contact · respuestas', () => {
     expect(sendContactEmail).not.toHaveBeenCalled();
   });
 
-  // Comportamiento actual documentado para SEC-005 (se corrige en T-07): se acepta text/plain.
-  it.fails('[SEC-005] 415 si el Content-Type no es application/json', async () => {
-    const res = await post(validBody, { headers: { 'Content-Type': 'text/plain' } });
+
+});
+
+describe('POST /api/contact · origen, tipo y tamaño (SEC-005, SEC-009)', () => {
+  it.each([
+    ['text/plain', { 'Content-Type': 'text/plain' }],
+    ['form-urlencoded', { 'Content-Type': 'application/x-www-form-urlencoded' }],
+    ['sin Content-Type', { 'Content-Type': '' }],
+  ])('415 unsupported_media_type con %s', async (_label, headers) => {
+    const res = await post(validBody, { headers });
     expect(res.status).toBe(415);
+    await expect(res.json()).resolves.toEqual({ ok: false, error: 'unsupported_media_type' });
+    expect(sendContactEmail).not.toHaveBeenCalled();
+  });
+
+  it('acepta application/json con charset', async () => {
+    const res = await post(validBody, { headers: { 'Content-Type': 'application/json; charset=utf-8' } });
+    expect(res.status).toBe(200);
+  });
+
+  it.each([
+    ['Origin de otro sitio', { Origin: 'https://evil.example' }],
+    ['Origin malformado', { Origin: 'null' }],
+    ['Sec-Fetch-Site cross-site', { 'Sec-Fetch-Site': 'cross-site' }],
+  ])('403 forbidden_origin con %s', async (_label, headers) => {
+    const res = await post(validBody, { headers });
+    expect(res.status).toBe(403);
+    await expect(res.json()).resolves.toEqual({ ok: false, error: 'forbidden_origin' });
+    expect(sendContactEmail).not.toHaveBeenCalled();
+  });
+
+  it.each([
+    ['el mismo origen de la petición', { Origin: 'http://localhost', 'Sec-Fetch-Site': 'same-origin' }],
+    ['el dominio canónico del sitio', { Origin: 'https://parraxsolutions.com', 'Sec-Fetch-Site': 'same-site' }],
+    ['el dominio indicado en x-forwarded-host', { Origin: 'https://www.parraxsolutions.com', 'x-forwarded-host': 'www.parraxsolutions.com' }],
+    ['sin Origin (cliente no navegador)', {}],
+  ])('200 con %s', async (_label, headers) => {
+    const res = await post(validBody, { headers });
+    expect(res.status).toBe(200);
+  });
+
+  it('413 payload_too_large si Content-Length supera el límite', async () => {
+    const res = await post({ ...validBody, message: 'm'.repeat(70 * 1024) });
+    expect(res.status).toBe(413);
+    await expect(res.json()).resolves.toEqual({ ok: false, error: 'payload_too_large' });
+    expect(sendContactEmail).not.toHaveBeenCalled();
+  });
+
+  it('413 si el cuerpo supera el límite llegando en streaming sin Content-Length', async () => {
+    const chunk = new TextEncoder().encode('x'.repeat(16 * 1024));
+    let sent = 0;
+    const body = new ReadableStream<Uint8Array>({
+      pull(controller) {
+        if (sent++ < 10) controller.enqueue(chunk);
+        else controller.close();
+      },
+    });
+    const res = await POST(
+      new Request('http://localhost/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'x-forwarded-for': '10.9.9.9' },
+        body,
+        duplex: 'half',
+      } as RequestInit),
+    );
+    expect(res.status).toBe(413);
+    expect(sent).toBeLessThan(10); // deja de leer en cuanto supera el límite
   });
 });
 
