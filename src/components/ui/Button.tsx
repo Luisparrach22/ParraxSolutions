@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import type { ComponentPropsWithoutRef, MouseEvent, ReactNode } from 'react';
 import { cn } from '@/lib/cn';
+import { scrollToAnchor } from '@/lib/scroll-to-anchor';
 
 type Variant = 'primary' | 'ghost' | 'ghost-light' | 'solid-light';
 type Size = 'md' | 'lg';
@@ -78,22 +79,11 @@ export function Button(props: ButtonAsLink | ButtonAsButton) {
       if (onClick) onClick(e);
       if (e.defaultPrevented) return;
 
-      if (href.includes('#')) {
-        const id = href.split('#')[1];
-        if (id && typeof window !== 'undefined') {
-          const isHome = window.location.pathname === '/';
-          if (isHome || href.startsWith('#')) {
-            const el = document.getElementById(id);
-            if (el) {
-              e.preventDefault();
-              const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-              el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
-              if (window.location.hash !== `#${id}`) {
-                window.history.pushState(null, '', `#${id}`);
-              }
-            }
-          }
-        }
+      const id = href.split('#')[1];
+      if (!id) return;
+      const isHome = window.location.pathname === '/';
+      if ((isHome || href.startsWith('#')) && scrollToAnchor(id)) {
+        e.preventDefault();
       }
     };
 

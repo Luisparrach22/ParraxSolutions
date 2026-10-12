@@ -6,6 +6,7 @@ import { useCallback, useEffect, useRef, useState, type MouseEvent } from 'react
 import type { Dictionary } from '@/i18n/config';
 import { cn } from '@/lib/cn';
 import { Button, Logo, NodeDot } from '@/components/ui';
+import { scrollToAnchor } from '@/lib/scroll-to-anchor';
 
 type NavbarProps = {
   t: Dictionary['nav'];
@@ -22,7 +23,6 @@ export function Navbar({ t, a11y }: NavbarProps) {
   const [active, setActive] = useState<string | null>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
-  const firstLinkRef = useRef<HTMLAnchorElement>(null);
 
   // Fondo sólido + borde al hacer scroll
   useEffect(() => {
@@ -77,9 +77,6 @@ export function Navbar({ t, a11y }: NavbarProps) {
 
     html.style.overflow = 'hidden';
     body.style.overflow = 'hidden';
-    if (window.matchMedia('(min-width: 1024px)').matches) {
-      firstLinkRef.current?.focus();
-    }
 
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -118,15 +115,10 @@ export function Navbar({ t, a11y }: NavbarProps) {
       document.body.style.overflow = '';
 
       const id = href.split('#')[1];
-      if (!isHome || !id) return;
-      const el = document.getElementById(id);
-      if (!el) return;
+      if (!isHome || !id || !document.getElementById(id)) return;
       e.preventDefault();
-      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      setTimeout(() => {
-        el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
-        if (window.location.hash !== `#${id}`) window.history.pushState(null, '', `#${id}`);
-      }, 50);
+      // Pequeña espera para que el menú se cierre y se libere el scroll antes de desplazar.
+      setTimeout(() => scrollToAnchor(id), 50);
     },
     [isHome],
   );
@@ -239,7 +231,6 @@ export function Navbar({ t, a11y }: NavbarProps) {
                 return (
                   <li key={link.href}>
                     <Link
-                      ref={i === 0 ? firstLinkRef : undefined}
                       href={href}
                       onClick={(e) => go(e, href)}
                       aria-current={isActive ? 'location' : undefined}
