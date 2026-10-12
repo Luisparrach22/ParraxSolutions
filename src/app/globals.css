@@ -45,18 +45,18 @@
   p { text-wrap: pretty; }
 
   ::selection {
-    background: rgba(0, 210, 255, 0.25);
+    background: rgba(5, 209, 255, 0.25);
     color: #fff;
   }
 
   /* Focus visible: anillo cian (el nodo) en todos los elementos interactivos */
   :focus-visible {
-    outline: 2px solid #00d2ff;
+    outline: 2px solid #05D1FF;
     outline-offset: 3px;
     border-radius: 6px;
   }
   .surface-light :focus-visible {
-    outline-color: #1f3a8a;
+    outline-color: #161B46;
   }
 }
 

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 2400 800" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:affinity="https://www.affinity.studio/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <g transform="matrix(1,0,0,1,-1264,0)">
+        <g id="ParraxDarkSinFondo" transform="matrix(1,0,0,1,190,0)">
+            <rect x="1074" y="0" width="2400" height="800" style="fill:white;"/>
+            <g transform="matrix(1,0,0,1,7.16338,-0)">
+                <g transform="matrix(0.236842,0,0,1,1677.721497,0)">
+                    <rect x="2139" y="120.244" width="19" height="559.513"/>
+                </g>
+                <g transform="matrix(1.691981,0,0,1.691981,891.318508,-497.329177)">
+                    <path d="M527,561L556.529,531.471L664.76,639.701L635.713,668.747L527,561Z" style="fill:rgb(0,210,255);"/>
+                    <path d="M158,365L312,367L353,367C393.509,367 421.777,382.421 421.777,382.421L504.436,465.08L476.258,493.258L406,423C391.136,408.136 369,406 369,406L202,406L202,512L368,512C387.539,512 397.385,498.028 397.385,498.028L417.945,477.468L446.238,505.762L431,521C408.181,547.331 381,550 381,550L202,550L202,680L158,680L158,365Z" style="fill:rgb(30,27,75);"/>
+                    <path d="M158,365L158,680L202,680L202,550L381,550C381,550 408.181,547.331 431,521L446.238,505.762L417.945,477.468L397.385,498.028C397.385,498.028 387.539,512 368,512L202,512L202,406L369,406C369,406 391.136,408.136 406,423C420.864,437.864 476.258,493.258 476.258,493.258L504.436,465.08L421.777,382.421C421.777,382.421 393.509,367 353,367L312,367L158,365Z" style="fill:rgb(12,20,69);"/>
+                    <g transform="matrix(1,0,0,1,1.062379,0)">
+                        <path d="M316,680L378,680L691.635,366.365L629,366.365L316,680Z" style="fill:rgb(0,210,255);"/>
+                    </g>
+                    <g transform="matrix(1.205734,0,0,1.205734,-153.728274,-124.214258)">
+                        <circle cx="678" cy="656" r="24" style="fill:rgb(0,210,255);stroke:white;stroke-width:3.06px;"/>
+                    </g>
+                </g>
+                <g transform="matrix(1,0,0,1,45.32676,0)">
+                    <rect x="2139" y="120.244" width="19" height="559.513" style="fill:none;"/>
+                </g>
+                <g transform="matrix(5.306948,0,0,5.306948,-10421.861015,-906.688205)">
+                    <text x="2392.428px" y="246.222px" style="font-family:'AvenirNext-Bold', 'Avenir Next', sans-serif;font-weight:700;font-size:50px;">P<tspan x="2421.428px 2457.878px " y="246.222px 246.222px ">AR</tspan>RAX</text>
+                </g>
+                <g transform="matrix(3.053046,0,0,3.053046,-4949.62233,-474.166075)">
+                    <text x="2370.069px" y="344.641px" style="font-family:'Avenir-Book', 'Avenir';font-size:50px;fill:rgb(30,41,59);">S<tspan x="2407.869px 2459.569px 2494.569px 2538.869px 2577.569px 2600.769px 2652.469px 2701.369px " y="344.641px 344.641px 344.641px 344.641px 344.641px 344.641px 344.641px 344.641px ">OLUTIONS</tspan></text>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

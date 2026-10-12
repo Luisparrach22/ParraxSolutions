@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg width="100%" height="100%" viewBox="48 220 928 584" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:affinity="https://www.affinity.studio/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
-    <g transform="matrix(1,0,0,1,-7,0)">
-        <g id="PX_Isotipo_Dark" transform="matrix(1,0,0,1,7,0)">
-            <rect x="0" y="0" width="1024" height="1024" style="fill:none;"/>
-            <g transform="matrix(1.691981,0,0,1.691981,-207.681492,-385.329177)">
-                <path d="M527,561L556.5291733,531.4708267L664.7595225,639.7011758L635.713313,668.7473853L527,561Z" style="fill:rgb(30,58,138);"/>
-                <path d="M527,561L556.5291733,531.4708267L664.7595225,639.7011758L635.713313,668.7473853L527,561Z" style="fill:none;stroke:black;stroke-width:0.59px;"/>
-                <path d="M158,365L312,367L353,367C393.5089062,367 421.7771485,382.4212142 421.7771485,382.4212142L504.4355355,465.0796012L476.2575683,493.2575683L406,423C391.1355635,408.1355635 369,406 369,406L202,406L202,512L368,512C387.5394807,512 397.3853081,498.0275226 397.3853081,498.0275226L417.9445434,477.4682873L446.238128,505.761872L431,521C408.1810622,547.3307777 381,550 381,550L202,550L202,680L158,680L158,365Z" style="fill:rgb(30,58,138);"/>
-                <path d="M158,365L158,680L202,680L202,550L381,550C381,550 408.1810622,547.3307777 431,521L446.238128,505.761872L417.9445434,477.4682873L397.3853081,498.0275226C397.3853081,498.0275226 387.5394807,512 368,512L202,512L202,406L369,406C369,406 391.1355635,408.1355635 406,423C420.8644365,437.8644365 476.2575683,493.2575683 476.2575683,493.2575683L504.4355355,465.0796012L421.7771485,382.4212142C421.7771485,382.4212142 393.5089062,367 353,367L312,367L158,365Z" style="fill:none;stroke:black;stroke-width:0.59px;"/>
-                <path d="M316,680L629,366.3652353L691.6347647,366.3652353L378,680L316,680Z" style="fill:rgb(30,58,138);"/>
-                <path d="M316,680L378,680L691.6347647,366.3652353L629,366.3652353L316,680Z" style="fill:none;stroke:black;stroke-width:0.59px;"/>
+<svg width="100%" height="100%" viewBox="150 280 750 500" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:affinity="https://www.affinity.studio/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <g transform="matrix(1,0,0,1,0,-2358)">
+        <g id="LogoSinFondo" transform="matrix(1,0,0,1,-5641,2358)">
+            <rect x="5641" y="0" width="1080" height="1080" style="fill:none;"/>
+            <g transform="matrix(1.277486,0,0,1.277486,5637.623343,-150.77425)">
+                <path d="M527,561L556.529,531.471L664.76,639.701L635.713,668.747L527,561Z" style="fill:rgb(0,210,255);"/>
+                <path d="M158,365L312,367L353,367C393.509,367 421.777,382.421 421.777,382.421L504.436,465.08L476.258,493.258L406,423C391.136,408.136 369,406 369,406L202,406L202,512L368,512C387.539,512 397.385,498.028 397.385,498.028L417.945,477.468L446.238,505.762L431,521C408.181,547.331 381,550 381,550L202,550L202,680L158,680L158,365Z" style="fill:rgb(30,27,75);"/>
+                <path d="M158,365L158,680L202,680L202,550L381,550C381,550 408.181,547.331 431,521L446.238,505.762L417.945,477.468L397.385,498.028C397.385,498.028 387.539,512 368,512L202,512L202,406L369,406C369,406 391.136,408.136 406,423C420.864,437.864 476.258,493.258 476.258,493.258L504.436,465.08L421.777,382.421C421.777,382.421 393.509,367 353,367L312,367L158,365Z" style="fill:rgb(12,20,69);"/>
+                <g transform="matrix(1,0,0,1,1.062379,0)">
+                    <path d="M316,680L378,680L691.635,366.365L629,366.365L316,680Z" style="fill:rgb(0,210,255);"/>
+                </g>
                 <g transform="matrix(1.205734,0,0,1.205734,-153.728274,-124.214258)">
-                    <circle cx="678" cy="656" r="24" style="fill:rgb(0,210,255);stroke:rgb(235,235,235);stroke-width:0.49px;"/>
+                    <circle cx="678" cy="656" r="24" style="fill:rgb(0,210,255);stroke:white;stroke-width:4.06px;"/>
                 </g>
             </g>
         </g>

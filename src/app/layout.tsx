@@ -44,11 +44,11 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: "/assets/logo-mark.svg",
+        url: "/svg/LogoSinFondo.svg",
         media: "(prefers-color-scheme: light)",
       },
       {
-        url: "/assets/logo-mark-white.svg",
+        url: "/svg/LogoLightSinFondo.svg",
         media: "(prefers-color-scheme: dark)",
       },
     ],
@@ -69,7 +69,7 @@ const organizationJsonLd = {
   "@type": "Organization",
   name: "Parrax Solutions",
   url: siteUrl,
-  logo: `${siteUrl}/assets/logo-mark.svg`,
+  logo: `${siteUrl}/svg/LogoLightSinFondo.svg`,
   description: t.meta.description,
   areaServed: ["ES", "VE", "Hispanoamérica"],
   address: { "@type": "PostalAddress", addressCountry: "ES" },
@@ -98,7 +98,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           }}
         />
       </head>
-      <body>
+      <body suppressHydrationWarning>
         <a
           href="#contenido"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded focus:bg-node focus:px-4 focus:py-2 focus:text-obsidian"

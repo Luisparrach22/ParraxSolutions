@@ -140,12 +140,12 @@ function Connector() {
       {/* Horizontal (sm+) */}
       <svg className="hidden h-3 w-6 shrink-0 sm:block md:w-8" viewBox="0 0 32 12" fill="none" preserveAspectRatio="none">
         <line x1="0" y1="6" x2="26" y2="6" stroke="#475569" strokeWidth="1" className="flow-line" />
-        <circle cx="28" cy="6" r="2.5" fill="#00D2FF" />
+        <circle cx="28" cy="6" r="2.5" fill="#05D1FF" />
       </svg>
       {/* Vertical (móvil) */}
       <svg className="ml-5 h-6 w-3 sm:hidden" viewBox="0 0 12 24" fill="none">
         <line x1="6" y1="0" x2="6" y2="18" stroke="#475569" strokeWidth="1" className="flow-line" />
-        <circle cx="6" cy="20.5" r="2.5" fill="#00D2FF" />
+        <circle cx="6" cy="20.5" r="2.5" fill="#05D1FF" />
       </svg>
     </>
   );

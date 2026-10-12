@@ -92,10 +92,10 @@ export function SplashIntro() {
         >
           {/* Tamaño adaptativo: compacto en móvil, amplio en escritorio */}
           <div className="sm:hidden">
-            <Logo variant="lockup" surface="dark" height={36} priority alt="Parrax Solutions" />
+            <Logo variant="lockup" surface="dark" height={60} priority alt="Parrax Solutions" />
           </div>
           <div className="hidden sm:block">
-            <Logo variant="lockup" surface="dark" height={48} priority alt="Parrax Solutions" />
+            <Logo variant="lockup" surface="dark" height={84} priority alt="Parrax Solutions" />
           </div>
         </div>
 
@@ -105,7 +105,7 @@ export function SplashIntro() {
           <div className="relative h-[2px] w-36 overflow-hidden rounded-full bg-slate-800">
             <div
               className={cn(
-                'absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-transparent via-node to-white shadow-[0_0_8px_#00D2FF] transition-all duration-1000 ease-out',
+                'absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-transparent via-node to-white shadow-[0_0_12px_#05D1FF] transition-all duration-1000 ease-out',
                 stage === 'visible' ? 'w-full' : 'w-0',
               )}
             />

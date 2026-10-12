@@ -13,16 +13,17 @@ const config: Config = {
       colors: {
         obsidian: {
           DEFAULT: '#090D16', // base oscura
-          raised: '#0D1320', // superficies elevadas sobre obsidian
-          line: '#1E293B', // = Slate 800, bordes sobre oscuro
+          raised: '#0F1528', // superficies elevadas con sutil matiz azul noche (#161B46)
+          line: '#1E293B', // bordes sobre oscuro
         },
         brand: {
-          DEFAULT: '#1F3A8A', // azul del logo, solo sobre superficies claras
-          hover: '#1A3175',
+          DEFAULT: '#161B46', // rgb(22, 27, 70) azul noche oficial del logotipo
+          hover: '#1E2560',
+          light: '#252E75',
         },
         node: {
-          DEFAULT: '#00D2FF', // cian de acento
-          hover: '#33DBFF',
+          DEFAULT: '#05D1FF', // cian oficial del logotipo (#05D1FF)
+          hover: '#38DCFF',
         },
         paper: '#F8FAFC',
         ink: '#0F172A',

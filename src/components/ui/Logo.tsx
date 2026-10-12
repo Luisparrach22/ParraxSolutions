@@ -3,24 +3,82 @@ import { cn } from '@/lib/cn';
 
 type LogoProps = {
   variant: 'lockup' | 'mark' | 'wordmark';
-  /** on-dark usa la versión blanca; on-light la versión a color */
+  /** on-dark usa la versión blanca/luminosa; on-light la versión a color/oscura */
   surface?: 'dark' | 'light';
+  /** si es true, usa las variantes con fondo sólido en lugar de transparentes */
+  withBackground?: boolean;
   height: number;
   className?: string;
   priority?: boolean;
   alt?: string;
 };
 
-// Proporciones de los SVG recortados en /public/assets (ancho / alto)
-const ratios = { lockup: 2228 / 584, mark: 928 / 584, wordmark: 1104 / 390 } as const;
+// Proporciones oficiales de los nuevos archivos SVG ajustados a su contenido real (ancho / alto)
+// lockup (Parrax...): 2260 / 590 = ~3.83
+// mark (Logo...): 750 / 500 = 1.50
+// wordmark (Wordmark...): 1200 / 430 = ~2.79
+const ratios = {
+  lockup: 2260 / 590,
+  mark: 750 / 500,
+  wordmark: 1200 / 430,
+} as const;
+
+/**
+ * Mapeo a las nuevas rutas oficiales de SVG:
+ * - lockup: ParraxLightSinfondo.svg / ParraxDarkSinFondo.svg (sólidos: ParraxDark.svg / ParraxLight.svg)
+ * - mark: LogoLightSinFondo.svg / LogoSinFondo.svg (sólidos: Logo.svg / LogoLight.svg)
+ * - wordmark: Wordmark_claro_sinfondo.svg / WordmarkSinfondo.svg (sólidos: Wordmark_claro.svg / Wordmark.svg)
+ */
+const logoFiles = {
+  lockup: {
+    transparent: {
+      dark: '/svg/ParraxLightSinfondo.svg',
+      light: '/svg/ParraxDarkSinFondo.svg',
+    },
+    solid: {
+      dark: '/svg/ParraxDark.svg',
+      light: '/svg/ParraxLight.svg',
+    },
+  },
+  mark: {
+    transparent: {
+      dark: '/svg/LogoLightSinFondo.svg',
+      light: '/svg/LogoSinFondo.svg',
+    },
+    solid: {
+      dark: '/svg/Logo.svg',
+      light: '/svg/LogoLight.svg',
+    },
+  },
+  wordmark: {
+    transparent: {
+      dark: '/svg/Wordmark_claro_sinfondo.svg',
+      light: '/svg/WordmarkSinfondo.svg',
+    },
+    solid: {
+      dark: '/svg/Wordmark_claro.svg',
+      light: '/svg/Wordmark.svg',
+    },
+  },
+} as const;
 
 /**
  * Logotipos oficiales. Nunca se recolorean, estiran ni se les añaden efectos:
  * solo se escala proporcionalmente a partir de la altura.
  */
-export function Logo({ variant, surface = 'dark', height, className, priority, alt = 'Parrax Solutions' }: LogoProps) {
-  const src = `/assets/logo-${variant}${surface === 'dark' ? '-white' : ''}.svg`;
+export function Logo({
+  variant,
+  surface = 'dark',
+  withBackground = false,
+  height,
+  className,
+  priority,
+  alt = 'Parrax Solutions',
+}: LogoProps) {
+  const bgMode = withBackground ? 'solid' : 'transparent';
+  const src = logoFiles[variant][bgMode][surface];
   const width = Math.round(height * ratios[variant]);
+
   return (
     <Image
       src={src}

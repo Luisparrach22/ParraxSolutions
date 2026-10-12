@@ -159,10 +159,10 @@ export function Navbar({ t, a11y }: NavbarProps) {
         >
           {/* Logo adaptativo: más compacto en móviles pequeños */}
           <span className="block sm:hidden">
-            <Logo variant="lockup" surface="dark" height={26} priority alt="Parrax Solutions" />
+            <Logo variant="lockup" surface="dark" height={38} priority alt="Parrax Solutions" />
           </span>
           <span className="hidden sm:block">
-            <Logo variant="lockup" surface="dark" height={32} priority alt="Parrax Solutions" />
+            <Logo variant="lockup" surface="dark" height={48} priority alt="Parrax Solutions" />
           </span>
         </Link>
 

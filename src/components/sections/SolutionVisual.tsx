@@ -5,8 +5,8 @@
  */
 const stroke = '#94A3B8';
 const soft = '#CBD5E1';
-const blue = '#1F3A8A';
-const node = '#00D2FF';
+const blue = '#161B46';
+const node = '#05D1FF';
 
 export function SolutionVisual({ kind }: { kind: string }) {
   switch (kind) {
