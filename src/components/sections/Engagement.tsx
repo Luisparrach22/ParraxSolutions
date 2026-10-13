@@ -6,7 +6,7 @@ export function Engagement({ t }: { t: Dictionary['engagement'] }) {
     <Section id="modelos" tone="light" labelledBy="engagement-title">
       <SectionHeader id="engagement-title" tone="light" eyebrow={t.eyebrow} title={t.title} intro={t.intro} />
 
-      <ul className="mt-10 grid gap-4 md:mt-14 md:grid-cols-3">
+      <ul className="mt-10 grid gap-4 md:mt-14 lg:grid-cols-3">
         {t.models.map((m, i) => (
           <Reveal as="li" key={m.name} delay={i * 80}>
             <article className="flex h-full flex-col rounded-lg border border-slate-200 bg-white p-5 sm:p-6 md:p-8">

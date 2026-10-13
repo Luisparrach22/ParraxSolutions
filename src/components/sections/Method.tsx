@@ -31,9 +31,9 @@ export function Method({ t }: { t: Dictionary['method'] }) {
 
               <p className="font-mono text-xs text-slate-500 lg:mt-6">0{i + 1}</p>
               <h3 className="mt-1 text-base font-semibold text-white sm:text-h3">{step.name}</h3>
-              <p className="mt-1.5 max-w-[42ch] text-xs leading-relaxed text-slate-400 sm:text-sm sm:leading-6">{step.text}</p>
+              <p className="mt-1.5 max-w-[42ch] text-sm leading-6 text-slate-400">{step.text}</p>
 
-              <div className="mt-4 rounded border border-obsidian-line bg-obsidian-raised/70 p-3 text-xs sm:mt-5 sm:border-0 sm:bg-transparent sm:p-0 sm:border-t sm:pt-4 sm:text-sm">
+              <div className="mt-4 rounded border border-obsidian-line bg-obsidian-raised/70 p-3 text-xs sm:mt-5 sm:rounded-none sm:border-0 sm:bg-transparent sm:p-0 sm:border-t sm:pt-4 sm:text-sm">
                 <p className="text-[10px] uppercase tracking-[0.14em] text-slate-400 sm:text-[0.6875rem]">{t.deliverableLabel}</p>
                 <p className="mt-1 font-medium text-slate-200">{step.deliverable}</p>
               </div>

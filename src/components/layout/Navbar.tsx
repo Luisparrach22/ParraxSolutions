@@ -224,7 +224,7 @@ export function Navbar({ t, a11y }: NavbarProps) {
       >
         <div className="container-x flex min-h-full flex-col justify-between pb-[calc(1.5rem+env(safe-area-inset-bottom))] pt-6">
           <div className="space-y-6">
-            <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-slate-500">Navegación</p>
+            <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-slate-400">Navegación</p>
             <ul className="divide-y divide-obsidian-line border-y border-obsidian-line">
               {t.links.map((link, i) => {
                 const isActive = active === link.href.replace('#', '');

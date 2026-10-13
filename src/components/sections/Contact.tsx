@@ -51,7 +51,7 @@ export function Contact({ t }: { t: Dictionary['contact'] }) {
                 <Button href="#contacto-formulario" variant="ghost" arrow className="w-full sm:w-auto">
                   {t.calendar.cta}
                 </Button>
-                <p className="mt-2.5 text-xs text-slate-500">
+                <p className="mt-2.5 text-xs text-slate-400">
                   <Rich text={t.calendar.placeholder} />
                 </p>
               </div>

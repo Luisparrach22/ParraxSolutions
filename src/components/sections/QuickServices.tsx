@@ -34,7 +34,7 @@ export function QuickServices({ t }: { t: Dictionary['quickServices'] }) {
                     <span className="font-mono text-xs font-medium text-slate-500 transition-colors group-hover:text-node">
                       {item.num}
                     </span>
-                    <Badge variant="neutral" className="border-slate-800 text-[9px] text-slate-400 group-hover:border-slate-700 sm:text-[10px]">
+                    <Badge variant="neutral" className="border-slate-800 text-[10px] text-slate-400 group-hover:border-slate-700">
                       {item.badge}
                     </Badge>
                   </div>

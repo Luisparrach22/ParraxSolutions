@@ -12,7 +12,7 @@ export function WhyParrax({ t }: { t: Dictionary['why'] }) {
             <Reveal delay={120} className="mt-8 sm:mt-10">
               {/* Vista móvil: tarjetas de contraste directo sin scroll */}
               <div className="space-y-2.5 sm:hidden">
-                <p className="text-[10px] font-medium uppercase tracking-wider text-slate-500">
+                <p className="text-[10px] font-medium uppercase tracking-wider text-slate-400">
                   Frente a una suscripción tradicional
                 </p>
                 {t.compare.rows.map(([label, generic, parrax]) => (
@@ -20,7 +20,7 @@ export function WhyParrax({ t }: { t: Dictionary['why'] }) {
                     <p className="text-xs font-semibold text-slate-200">{label}</p>
                     <div className="mt-2 grid grid-cols-2 gap-2 text-xs">
                       <div className="rounded border border-obsidian-line bg-obsidian p-2 text-slate-400">
-                        <span className="block text-[10px] text-slate-500">Suscripción</span>
+                        <span className="block text-[10px] text-slate-400">Suscripción</span>
                         <span className="mt-0.5 block">{generic}</span>
                       </div>
                       <div className="rounded border border-slate-700 bg-obsidian p-2 text-white">
@@ -89,7 +89,7 @@ export function WhyParrax({ t }: { t: Dictionary['why'] }) {
                   {item.title}
                   <NodeDot size="xs" className="ml-2 inline-block align-middle opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 </h3>
-                <p className="mt-1.5 max-w-[52ch] text-xs leading-relaxed text-slate-400 sm:mt-2 sm:text-[0.9375rem] sm:leading-7">{item.text}</p>
+                <p className="mt-1.5 max-w-[52ch] text-sm leading-6 text-slate-400 sm:mt-2 sm:text-[0.9375rem] sm:leading-7">{item.text}</p>
               </div>
             </Reveal>
           ))}
