@@ -35,7 +35,7 @@ export function Proof({ t }: { t: Dictionary['proof'] }) {
         {/* Oferta para ganar los primeros casos */}
         <Reveal delay={100} className="lg:col-span-5">
           <article id="auditoria" className="flex h-full scroll-mt-[calc(var(--nav-h)+24px)] flex-col rounded-lg border border-slate-600 bg-obsidian-raised p-5 sm:p-6 md:p-10">
-            <Badge variant="node">{t.audit.badge}</Badge>
+            <Badge variant="node" className="self-start">{t.audit.badge}</Badge>
             <h3 className="mt-5 text-xl font-semibold tracking-tight text-white sm:mt-6 sm:text-2xl">{t.audit.title}</h3>
             <p className="mt-3 text-[0.9375rem] leading-7 text-slate-400">{t.audit.text}</p>
             <ul className="mt-6 space-y-3">

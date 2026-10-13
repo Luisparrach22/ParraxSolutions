@@ -21,7 +21,7 @@ export function Security({ t }: { t: Dictionary['security'] }) {
             <Reveal as="li" key={item.title} delay={i * 60} className="group bg-obsidian-raised p-5 transition-colors sm:p-6 hover:bg-obsidian">
               <div className="flex items-center gap-3">
                 <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-obsidian-line bg-obsidian text-slate-300 transition-all duration-200 group-hover:border-slate-600 group-hover:text-node group-hover:scale-105">
-                  <Icon name={item.icon} className="h-4.5 w-4.5" />
+                  <Icon name={item.icon} className="h-[18px] w-[18px]" />
                 </div>
                 <h3 className="text-base font-semibold tracking-tight text-white">{item.title}</h3>
               </div>
