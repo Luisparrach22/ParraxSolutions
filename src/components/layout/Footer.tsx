@@ -14,14 +14,14 @@ export function Footer({ t }: { t: Dictionary['footer'] }) {
         <div className="md:col-span-4">
           {/* Firma de marca: presencia clara sin competir con el texto en móvil */}
           <span className="block md:hidden">
-            <Logo variant="wordmark" surface="dark" height={66} alt="Parrax Solutions" />
+            <Logo variant="wordmark" surface="dark" height={51} alt="Parrax Solutions" />
           </span>
           {/* En tablet la columna es estrecha (4/12): tamaño intermedio para no desbordar */}
           <span className="hidden md:block lg:hidden">
-            <Logo variant="wordmark" surface="dark" height={60} alt="Parrax Solutions" />
+            <Logo variant="wordmark" surface="dark" height={56} alt="Parrax Solutions" />
           </span>
           <span className="hidden lg:block">
-            <Logo variant="wordmark" surface="dark" height={88} alt="Parrax Solutions" />
+            <Logo variant="wordmark" surface="dark" height={79} alt="Parrax Solutions" />
           </span>
           <p className="mt-5 max-w-xs text-xs sm:text-sm leading-relaxed text-slate-400">{t.tagline}</p>
           <p className="mt-5 flex items-center gap-2 text-xs sm:text-sm text-slate-400">
