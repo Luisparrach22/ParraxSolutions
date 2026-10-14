@@ -4,7 +4,7 @@ import { Badge, Button, NodeDot, Reveal } from '@/components/ui';
 export function Audit({ t }: { t: Dictionary['audit'] }) {
   return (
     <section id="auditoria" aria-labelledby="audit-title" className="scroll-mt-[calc(var(--nav-h)+24px)] border-y border-obsidian-line bg-obsidian-raised">
-      <Reveal className="container-x grid gap-8 py-14 md:py-20 lg:grid-cols-12 lg:items-center lg:gap-8">
+      <Reveal className="container-x grid grid-cols-1 gap-8 py-14 md:py-20 lg:grid-cols-12 lg:items-center lg:gap-8">
         <div className="lg:col-span-6">
           <Badge variant="node">{t.badge}</Badge>
           <h2 id="audit-title" className="mt-5 text-h2 text-white">

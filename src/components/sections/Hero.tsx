@@ -8,8 +8,8 @@ export function Hero({ t }: { t: Dictionary['hero'] }) {
       {/* Rejilla técnica sutil, sin manchas de color */}
       <div aria-hidden="true" className="grid-lines grid-fade pointer-events-none absolute inset-0" />
 
-      <div className="container-x relative grid items-center gap-10 pb-16 md:pb-section lg:grid-cols-12 lg:gap-8">
-        <div className="lg:col-span-6 lg:pr-6">
+      <div className="container-x relative grid grid-cols-1 items-center gap-10 pb-16 md:pb-section lg:grid-cols-12 lg:gap-8">
+        <div className="min-w-0 lg:col-span-6 lg:pr-6">
           <div>
             <p className="eyebrow flex-wrap sm:flex-nowrap">
               <NodeDot size="xs" pulse />
@@ -49,7 +49,7 @@ export function Hero({ t }: { t: Dictionary['hero'] }) {
           </div>
         </div>
 
-        <div className="lg:col-span-6">
+        <div className="min-w-0 lg:col-span-6">
           <HeroMockup t={t.mockup} />
         </div>
       </div>

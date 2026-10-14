@@ -29,7 +29,7 @@ export function Solutions({ t }: { t: Dictionary['solutions'] }) {
 
       {/* Servicio destacado: la puerta de entrada más habitual */}
       <Reveal className="mt-10 md:mt-14">
-        <article className="group relative grid gap-8 rounded-lg border border-slate-200 bg-white p-5 transition-colors duration-200 hover:border-slate-400 sm:p-6 md:p-8 lg:grid-cols-2 lg:items-center lg:gap-12 lg:p-10">
+        <article className="group relative grid grid-cols-1 gap-8 rounded-lg border border-slate-200 bg-white p-5 transition-colors duration-200 hover:border-slate-400 sm:p-6 md:p-8 lg:grid-cols-2 lg:items-center lg:gap-12 lg:p-10">
           <div className="flex flex-col">
             <p className="flex items-center gap-2 text-micro uppercase text-slate-600">
               <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-node" />

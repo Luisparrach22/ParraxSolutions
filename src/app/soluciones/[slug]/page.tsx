@@ -103,7 +103,7 @@ export default async function SolutionDetailPage({ params }: Props) {
 
       {/* Qué incluye y Encaja si (en superficie Paper) */}
       <Section tone="light" id="detalles">
-        <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16">
           <Reveal>
             <h2 className="text-xl font-semibold tracking-tight !text-ink sm:text-2xl md:text-3xl">
               {t.solutionDetails.includesTitle}

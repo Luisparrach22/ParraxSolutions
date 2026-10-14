@@ -11,7 +11,7 @@ export function Contact({ t }: { t: Dictionary['contact'] }) {
       <span id="agendar-sesion" className="absolute top-0" aria-hidden="true" />
       <div aria-hidden="true" className="grid-lines pointer-events-none absolute inset-0 [mask-image:linear-gradient(to_bottom,transparent,#000_30%,#000_70%,transparent)]" />
 
-      <div className="container-x relative grid gap-10 lg:grid-cols-12 lg:gap-8">
+      <div className="container-x relative grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-8">
         <div className="lg:col-span-5">
           <Reveal>
             <p className="eyebrow">

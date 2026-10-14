@@ -4,7 +4,7 @@ import { NodeDot, Reveal, Section, SectionHeader } from '@/components/ui';
 export function WhyParrax({ t }: { t: Dictionary['why'] }) {
   return (
     <Section id="por-que" labelledBy="why-title" className="border-t border-obsidian-line">
-      <div className="grid gap-14 lg:grid-cols-12 lg:gap-8">
+      <div className="grid grid-cols-1 gap-14 lg:grid-cols-12 lg:gap-8">
         <div className="lg:col-span-5">
           <div className="lg:sticky lg:top-[calc(var(--nav-h)+48px)]">
             <SectionHeader id="why-title" eyebrow={t.eyebrow} title={t.title} intro={t.intro} />
