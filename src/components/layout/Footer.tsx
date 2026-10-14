@@ -21,7 +21,7 @@ export function Footer({ t }: { t: Dictionary['footer'] }) {
             <Logo variant="wordmark" surface="dark" height={56} alt="Parrax Solutions" />
           </span>
           <span className="hidden lg:block">
-            <Logo variant="wordmark" surface="dark" height={79} alt="Parrax Solutions" />
+            <Logo variant="wordmark" surface="dark" height={72} alt="Parrax Solutions" />
           </span>
           <p className="mt-5 max-w-xs text-xs sm:text-sm leading-relaxed text-slate-400">{t.tagline}</p>
           <p className="mt-5 flex items-center gap-2 text-xs sm:text-sm text-slate-400">
