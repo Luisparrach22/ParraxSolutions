@@ -13,7 +13,7 @@ export function Method({ t }: { t: Dictionary['method'] }) {
           <div className="flow-h h-px w-full" />
         </div>
 
-        <ol className="grid gap-0 lg:grid-cols-5 lg:gap-6">
+        <ol className="grid gap-0 lg:grid-cols-4 lg:gap-8">
           {t.steps.map((step, i) => (
             <Reveal
               as="li"

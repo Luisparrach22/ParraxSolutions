@@ -38,25 +38,16 @@ export function Contact({ t }: { t: Dictionary['contact'] }) {
             </ol>
           </Reveal>
 
-          {/* Reserva directa en calendario */}
-          <Reveal delay={140} className="mt-8 rounded-lg border border-dashed border-slate-700 p-5 sm:mt-10 sm:p-6">
-            <p className="font-medium text-white">{t.calendar.title}</p>
-            <p className="mt-1 text-sm text-slate-400">{t.calendar.text}</p>
-            {calendarUrl ? (
+          {/* Reserva directa en calendario: solo si hay enlace configurado */}
+          {calendarUrl && (
+            <Reveal delay={140} className="mt-8 rounded-lg border border-dashed border-slate-700 p-5 sm:mt-10 sm:p-6">
+              <p className="font-medium text-white">{t.calendar.title}</p>
+              <p className="mt-1 text-sm text-slate-400">{t.calendar.text}</p>
               <Button href={calendarUrl} variant="ghost" className="mt-5" target="_blank" rel="noopener noreferrer">
                 {t.calendar.cta}
               </Button>
-            ) : (
-              <div className="mt-5">
-                <Button href="#contacto-formulario" variant="ghost" arrow className="w-full sm:w-auto">
-                  {t.calendar.cta}
-                </Button>
-                <p className="mt-2.5 text-xs text-slate-400">
-                  <Rich text={t.calendar.placeholder} />
-                </p>
-              </div>
-            )}
-          </Reveal>
+            </Reveal>
+          )}
 
           <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-slate-400">
             <p>

@@ -56,7 +56,7 @@ export default async function SolutionDetailPage({ params }: Props) {
       name: 'Parrax Solutions',
       url: siteUrl,
     },
-    areaServed: ['ES', 'VE'],
+    areaServed: 'Worldwide',
   };
 
   return (

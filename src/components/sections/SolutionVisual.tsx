@@ -10,6 +10,34 @@ const node = '#05D1FF';
 
 export function SolutionVisual({ kind }: { kind: string }) {
   switch (kind) {
+    case 'web':
+      return (
+        <svg viewBox="0 0 360 210" className="h-auto w-full" fill="none" aria-hidden="true">
+          {/* Navegador con una landing: titular, texto, CTA y formulario */}
+          <rect x="0.5" y="0.5" width="359" height="209" rx="8" fill="#fff" stroke={soft} />
+          <path d="M0.5 24.5h359" stroke={soft} />
+          {[14, 26, 38].map((x) => (
+            <circle key={x} cx={x} cy="12.5" r="3" fill={soft} />
+          ))}
+          <rect x="70" y="8" width="150" height="9" rx="4.5" fill="#F1F5F9" />
+          <rect x="22" y="48" width="150" height="10" rx="5" fill={blue} />
+          <rect x="22" y="66" width="110" height="10" rx="5" fill={blue} />
+          <rect x="22" y="90" width="160" height="6" rx="3" fill={soft} />
+          <rect x="22" y="102" width="132" height="6" rx="3" fill={soft} />
+          <rect x="22" y="124" width="76" height="22" rx="4" fill={blue} />
+          <rect x="34" y="132.5" width="44" height="5" rx="2.5" fill="#fff" />
+          <rect x="208.5" y="44.5" width="130" height="118" rx="6" fill="#F8FAFC" stroke={soft} />
+          {[60, 84, 108].map((y) => (
+            <rect key={y} x="220.5" y={y + 0.5} width="106" height="16" rx="3" fill="#fff" stroke={soft} />
+          ))}
+          <rect x="220" y="134" width="107" height="18" rx="3" fill={stroke} />
+          <path d="M98 135 C150 176 200 176 242 152" stroke={stroke} className="flow-line" />
+          <circle cx="273" cy="143" r="3.5" fill={node} />
+          {[0, 1, 2].map((i) => (
+            <rect key={i} x={22 + i * 108} y="178" width="96" height="16" rx="3" fill="#F1F5F9" />
+          ))}
+        </svg>
+      );
     case 'system':
       return (
         <svg viewBox="0 0 360 150" className="h-auto w-full" fill="none" aria-hidden="true">

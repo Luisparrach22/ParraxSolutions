@@ -10,11 +10,10 @@
 export const es = {
   meta: {
     siteName: "Parrax Solutions",
-    title:
-      "Parrax Solutions · Software a medida, automatización e integraciones para empresas",
+    title: "Parrax Solutions · Páginas web y software a medida para empresas",
     titleTemplate: "%s · Parrax Solutions",
     description:
-      "Diseñamos y construimos sistemas de gestión, automatizaciones e integraciones a medida para pymes y medianas empresas en España y Venezuela. El código es tuyo, sin cuotas por usuario.",
+      "Páginas web, landing pages, sistemas de gestión, automatizaciones e integraciones a medida para empresas de cualquier país. El código es tuyo, sin cuotas por usuario.",
     ogAlt: "Parrax Solutions — Software a medida que conecta tu operación",
   },
 
@@ -27,10 +26,9 @@ export const es = {
 
   nav: {
     links: [
-      { label: "Soluciones", href: "#soluciones" },
+      { label: "Servicios", href: "#soluciones" },
       { label: "Método", href: "#metodo" },
-      { label: "Casos", href: "#casos" },
-      { label: "Seguridad", href: "#seguridad" },
+      { label: "Por qué Parrax", href: "#por-que" },
       { label: "Contacto", href: "#contacto" },
     ],
     cta: "Agendar sesión estratégica",
@@ -40,13 +38,13 @@ export const es = {
   },
 
   hero: {
-    eyebrow: "Consultoría & desarrollo de software B2B",
-    titleA: "Software a medida que conecta tu operación",
-    titleB: "y elimina el trabajo manual.",
+    eyebrow: "Webs y software a medida para empresas",
+    titleA: "Webs que traen clientes y software",
+    titleB: "que elimina el trabajo manual.",
     subtitle:
-      "Diseñamos y construimos el sistema que tu empresa necesita: tus herramientas hablan entre sí, los datos se introducen una sola vez y los cuellos de botella desaparecen. Para que puedas crecer sin contratar a alguien solo para copiar y pegar.",
+      "Diseñamos tu página web o landing page y construimos el sistema que conecta tu operación. Un solo equipo, de la primera visita a la factura.",
     ctaPrimary: "Solicitar auditoría digital",
-    ctaSecondary: "Ver soluciones",
+    ctaSecondary: "Ver servicios",
     reassurance: [
       "Sin coste ni compromiso",
       "Respuesta en 24–48 h laborables",
@@ -54,101 +52,37 @@ export const es = {
     ],
     mockup: {
       label: "Vista ilustrativa · datos de ejemplo",
-      window: "operaciones.tuempresa.es",
-      title: "Flujo de pedidos",
+      window: "panel.tuempresa.com",
+      eyebrow: "Panel",
+      title: "De tu web al presupuesto, sin tocar nada",
       live: "Sincronizado",
-      kpiLabel: "Pedidos procesados sin intervención",
-      kpiValue: "128",
-      kpiDelta: "hoy",
-      kpiSub: "Ejemplo de métrica que verías en tu panel",
-      pipeline: [
-        "Ingesta de datos",
-        "Validación automatizada",
-        "Facturación & CRM",
-      ],
+      pipeline: ["Formulario web", "CRM", "Presupuesto"],
       pipelineSub: [
-        "Tienda · TPV · Email",
-        "Reglas de negocio",
-        "Contabilidad · CRM",
+        "Tu web o landing page",
+        "Cliente creado al instante",
+        "Generado y enviado",
       ],
       rows: [
         {
-          ref: "PED-1042",
-          text: "Pedido validado",
+          ref: "WEB-214",
+          text: "Nueva solicitud desde la landing",
+          status: "Recibida",
+          state: "done",
+        },
+        {
+          ref: "CRM-381",
+          text: "Cliente creado automáticamente",
           status: "Completado",
           state: "done",
         },
         {
-          ref: "FAC-118",
-          text: "Factura sincronizada",
-          status: "Completado",
-          state: "done",
-        },
-        {
-          ref: "CLI-381",
-          text: "Cliente enlazado al CRM",
+          ref: "PRE-118",
+          text: "Presupuesto enviado al cliente",
           status: "En curso",
           state: "active",
         },
       ],
     },
-  },
-
-  quickServices: {
-    eyebrow: "Capacidades de un vistazo",
-    title: "Qué podemos construir o resolver en tu empresa",
-    subtitle:
-      "Nuestras 6 líneas de especialización en desarrollo, automatización e ingeniería de software:",
-    items: [
-      {
-        num: "01",
-        title: "Sistemas de gestión a medida",
-        badge: "ERPs & CRMs",
-        summary:
-          "Control total de pedidos, almacén, facturación y clientes en un sistema propio sin licencias mensuales.",
-        href: "/soluciones/sistemas-de-gestion",
-      },
-      {
-        num: "02",
-        title: "Integraciones & APIs",
-        badge: "Conexión de herramientas",
-        summary:
-          "Tus programas (tienda, TPV, banco, CRM y contabilidad) hablando entre sí sin copiar ni pegar datos.",
-        href: "/soluciones/integraciones-y-apis",
-      },
-      {
-        num: "03",
-        title: "Automatización de procesos",
-        badge: "Cero tareas manuales",
-        summary:
-          "Aprobaciones, avisos a clientes, facturación y generación de informes ejecutándose de forma automática.",
-        href: "/soluciones/automatizacion-de-procesos",
-      },
-      {
-        num: "04",
-        title: "Apps web y móviles",
-        badge: "Portales & Apps",
-        summary:
-          "Portales de autoservicio para tus clientes y aplicaciones móviles para operarios o equipos en campo.",
-        href: "/soluciones/aplicaciones-web-y-moviles",
-      },
-      {
-        num: "05",
-        title: "Modernización de Excel",
-        badge: "Fin del riesgo",
-        summary:
-          "Migración de hojas de cálculo críticas a bases de datos y software estable con histórico y copias de seguridad.",
-        href: "/soluciones/modernizacion-de-procesos",
-      },
-      {
-        num: "06",
-        title: "Consultoría tecnológica",
-        badge: "Criterio en cualquier stack",
-        summary:
-          "Segunda opinión experta e independiente sobre qué software elegir, auditar costes o planificar proyectos.",
-        href: "/soluciones/consultoria-tecnologica",
-      },
-    ],
   },
 
   problems: {
@@ -179,12 +113,19 @@ export const es = {
   },
 
   solutions: {
-    eyebrow: "Soluciones",
-    title: "Lo que construimos para tu empresa",
+    eyebrow: "Servicios",
+    title: "Lo que hacemos",
     intro:
-      "Cada proyecto empieza por un problema de negocio concreto, no por una tecnología. Estas son las seis formas en que lo resolvemos.",
+      "Cada proyecto empieza por un problema de negocio concreto, no por una tecnología.",
     more: "Ver más",
     items: [
+      {
+        slug: "paginas-web-y-landing-pages",
+        kicker: "Páginas web y landing pages",
+        title: "Una web que convierte visitas en clientes",
+        text: "Webs corporativas y landing pages para campañas: rápidas, claras, preparadas para Google y conectadas con tu CRM o tu email.",
+        visual: "web",
+      },
       {
         slug: "sistemas-de-gestion",
         kicker: "Sistemas de gestión a medida",
@@ -226,19 +167,6 @@ export const es = {
         title: "Decisiones técnicas con criterio, en cualquier stack",
         text: "Revisamos lo que ya tienes, te ayudamos a elegir y trabajamos con la tecnología que mejor encaje, no con la que nos resulte cómoda.",
         visual: "consulting",
-        stack: [
-          "Microsoft 365",
-          "Google Workspace",
-          "Odoo",
-          "Holded",
-          "Shopify",
-          "Stripe",
-          "HubSpot",
-          "SQL",
-          "Node.js",
-          "Python",
-          "React",
-        ],
       },
     ],
   },
@@ -255,6 +183,22 @@ export const es = {
     ctaText:
       "En una sesión de 20 minutos revisamos tu situación y te decimos con honestidad si esto es lo que necesitas.",
     pages: {
+      "paginas-web-y-landing-pages": {
+        lead: "Diseñamos y desarrollamos tu web corporativa o la landing page de tu próxima campaña, pensadas para que quien llega entienda qué ofreces y te contacte.",
+        includes: [
+          "Diseño a medida con tu marca, sin plantillas genéricas",
+          "Textos y estructura orientados a que el visitante te contacte",
+          "Carga rápida, adaptada a móvil y optimizada para buscadores",
+          "Formularios conectados con tu email, CRM o sistema de gestión",
+        ],
+        fit: [
+          "Tu web actual no transmite lo que vales o no genera contactos",
+          "Vas a lanzar una campaña y necesitas una página que convierta",
+          "Quieres editar contenidos sin depender de nadie",
+        ],
+        outcome:
+          "Una web que trabaja por ti: cada visita tiene un camino claro hacia el contacto.",
+      },
       "sistemas-de-gestion": {
         lead: "Un sistema de gestión hecho para tu empresa sustituye la combinación de hojas de cálculo, correos y programas sueltos con la que se gestiona hoy la operación.",
         includes: [
@@ -359,41 +303,30 @@ export const es = {
 
   method: {
     eyebrow: "Método",
-    title: "Cinco fases. Sin sorpresas.",
+    title: "Cuatro fases. Sin sorpresas.",
     intro:
-      "Sabes en cada momento qué estamos haciendo y qué vas a recibir. Cada fase termina con un entregable tangible que puedes revisar.",
+      "Da igual que sea una landing page, un sistema de gestión o una automatización: trabajamos siempre igual. Cada fase termina con algo concreto que revisas antes de seguir.",
     deliverableLabel: "Entregable",
-    durationLabel: "Plazo orientativo",
     steps: [
       {
-        name: "Diagnóstico",
-        text: "Entendemos cómo trabajáis hoy, dónde se pierde el tiempo y cuánto cuesta.",
-        deliverable: "Mapa de procesos y propuesta priorizada",
-        duration: "1–2 semanas",
+        name: "Entender",
+        text: "Analizamos tu negocio, tus clientes y tus procesos para saber qué necesitas de verdad y qué no.",
+        deliverable: "Propuesta con alcance, plazo y precio cerrado",
       },
       {
-        name: "Diseño",
-        text: "Definimos pantallas, flujos y datos con tu equipo antes de escribir código.",
-        deliverable: "Prototipo navegable y alcance cerrado",
-        duration: "2–3 semanas",
+        name: "Diseñar",
+        text: "Damos forma a la solución contigo: cómo se verá, cómo funcionará y cómo encaja con lo que ya usas.",
+        deliverable: "Diseño o prototipo que validas antes de construir",
       },
       {
-        name: "Desarrollo",
-        text: "Construimos en ciclos cortos. Pruebas versiones reales desde las primeras semanas.",
-        deliverable: "Versiones funcionales en entorno de pruebas",
-        duration: "Según alcance",
+        name: "Construir",
+        text: "Desarrollamos por etapas y te enseñamos avances reales desde el principio, para corregir el rumbo a tiempo.",
+        deliverable: "Versiones que puedes probar",
       },
       {
-        name: "Despliegue",
-        text: "Migramos datos, formamos al equipo y arrancamos sin detener la operación.",
-        deliverable: "Sistema en producción y documentación",
-        duration: "1–2 semanas",
-      },
-      {
-        name: "Soporte",
-        text: "Mantenemos, medimos y mejoramos. El sistema evoluciona con tu empresa.",
-        deliverable: "Plan de soporte y hoja de ruta",
-        duration: "Continuo",
+        name: "Lanzar y acompañar",
+        text: "Lo ponemos en marcha, formamos a tu equipo y seguimos a tu lado para mantenerlo y mejorarlo.",
+        deliverable: "Proyecto funcionando y documentado",
       },
     ],
   },
@@ -401,28 +334,23 @@ export const es = {
   why: {
     eyebrow: "Por qué Parrax",
     title: "Tu software. Tus datos. Tu decisión.",
-    intro:
-      "Trabajamos para que dependas de nosotros lo menos posible. Parece raro decirlo; es la razón por la que nuestros clientes deberían querer seguir trabajando con nosotros.",
+    intro: "Trabajamos para que dependas de nosotros lo menos posible.",
     items: [
       {
-        title: "El software y el código son tuyos",
-        text: "Al terminar recibes el código fuente y la propiedad intelectual, por contrato.",
+        title: "El código es tuyo",
+        text: "Recibes el código fuente y la propiedad intelectual, por contrato. Si mañana quieres cambiar de equipo, puedes.",
       },
       {
         title: "Sin cuotas por usuario",
         text: "Da acceso a todo tu equipo sin que la factura crezca con cada alta.",
       },
       {
-        title: "Sin dependencia de proveedor",
-        text: "Tecnologías estándar y bien documentadas. Si mañana quieres cambiar de equipo, puedes.",
-      },
-      {
-        title: "Entrega documentada",
-        text: "Manual técnico, guía de uso y sesión de traspaso. Nada se queda solo en nuestra cabeza.",
-      },
-      {
         title: "Hablas con quien lo construye",
-        text: "Sin intermediarios. Las personas que diseñan y programan tu sistema son tu contacto directo.",
+        text: "Sin intermediarios. Quien diseña y programa tu proyecto es tu contacto directo.",
+      },
+      {
+        title: "Seguro y conforme al RGPD",
+        text: "Permisos por rol, copias de seguridad cifradas y privacidad desde el diseño.",
       },
     ],
     compare: {
@@ -437,125 +365,41 @@ export const es = {
     },
   },
 
-  engagement: {
-    eyebrow: "Cómo trabajamos juntos",
-    title: "Tres formas de colaborar",
-    intro:
-      "Elegimos el modelo según tu objetivo, no al revés. Si no lo tienes claro, lo decidimos juntos en la primera sesión.",
-    bestFor: "Ideal para",
-    cta: "Hablemos de tu caso",
-    note: "Presupuesto cerrado y por escrito antes de empezar. Sin letra pequeña.",
-    models: [
-      {
-        name: "Proyecto cerrado",
-        summary:
-          "Un objetivo concreto con alcance, plazo y precio definidos de antemano.",
-        points: [
-          "Alcance y plazo acordados por escrito",
-          "Precio fijo antes de empezar",
-          "Entregas por hitos que validas",
-        ],
-        bestFor: "Un sistema nuevo o una integración concreta.",
-      },
-      {
-        name: "Equipo dedicado",
-        summary:
-          "Capacidad reservada cada mes para iniciativas que evolucionan.",
-        points: [
-          "Prioridades que ajustas en cada ciclo",
-          "El mismo equipo de principio a fin",
-          "Informe de avance periódico",
-        ],
-        bestFor: "Transformaciones en varias fases o producto propio.",
-      },
-      {
-        name: "Mantenimiento y evolución",
-        summary: "Para que lo que ya funciona siga funcionando y mejore.",
-        points: [
-          "Actualizaciones de seguridad",
-          "Monitorización y copias de seguridad",
-          "Bolsa de horas para mejoras",
-        ],
-        bestFor: "Sistemas en producción, nuestros o de terceros.",
-      },
+  audit: {
+    badge: "Oferta de lanzamiento",
+    title: "Auditoría digital gratuita",
+    text: "Antes de hablar de presupuestos queremos conocerte. En una primera charla vemos qué te frena y si tiene sentido trabajar juntos. El análisis a fondo llega después, cuando decidas seguir.",
+    points: [
+      "20 minutos por videollamada o teléfono",
+      "Nos cuentas tu caso y te damos una opinión sincera",
+      "Si encaja, propuesta por escrito con precio cerrado",
     ],
-  },
-
-  proof: {
-    eyebrow: "Casos",
-    title: "Preferimos enseñarte método a inventarnos logos",
-    intro:
-      "Parrax es una empresa nueva. Aquí publicaremos casos reales, con métricas verificadas y con el permiso de cada cliente. Ni antes ni de otra forma.",
-    empty: {
-      badge: "Próximamente",
-      title: "Resultados reales con clientes",
-      text: "Cada caso incluirá el problema de partida, lo que construimos y el impacto medido en tiempo, errores o coste.",
-      fields: ["Situación de partida", "Qué construimos", "Impacto medido"],
-    },
-    audit: {
-      badge: "Oferta de lanzamiento",
-      title: "Auditoría digital gratuita",
-      text: "Revisamos tus herramientas y procesos y te entregamos un informe con oportunidades concretas. Te lo quedas tanto si trabajamos juntos como si no.",
-      points: [
-        "Sesión de revisión de 60–90 minutos con tu equipo",
-        "Informe con 3–5 mejoras priorizadas por impacto",
-        "Estimación orientativa de esfuerzo para cada una",
-        "Sin coste y sin compromiso",
-      ],
-      cta: "Solicitar auditoría digital",
-    },
-  },
-
-  security: {
-    eyebrow: "Seguridad y confianza",
-    title: "Tus datos, tratados con el cuidado que exigirías tú",
-    items: [
-      {
-        title: "Diseñado conforme al RGPD",
-        text: "Privacidad desde el diseño, minimización de datos y contrato de encargo del tratamiento.",
-        icon: "shield",
-      },
-      {
-        title: "Control de accesos",
-        text: "Permisos por rol y registro de las acciones sensibles. Cada persona ve solo lo que necesita.",
-        icon: "key",
-      },
-      {
-        title: "Copias de seguridad",
-        text: "Copias automáticas y cifradas con restauración probada periódicamente.",
-        icon: "backup",
-      },
-      {
-        title: "Soporte dedicado",
-        text: "Un canal directo con el equipo que conoce tu sistema y tiempos de respuesta pactados en contrato.",
-        icon: "support",
-      },
-    ],
+    cta: "Solicitar auditoría digital",
   },
 
   contact: {
     eyebrow: "Contacto",
     title: "Cuéntanos qué quieres resolver",
     intro:
-      "Una sesión estratégica de 20 minutos, sin coste. Salimos de ella con un diagnóstico inicial y, si tiene sentido, una propuesta.",
+      "Una primera charla de 20 minutos, sin coste ni compromiso. Nos cuentas qué necesitas y te decimos con sinceridad si podemos ayudarte.",
     stepsTitle: "Qué pasa después",
     steps: [
-      "Te respondemos en 24–48 h laborables.",
-      "Sesión de 20 minutos por videollamada para entender tu caso.",
-      "Si encaja, propuesta por escrito con alcance, plazo y precio.",
+      "Te escribimos en 24–48 h laborables para buscar un hueco que te venga bien.",
+      "Hablamos 20 minutos por videollamada o teléfono para conocer tu caso.",
+      "Si encaja, te enviamos una propuesta por escrito con alcance, plazo y precio.",
+      "Si decides seguir, analizamos tu caso a fondo y nos reunimos con regularidad para revisar avances.",
     ],
     calendar: {
       title: "¿Prefieres reservar directamente?",
       text: "Elige un hueco en nuestro calendario para una sesión de 20 minutos.",
-      placeholder: "O completa el formulario a continuación para coordinar la llamada.",
       cta: "Agendar sesión de 20 min",
     },
     directEmail: "O escríbenos a",
     form: {
       typeLegend: "Qué te interesa",
       types: [
-        { value: "sesion", label: "Sesión estratégica (20 min)" },
-        { value: "auditoria", label: "Auditoría digital gratuita" },
+        { value: "sesion", label: "Sesión estratégica" },
+        { value: "auditoria", label: "Auditoría digital gratuita (20 min)" },
       ],
       name: "Nombre",
       namePh: "Nombre y apellido",
@@ -606,11 +450,15 @@ export const es = {
 
   footer: {
     tagline:
-      "Software a medida, automatización e integraciones para empresas en España y Venezuela.",
+      "Páginas web, software a medida y automatización para empresas, estén donde estén.",
     columns: [
       {
         title: "Soluciones",
         links: [
+          {
+            label: "Páginas web y landing pages",
+            href: "/soluciones/paginas-web-y-landing-pages",
+          },
           {
             label: "Sistemas de gestión",
             href: "/soluciones/sistemas-de-gestion",
@@ -639,8 +487,7 @@ export const es = {
         links: [
           { label: "Método", href: "/#metodo" },
           { label: "Por qué Parrax", href: "/#por-que" },
-          { label: "Casos", href: "/#casos" },
-          { label: "Seguridad", href: "/#seguridad" },
+          { label: "Auditoría gratuita", href: "/#auditoria" },
           { label: "Contacto", href: "/#contacto" },
         ],
       },
@@ -653,7 +500,7 @@ export const es = {
         ],
       },
     ],
-    location: "España · Venezuela",
+    location: "España · Venezuela · Proyectos en todo el mundo",
     legalLine: "Parrax Solutions · Consultoría & desarrollo tecnológico",
     rights: "Todos los derechos reservados.",
   },

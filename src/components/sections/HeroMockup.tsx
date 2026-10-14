@@ -57,30 +57,10 @@ export function HeroMockup({ t }: { t: Dictionary['hero']['mockup'] }) {
         </div>
 
         <div className="space-y-4 p-3.5 sm:p-6">
-          {/* Título + KPI */}
-          <div className="grid gap-3 sm:grid-cols-5 sm:gap-4">
-            <div className="sm:col-span-2">
-              <p className="text-micro uppercase text-slate-400">Panel</p>
-              <p className="mt-0.5 text-base font-semibold tracking-tight text-white sm:text-lg">{t.title}</p>
-              <div className="mt-3 hidden space-y-2 sm:block">
-                <div className="h-1.5 w-full rounded-full bg-slate-800" />
-                <div className="h-1.5 w-4/5 rounded-full bg-slate-800" />
-                <div className="h-1.5 w-3/5 rounded-full bg-slate-800" />
-              </div>
-            </div>
-            <div className="rounded border border-obsidian-line bg-obsidian p-3 sm:col-span-3 sm:p-4">
-              <p className="text-[11px] text-slate-400 sm:text-xs">{t.kpiLabel}</p>
-              <p className="mt-1 flex items-baseline gap-2 sm:mt-2">
-                <span className="text-3xl font-semibold tracking-tight text-white tabular-nums sm:text-4xl">{t.kpiValue}</span>
-                <span className="text-xs text-slate-400 sm:text-sm">{t.kpiDelta}</span>
-              </p>
-              <div className="mt-2.5 flex h-1.5 gap-0.5 overflow-hidden rounded-full sm:mt-3">
-                {Array.from({ length: 24 }).map((_, i) => (
-                  <span key={i} className={cn('flex-1', i < 22 ? 'bg-slate-600' : 'bg-slate-800')} />
-                ))}
-              </div>
-              <p className="mt-1.5 text-[10px] text-slate-400 sm:text-[11px]">{t.kpiSub}</p>
-            </div>
+          {/* Título del panel */}
+          <div>
+            <p className="text-micro uppercase text-slate-400">{t.eyebrow}</p>
+            <p className="mt-0.5 text-base font-semibold tracking-tight text-white sm:text-lg">{t.title}</p>
           </div>
 
           {/* Pipeline de 3 pasos: diseño fluido y limpio en móvil */}

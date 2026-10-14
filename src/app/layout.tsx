@@ -72,7 +72,7 @@ const organizationJsonLd = {
   url: siteUrl,
   logo: `${siteUrl}/svg/LogoLightSinFondo.svg`,
   description: t.meta.description,
-  areaServed: ["ES", "VE", "Hispanoamérica"],
+  areaServed: "Worldwide",
   address: { "@type": "PostalAddress", addressCountry: "ES" },
   knowsLanguage: ["es"],
   // TODO: añadir email, teléfono, sameAs (LinkedIn) y dirección cuando estén confirmados
