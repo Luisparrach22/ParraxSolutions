@@ -15,11 +15,11 @@ type LogoProps = {
 // Proporciones oficiales de los nuevos archivos SVG ajustados a su contenido real (ancho / alto)
 // lockup (Parrax...): 2260 / 590 = ~3.83
 // mark (Logo...): 750 / 500 = 1.50
-// wordmark (Wordmark...): 1200 / 430 = ~2.79
+// wordmark (Wordmark...Sinfondo, recortado al contenido): 1082 / 370 = ~2.92
 const ratios = {
   lockup: 2260 / 590,
   mark: 750 / 500,
-  wordmark: 1200 / 430,
+  wordmark: 1082 / 370,
 } as const;
 
 /**

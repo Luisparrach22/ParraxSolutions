@@ -12,7 +12,7 @@ export function Footer({ t }: { t: Dictionary['footer'] }) {
       </h2>
       <div className="container-x grid gap-10 py-12 md:grid-cols-12 md:gap-12 md:py-20">
         <div className="md:col-span-4">
-          <Logo variant="wordmark" surface="dark" height={50} alt="Parrax Solutions" />
+          <Logo variant="wordmark" surface="dark" height={52} alt="Parrax Solutions" />
           <p className="mt-5 max-w-xs text-xs sm:text-sm leading-relaxed text-slate-400">{t.tagline}</p>
           <p className="mt-5 flex items-center gap-2 text-xs sm:text-sm text-slate-400">
             <NodeDot size="xs" />
