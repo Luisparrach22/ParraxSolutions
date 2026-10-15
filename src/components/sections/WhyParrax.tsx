@@ -13,14 +13,14 @@ export function WhyParrax({ t }: { t: Dictionary['why'] }) {
               {/* Vista móvil: tarjetas de contraste directo sin scroll */}
               <div className="space-y-2.5 sm:hidden">
                 <p className="text-[10px] font-medium uppercase tracking-wider text-slate-400">
-                  Frente a una suscripción tradicional
+                  {t.compare.mobileHeading}
                 </p>
                 {t.compare.rows.map(([label, generic, parrax]) => (
                   <div key={label} className="rounded-lg border border-obsidian-line bg-obsidian-raised p-3">
                     <p className="text-xs font-semibold text-slate-200">{label}</p>
                     <div className="mt-2 grid grid-cols-2 gap-2 text-xs">
                       <div className="rounded border border-obsidian-line bg-obsidian p-2 text-slate-400">
-                        <span className="block text-[10px] text-slate-400">Suscripción</span>
+                        <span className="block text-[10px] text-slate-400">{t.compare.genericShort}</span>
                         <span className="mt-0.5 block">{generic}</span>
                       </div>
                       <div className="rounded border border-slate-700 bg-obsidian p-2 text-white">
@@ -52,7 +52,7 @@ export function WhyParrax({ t }: { t: Dictionary['why'] }) {
                               {h}
                             </span>
                           ) : (
-                            h || <span className="sr-only">Criterio</span>
+                            h || <span className="sr-only">{t.compare.criterion}</span>
                           )}
                         </th>
                       ))}

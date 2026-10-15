@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useEffect, useId, useRef, useState, type FormEvent, type ReactNode } from 'react';
-import type { Dictionary } from '@/i18n/config';
+import { localePath, type Dictionary, type Locale } from '@/i18n/config';
 import { cn } from '@/lib/cn';
 import { CONTACT_LIMITS, CONTACT_REQUEST_TIMEOUT_MS, invalidContactFields, type ContactField, type ContactResponse, type ContactType } from '@/lib/contact-schema';
 import { Button, NodeDot, Rich } from '@/components/ui';
@@ -42,7 +42,7 @@ function validate(v: Values, t: FormT): Errors {
   return Object.fromEntries(invalid.map((f) => [f, t.errors[f]]));
 }
 
-export function ContactForm({ t }: { t: FormT }) {
+export function ContactForm({ lang, t }: { lang: Locale; t: FormT }) {
   const uid = useId();
   const formRef = useRef<HTMLFormElement>(null);
   const successRef = useRef<HTMLDivElement>(null);
@@ -230,7 +230,7 @@ export function ContactForm({ t }: { t: FormT }) {
           />
           <span>
             {t.privacyA}{' '}
-            <Link href="/politica-de-privacidad" className="text-white underline decoration-slate-600 underline-offset-4 hover:decoration-node">
+            <Link href={localePath(lang, '/politica-de-privacidad')} className="text-white underline decoration-slate-600 underline-offset-4 hover:decoration-node">
               {t.privacyLink}
             </Link>
             {t.privacyB}

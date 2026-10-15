@@ -2,43 +2,32 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { siteUrl } from '@/config/site';
-import { defaultLocale, getDictionary } from '@/i18n/config';
+import { alternatesFor, getDictionary, localePath, type Locale } from '@/i18n/config';
 import { Button, NodeDot, Reveal, Section } from '@/components/ui';
 import { jsonLd as serializeJsonLd } from '@/lib/json-ld';
 
-type Props = {
-  params: Promise<{ slug: string }>;
-};
+// Los slugs son los mismos en todos los idiomas.
+export const solutionSlugs = getDictionary('es').solutions.items.map((item) => item.slug);
 
-const t = getDictionary(defaultLocale);
-
-export async function generateStaticParams() {
-  return t.solutions.items.map((item) => ({
-    slug: item.slug,
-  }));
-}
-
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
+export function solutionMetadata(lang: Locale, slug: string): Metadata {
+  const t = getDictionary(lang);
   const item = t.solutions.items.find((i) => i.slug === slug);
   if (!item) return {};
 
   return {
     title: `${item.kicker} · Parrax Solutions`,
     description: item.text,
-    alternates: {
-      canonical: `/soluciones/${slug}`,
-    },
+    alternates: alternatesFor(lang, `/soluciones/${slug}`),
     openGraph: {
       title: `${item.kicker} · Parrax Solutions`,
       description: item.text,
-      url: `/soluciones/${slug}`,
+      url: localePath(lang, `/soluciones/${slug}`),
     },
   };
 }
 
-export default async function SolutionDetailPage({ params }: Props) {
-  const { slug } = await params;
+export function SolutionScreen({ lang, slug }: { lang: Locale; slug: string }) {
+  const t = getDictionary(lang);
   const item = t.solutions.items.find((i) => i.slug === slug);
   const detail = t.solutionDetails.pages[slug];
 
@@ -68,9 +57,9 @@ export default async function SolutionDetailPage({ params }: Props) {
         <div aria-hidden="true" className="grid-lines grid-fade pointer-events-none absolute inset-0" />
         <div className="container-x relative">
           <Reveal>
-            <nav aria-label="Miga de pan" className="mb-6">
+            <nav aria-label={t.a11y.breadcrumb} className="mb-6">
               <Link
-                href="/#soluciones"
+                href={localePath(lang, '/#soluciones')}
                 className="inline-flex min-h-[44px] items-center gap-2 text-xs uppercase tracking-wider text-slate-400 transition-colors hover:text-white"
               >
                 <svg aria-hidden="true" viewBox="0 0 16 16" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -91,10 +80,10 @@ export default async function SolutionDetailPage({ params }: Props) {
           </Reveal>
 
           <Reveal delay={120} className="mt-7 flex flex-col gap-3 sm:flex-row">
-            <Button href="/#agendar-sesion" size="lg" arrow className="w-full sm:w-auto">
+            <Button href={localePath(lang, '/#agendar-sesion')} size="lg" arrow className="w-full sm:w-auto">
               {t.solutionDetails.ctaPrimary}
             </Button>
-            <Button href="/#metodo" size="lg" variant="ghost" className="w-full sm:w-auto">
+            <Button href={localePath(lang, '/#metodo')} size="lg" variant="ghost" className="w-full sm:w-auto">
               {t.solutionDetails.ctaSecondary}
             </Button>
           </Reveal>
@@ -155,7 +144,7 @@ export default async function SolutionDetailPage({ params }: Props) {
               {t.solutionDetails.ctaText}
             </p>
             <div className="mt-6 flex justify-center">
-              <Button href="/#agendar-sesion" size="lg" arrow className="w-full sm:w-auto">
+              <Button href={localePath(lang, '/#agendar-sesion')} size="lg" arrow className="w-full sm:w-auto">
                 {t.solutionDetails.ctaPrimary}
               </Button>
             </div>

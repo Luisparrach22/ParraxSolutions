@@ -22,6 +22,10 @@ export const es = {
     openMenu: "Abrir menú",
     closeMenu: "Cerrar menú",
     home: "Parrax Solutions, ir al inicio",
+    language: "Idioma",
+    mainNav: "Principal",
+    breadcrumb: "Miga de pan",
+    instagram: "Instagram de Parrax Solutions",
   },
 
   nav: {
@@ -35,6 +39,11 @@ export const es = {
     ctaShort: "Agendar sesión",
     ctaSub: "Sesión de 20 min, sin coste",
     writeUs: "O escríbenos a",
+    menuTitle: "Navegación",
+    noCommitment: "Sin compromiso",
+    reviewTitle: "¿Quieres revisar tu operativa?",
+    reviewText: "Solicita una auditoría digital gratuita en 20 minutos.",
+    reviewLink: "Solicitar auditoría",
   },
 
   hero: {
@@ -51,6 +60,7 @@ export const es = {
       "El código es tuyo",
     ],
     mockup: {
+      windowControls: "Controles de ventana",
       label: "Vista ilustrativa · datos de ejemplo",
       window: "panel.tuempresa.com",
       eyebrow: "Panel",
@@ -355,6 +365,9 @@ export const es = {
     ],
     compare: {
       caption: "Software a medida con Parrax frente a una suscripción genérica",
+      mobileHeading: "Frente a una suscripción tradicional",
+      genericShort: "Suscripción",
+      criterion: "Criterio",
       headers: ["", "Suscripción genérica", "Parrax"],
       rows: [
         ["Propiedad del código", "Del proveedor", "Tuya"],
@@ -395,6 +408,7 @@ export const es = {
       cta: "Agendar sesión de 20 min",
     },
     directEmail: "O escríbenos a",
+    instagramLabel: "Instagram de Parrax Solutions",
     form: {
       typeLegend: "Qué te interesa",
       types: [
@@ -448,7 +462,21 @@ export const es = {
     },
   },
 
+  notFound: {
+    title: "Página no encontrada",
+    code: "Error 404",
+    heading: "Esta página no está conectada a nada.",
+    text: "Puede que el enlace haya cambiado o que la dirección tenga un error. Te llevamos de vuelta a donde sí hay sistemas funcionando.",
+    home: "Volver al inicio",
+    solutions: "Ver soluciones",
+  },
+
+  legal: {
+    backHome: "← Volver al inicio",
+  },
+
   footer: {
+    heading: "Pie de página",
     tagline:
       "Páginas web, software a medida y automatización para empresas, estén donde estén.",
     columns: [

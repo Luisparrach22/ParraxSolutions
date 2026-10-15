@@ -1,9 +1,9 @@
-import type { Dictionary } from '@/i18n/config';
+import type { Dictionary, Locale } from '@/i18n/config';
 import { Button, NodeDot, Reveal, Rich } from '@/components/ui';
 import { calendarUrl, contactEmail, instagram } from '@/config/site';
 import { ContactForm } from './ContactForm';
 
-export function Contact({ t }: { t: Dictionary['contact'] }) {
+export function Contact({ lang, t }: { lang: Locale; t: Dictionary['contact'] }) {
   return (
     <section id="contacto" aria-labelledby="contact-title" className="relative overflow-hidden bg-obsidian py-section-sm md:py-section">
       {/* Anclas para CTAs (preseleccionan el tipo correspondiente en el formulario) */}
@@ -61,7 +61,7 @@ export function Contact({ t }: { t: Dictionary['contact'] }) {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex min-h-[44px] items-center gap-1.5 text-slate-400 transition-colors hover:text-white sm:min-h-0"
-              aria-label="Instagram de Parrax Solutions"
+              aria-label={t.instagramLabel}
             >
               <svg className="h-4 w-4 shrink-0 text-node" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
@@ -75,7 +75,7 @@ export function Contact({ t }: { t: Dictionary['contact'] }) {
 
         <Reveal delay={100} className="lg:col-span-7">
           <div id="contacto-formulario" className="rounded-lg border border-obsidian-line bg-obsidian-raised scroll-mt-[calc(var(--nav-h)+24px)]">
-            <ContactForm t={t.form} />
+            <ContactForm lang={lang} t={t.form} />
           </div>
         </Reveal>
       </div>

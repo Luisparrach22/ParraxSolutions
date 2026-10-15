@@ -14,7 +14,7 @@ export function HeroMockup({ t }: { t: Dictionary['hero']['mockup'] }) {
         <div className="flex items-center justify-between gap-4 border-b border-obsidian-line px-4 py-3">
           <div className="flex items-center gap-3">
             {/* Botones de ventana estilo macOS con colores auténticos y animación de iconos en hover */}
-            <div className="group/dots flex items-center gap-2 cursor-pointer py-1" title="Controles de ventana">
+            <div className="group/dots flex items-center gap-2 cursor-pointer py-1" title={t.windowControls}>
               <span className="relative flex h-3 w-3 items-center justify-center rounded-full bg-[#FF5F56] border border-[#E0443E] shadow-sm transition-all duration-200 hover:brightness-110 active:scale-90">
                 <svg
                   viewBox="0 0 8 8"

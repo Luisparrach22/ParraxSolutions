@@ -1,14 +1,14 @@
 import Link from 'next/link';
-import type { Dictionary } from '@/i18n/config';
+import { localePath, type Dictionary, type Locale } from '@/i18n/config';
 import { Reveal, Section, SectionHeader } from '@/components/ui';
 import { SolutionVisual } from './SolutionVisual';
 
 type Item = Dictionary['solutions']['items'][number];
 
-function MoreLink({ item, label }: { item: Item; label: string }) {
+function MoreLink({ lang, item, label }: { lang: Locale; item: Item; label: string }) {
   return (
     <Link
-      href={`/soluciones/${item.slug}`}
+      href={localePath(lang, `/soluciones/${item.slug}`)}
       className="mt-auto inline-flex items-center gap-1.5 self-start pt-5 text-sm font-medium text-brand after:absolute after:inset-0 after:rounded-lg hover:text-brand-hover"
     >
       {label}
@@ -20,7 +20,7 @@ function MoreLink({ item, label }: { item: Item; label: string }) {
   );
 }
 
-export function Solutions({ t }: { t: Dictionary['solutions'] }) {
+export function Solutions({ lang, t }: { lang: Locale; t: Dictionary['solutions'] }) {
   const [featured, ...rest] = t.items;
 
   return (
@@ -37,7 +37,7 @@ export function Solutions({ t }: { t: Dictionary['solutions'] }) {
             </p>
             <h3 className="mt-4 text-h2 !text-ink">{featured.title}</h3>
             <p className="mt-3 max-w-[48ch] text-[0.9375rem] leading-7 text-slate-600">{featured.text}</p>
-            <MoreLink item={featured} label={t.more} />
+            <MoreLink lang={lang} item={featured} label={t.more} />
           </div>
           <SolutionVisual kind={featured.visual} />
         </article>
@@ -52,7 +52,7 @@ export function Solutions({ t }: { t: Dictionary['solutions'] }) {
                 {item.kicker}
               </h3>
               <p className="mt-2 text-sm leading-6 text-slate-600">{item.text}</p>
-              <MoreLink item={item} label={t.more} />
+              <MoreLink lang={lang} item={item} label={t.more} />
             </article>
           </Reveal>
         ))}

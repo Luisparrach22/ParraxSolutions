@@ -21,6 +21,8 @@ const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   devIndicators: false,
+  // 404 con carcasa propia por idioma (los layouts raíz son por idioma, ver src/screens/RootShell.tsx).
+  experimental: { globalNotFound: true },
   async headers() {
     return [
       {

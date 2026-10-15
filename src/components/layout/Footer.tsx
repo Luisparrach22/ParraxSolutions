@@ -1,14 +1,14 @@
 import Link from 'next/link';
-import type { Dictionary } from '@/i18n/config';
+import { localePath, type Dictionary, type Locale } from '@/i18n/config';
 import { Logo, NodeDot, Rich } from '@/components/ui';
 import { contactEmail, instagram } from '@/config/site';
 
-export function Footer({ t }: { t: Dictionary['footer'] }) {
+export function Footer({ lang, t, a11y }: { lang: Locale; t: Dictionary['footer']; a11y: Dictionary['a11y'] }) {
   const year = new Date().getFullYear();
   return (
     <footer className="border-t border-obsidian-line bg-obsidian" aria-labelledby="footer-heading">
       <h2 id="footer-heading" className="sr-only">
-        Pie de página
+        {t.heading}
       </h2>
       <div className="container-x grid gap-10 py-12 md:grid-cols-12 md:gap-12 md:py-20">
         <div className="md:col-span-4">
@@ -39,7 +39,7 @@ export function Footer({ t }: { t: Dictionary['footer'] }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group inline-flex min-h-[44px] items-center gap-2 text-xs sm:text-sm text-slate-400 transition-colors hover:text-white sm:min-h-0"
-                aria-label="Instagram de Parrax Solutions"
+                aria-label={a11y.instagram}
               >
                 <svg className="h-4 w-4 shrink-0 transition-transform group-hover:scale-110 group-hover:text-node" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
@@ -58,7 +58,7 @@ export function Footer({ t }: { t: Dictionary['footer'] }) {
               <ul className="mt-3 sm:mt-4 sm:space-y-2.5">
                 {col.links.map((l) => (
                   <li key={l.href}>
-                    <Link href={l.href} className="inline-flex min-h-[40px] items-center text-sm text-slate-400 transition-colors hover:text-white sm:min-h-0">
+                    <Link href={localePath(lang, l.href)} className="inline-flex min-h-[40px] items-center text-sm text-slate-400 transition-colors hover:text-white sm:min-h-0">
                       {l.label}
                     </Link>
                   </li>

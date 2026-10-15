@@ -48,7 +48,7 @@ const submit = () => fireEvent.click(screen.getByRole('button', { name: t.submit
 
 describe('ContactForm · validación en cliente', () => {
   it('no envía un formulario vacío, muestra el resumen y enfoca el primer campo con error', () => {
-    render(<ContactForm t={t} />);
+    render(<ContactForm lang="es" t={t} />);
     submit();
 
     expect(fetchMock).not.toHaveBeenCalled();
@@ -60,7 +60,7 @@ describe('ContactForm · validación en cliente', () => {
   });
 
   it('marca los campos inválidos con aria-invalid y los vincula con su error', () => {
-    render(<ContactForm t={t} />);
+    render(<ContactForm lang="es" t={t} />);
     submit();
     const name = screen.getByLabelText(new RegExp(`^${t.name}`));
     expect(name.getAttribute('aria-invalid')).toBe('true');
@@ -69,7 +69,7 @@ describe('ContactForm · validación en cliente', () => {
   });
 
   it('limita la longitud de los campos con los mismos máximos que el servidor', () => {
-    render(<ContactForm t={t} />);
+    render(<ContactForm lang="es" t={t} />);
     expect(screen.getByLabelText(new RegExp(`^${t.name}`)).getAttribute('maxlength')).toBe('120');
     expect(screen.getByLabelText(new RegExp(`^${t.company}`)).getAttribute('maxlength')).toBe('160');
     expect(screen.getByLabelText(new RegExp(`^${t.email}`)).getAttribute('maxlength')).toBe('200');
@@ -77,14 +77,14 @@ describe('ContactForm · validación en cliente', () => {
   });
 
   it('muestra un contador de caracteres en el mensaje', () => {
-    render(<ContactForm t={t} />);
+    render(<ContactForm lang="es" t={t} />);
     expect(screen.getByText('0/4000')).toBeTruthy();
     fireEvent.change(screen.getByLabelText(/^¿Qué quieres resolver\?/), { target: { value: 'Hola' } });
     expect(screen.getByText('4/4000')).toBeTruthy();
   });
 
   it('muestra el error de un campo al perder el foco', () => {
-    render(<ContactForm t={t} />);
+    render(<ContactForm lang="es" t={t} />);
     const email = screen.getByLabelText(new RegExp(`^${t.email}`));
     fireEvent.change(email, { target: { value: 'ana@' } });
     expect(screen.queryByText(t.errors.email)).toBeNull();
@@ -97,7 +97,7 @@ describe('ContactForm · envío', () => {
   it('envía los datos a /api/contact, muestra «Enviando…» y después el éxito', async () => {
     let resolveFetch!: (r: Response) => void;
     fetchMock.mockReturnValue(new Promise<Response>((r) => (resolveFetch = r)));
-    render(<ContactForm t={t} />);
+    render(<ContactForm lang="es" t={t} />);
     fillValidForm();
     submit();
 
@@ -128,7 +128,7 @@ describe('ContactForm · envío', () => {
 
   it('no envía dos veces mientras la petición está en curso', async () => {
     fetchMock.mockReturnValue(new Promise<Response>(() => {}));
-    render(<ContactForm t={t} />);
+    render(<ContactForm lang="es" t={t} />);
     fillValidForm();
     submit();
     const sending = await screen.findByRole('button', { name: t.sending });
@@ -144,7 +144,7 @@ describe('ContactForm · envío', () => {
     [502, 'send_failed', t.errors.server],
   ])('con respuesta %i (%s) muestra su mensaje y conserva los datos', async (status, error, message) => {
     fetchMock.mockResolvedValue(new Response(JSON.stringify({ ok: false, error }), { status }));
-    render(<ContactForm t={t} />);
+    render(<ContactForm lang="es" t={t} />);
     fillValidForm();
     submit();
 
@@ -155,7 +155,7 @@ describe('ContactForm · envío', () => {
 
   it('usa el mensaje genérico si la respuesta de error no es JSON', async () => {
     fetchMock.mockResolvedValue(new Response('<html>Bad Gateway</html>', { status: 504 }));
-    render(<ContactForm t={t} />);
+    render(<ContactForm lang="es" t={t} />);
     fillValidForm();
     submit();
     expect((await screen.findByRole('alert')).textContent).toBe(t.errors.server);
@@ -163,7 +163,7 @@ describe('ContactForm · envío', () => {
 
   it('si la API no responde a tiempo sale del estado «Enviando…» con el mensaje genérico', async () => {
     fetchMock.mockRejectedValue(new DOMException('The operation timed out.', 'TimeoutError'));
-    render(<ContactForm t={t} />);
+    render(<ContactForm lang="es" t={t} />);
     fillValidForm();
     submit();
     expect((await screen.findByRole('alert')).textContent).toBe(t.errors.server);
@@ -172,7 +172,7 @@ describe('ContactForm · envío', () => {
 
   it('muestra el error de conexión si la red falla', async () => {
     fetchMock.mockRejectedValue(new TypeError('Failed to fetch'));
-    render(<ContactForm t={t} />);
+    render(<ContactForm lang="es" t={t} />);
     fillValidForm();
     submit();
     expect((await screen.findByRole('alert')).textContent).toBe(t.errors.network);
@@ -180,7 +180,7 @@ describe('ContactForm · envío', () => {
 
   it('«Enviar otra solicitud» vuelve a un formulario vacío', async () => {
     fetchMock.mockResolvedValue(new Response('{"ok":true}', { status: 200 }));
-    render(<ContactForm t={t} />);
+    render(<ContactForm lang="es" t={t} />);
     fillValidForm();
     submit();
     fireEvent.click(await screen.findByRole('button', { name: t.success.again }));
@@ -193,13 +193,13 @@ describe('ContactForm · envío', () => {
 
 describe('ContactForm · tipo de solicitud', () => {
   it('por defecto selecciona «sesión»', () => {
-    render(<ContactForm t={t} />);
+    render(<ContactForm lang="es" t={t} />);
     expect((screen.getByLabelText(t.types[0].label) as HTMLInputElement).checked).toBe(true);
   });
 
   it('preselecciona «auditoría» si se llega con #solicitar-auditoria', () => {
     window.location.hash = '#solicitar-auditoria';
-    render(<ContactForm t={t} />);
+    render(<ContactForm lang="es" t={t} />);
     expect((screen.getByLabelText(t.types[1].label) as HTMLInputElement).checked).toBe(true);
   });
 
@@ -209,7 +209,7 @@ describe('ContactForm · tipo de solicitud', () => {
       <>
         <Button href="#solicitar-auditoria">Solicitar auditoría</Button>
         <section id="solicitar-auditoria" />
-        <ContactForm t={t} />
+        <ContactForm lang="es" t={t} />
       </>,
     );
     fireEvent.click(screen.getByText('Solicitar auditoría'));
@@ -218,7 +218,7 @@ describe('ContactForm · tipo de solicitud', () => {
 
   it('vuelve a «sesión» con un hashchange a #agendar-sesion', async () => {
     window.location.hash = '#solicitar-auditoria';
-    render(<ContactForm t={t} />);
+    render(<ContactForm lang="es" t={t} />);
     window.history.pushState(null, '', '#agendar-sesion');
     window.dispatchEvent(new HashChangeEvent('hashchange'));
     await waitFor(() => expect((screen.getByLabelText(t.types[0].label) as HTMLInputElement).checked).toBe(true));
@@ -229,7 +229,7 @@ describe('ContactForm · tipo de solicitud', () => {
     render(
       <>
         <a href="#contacto">Agendar sesión</a>
-        <ContactForm t={t} />
+        <ContactForm lang="es" t={t} />
       </>,
     );
     fireEvent.click(screen.getByText('Agendar sesión'));
@@ -238,7 +238,7 @@ describe('ContactForm · tipo de solicitud', () => {
 
   it('«Enviar otra solicitud» conserva el tipo elegido (OPT-002)', async () => {
     fetchMock.mockResolvedValue(new Response('{"ok":true}', { status: 200 }));
-    render(<ContactForm t={t} />);
+    render(<ContactForm lang="es" t={t} />);
     fireEvent.click(screen.getByLabelText(t.types[1].label));
     fillValidForm();
     submit();

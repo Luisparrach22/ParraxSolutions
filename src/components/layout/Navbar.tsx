@@ -3,22 +3,25 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useCallback, useEffect, useRef, useState, type MouseEvent } from 'react';
-import type { Dictionary } from '@/i18n/config';
+import { localePath, type Dictionary, type Locale } from '@/i18n/config';
 import { cn } from '@/lib/cn';
 import { Button, Logo, NodeDot } from '@/components/ui';
 import { scrollToAnchor } from '@/lib/scroll-to-anchor';
 import { contactEmail, instagram } from '@/config/site';
+import { LanguageSwitcher } from './LanguageSwitcher';
 
 type NavbarProps = {
+  lang: Locale;
   t: Dictionary['nav'];
   a11y: Dictionary['a11y'];
 };
 
 const FOCUSABLE = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
-export function Navbar({ t, a11y }: NavbarProps) {
+export function Navbar({ lang, t, a11y }: NavbarProps) {
   const pathname = usePathname();
-  const isHome = pathname === '/';
+  const homePath = localePath(lang, '/');
+  const isHome = pathname === homePath;
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState<string | null>(null);
@@ -134,9 +137,9 @@ export function Navbar({ t, a11y }: NavbarProps) {
         !open && (scrolled || !isHome ? 'border-obsidian-line bg-obsidian/95 backdrop-blur-md' : 'border-transparent bg-transparent'),
       )}
     >
-      <nav aria-label="Principal" className="container-x flex h-[var(--nav-h)] shrink-0 items-center justify-between gap-4 border-b border-obsidian-line lg:border-none">
+      <nav aria-label={a11y.mainNav} className="container-x flex h-[var(--nav-h)] shrink-0 items-center justify-between gap-4 border-b border-obsidian-line lg:border-none">
         <Link
-          href="/"
+          href={homePath}
           aria-label={a11y.home}
           className="shrink-0"
           onClick={(e) => {
@@ -146,7 +149,7 @@ export function Navbar({ t, a11y }: NavbarProps) {
             if (isHome) {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: 'smooth' });
-              if (window.location.hash) window.history.pushState(null, '', '/');
+              if (window.location.hash) window.history.pushState(null, '', homePath);
             }
           }}
         >
@@ -163,7 +166,7 @@ export function Navbar({ t, a11y }: NavbarProps) {
           {t.links.map((link) => {
             const id = link.href.replace('#', '');
             const isActive = active === id;
-            const href = `/${link.href}`;
+            const href = localePath(lang, `/${link.href}`);
             return (
               <li key={link.href}>
                 <Link
@@ -188,7 +191,8 @@ export function Navbar({ t, a11y }: NavbarProps) {
         </ul>
 
         <div className="flex items-center gap-2.5">
-          <Button href="/#agendar-sesion" size="md" className="hidden sm:inline-flex" onClick={(e) => go(e, '/#agendar-sesion')}>
+          <LanguageSwitcher lang={lang} label={a11y.language} className="hidden sm:inline-flex" />
+          <Button href={localePath(lang, '/#agendar-sesion')} size="md" className="hidden sm:inline-flex" onClick={(e: MouseEvent<HTMLAnchorElement>) => go(e, localePath(lang, '/#agendar-sesion'))}>
             <span className="lg:hidden">{t.ctaShort}</span>
             <span className="hidden lg:inline">{t.cta}</span>
           </Button>
@@ -224,11 +228,14 @@ export function Navbar({ t, a11y }: NavbarProps) {
       >
         <div className="container-x flex min-h-full flex-col justify-between pb-[calc(1.5rem+env(safe-area-inset-bottom))] pt-6">
           <div className="space-y-6">
-            <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-slate-400">Navegación</p>
+            <div className="flex items-center justify-between gap-4">
+              <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-slate-400">{t.menuTitle}</p>
+              <LanguageSwitcher lang={lang} label={a11y.language} className="sm:hidden" />
+            </div>
             <ul className="divide-y divide-obsidian-line border-y border-obsidian-line">
               {t.links.map((link, i) => {
                 const isActive = active === link.href.replace('#', '');
-                const href = `/${link.href}`;
+                const href = localePath(lang, `/${link.href}`);
                 return (
                   <li key={link.href}>
                     <Link
@@ -255,23 +262,23 @@ export function Navbar({ t, a11y }: NavbarProps) {
             {/* Acceso rápido a auditoría en el menú móvil */}
             <div className="rounded-lg border border-slate-800 bg-obsidian-raised p-4">
               <span className="inline-block rounded-sm border border-slate-700 px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wider text-node">
-                Sin compromiso
+                {t.noCommitment}
               </span>
-              <p className="mt-2 text-sm font-medium text-white">¿Quieres revisar tu operativa?</p>
-              <p className="mt-1 text-sm text-slate-400">Solicita una auditoría digital gratuita en 60 minutos.</p>
+              <p className="mt-2 text-sm font-medium text-white">{t.reviewTitle}</p>
+              <p className="mt-1 text-sm text-slate-400">{t.reviewText}</p>
               <Link
-                href="/#solicitar-auditoria"
-                onClick={(e) => go(e, '/#solicitar-auditoria')}
+                href={localePath(lang, '/#solicitar-auditoria')}
+                onClick={(e: MouseEvent<HTMLAnchorElement>) => go(e, localePath(lang, '/#solicitar-auditoria'))}
                 className="mt-3 inline-flex min-h-[44px] items-center gap-1.5 text-sm font-medium text-node hover:underline"
               >
-                <span>Solicitar auditoría</span>
+                <span>{t.reviewLink}</span>
                 <span aria-hidden="true">→</span>
               </Link>
             </div>
           </div>
 
           <div className="mt-8 border-t border-obsidian-line pt-6">
-            <Button href="/#agendar-sesion" size="lg" className="w-full" onClick={(e) => go(e, '/#agendar-sesion')}>
+            <Button href={localePath(lang, '/#agendar-sesion')} size="lg" className="w-full" onClick={(e: MouseEvent<HTMLAnchorElement>) => go(e, localePath(lang, '/#agendar-sesion'))}>
               {t.cta}
             </Button>
             <p className="mt-4 text-center text-sm text-slate-500">
@@ -286,7 +293,7 @@ export function Navbar({ t, a11y }: NavbarProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex min-h-[44px] items-center gap-2 text-xs font-medium text-slate-400 transition-colors hover:text-white"
-                aria-label={`Instagram ${instagram.handle}`}
+                aria-label={a11y.instagram}
               >
                 <svg className="h-4 w-4 shrink-0 text-node" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />

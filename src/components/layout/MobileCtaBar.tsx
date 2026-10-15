@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { localePath, type Locale } from '@/i18n/config';
 import { NodeDot } from '@/components/ui';
 import { scrollToAnchor } from '@/lib/scroll-to-anchor';
 
@@ -11,7 +12,7 @@ import { scrollToAnchor } from '@/lib/scroll-to-anchor';
  * oculta cuando el formulario de contacto o el pie están en pantalla, para no
  * tapar contenido ni duplicar el CTA.
  */
-export function MobileCtaBar({ label, sub }: { label: string; sub: string }) {
+export function MobileCtaBar({ lang, label, sub }: { lang: Locale; label: string; sub: string }) {
   const pathname = usePathname();
   const [pastHero, setPastHero] = useState(false);
   const [blocked, setBlocked] = useState(false);
@@ -48,9 +49,9 @@ export function MobileCtaBar({ label, sub }: { label: string; sub: string }) {
           </span>
         </p>
         <Link
-          href="/#agendar-sesion"
+          href={localePath(lang, '/#agendar-sesion')}
           onClick={(e) => {
-            if (pathname === '/' && (scrollToAnchor('agendar-sesion') || scrollToAnchor('contacto'))) {
+            if (pathname === localePath(lang, '/') && (scrollToAnchor('agendar-sesion') || scrollToAnchor('contacto'))) {
               e.preventDefault();
             }
           }}

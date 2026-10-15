@@ -81,8 +81,11 @@ export function Button(props: ButtonAsLink | ButtonAsButton) {
 
       const id = href.split('#')[1];
       if (!id) return;
-      const isHome = window.location.pathname === '/';
-      if ((isHome || href.startsWith('#')) && scrollToAnchor(id)) {
+      // Solo se desplaza si el enlace apunta a la página actual (home en /, /en…).
+      const trim = (p: string) => p.replace(/\/$/, '') || '/';
+      const target = href.split('#')[0];
+      const samePage = target === '' || trim(target) === trim(window.location.pathname);
+      if (samePage && scrollToAnchor(id)) {
         e.preventDefault();
       }
     };
