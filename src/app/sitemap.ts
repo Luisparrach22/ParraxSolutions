@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { siteUrl } from '@/config/site';
 import { defaultLocale, getDictionary, htmlLang, localePath, locales } from '@/i18n/config';
+import { STORE_PATH } from '@/config/site';
 
 type Entry = MetadataRoute.Sitemap[number];
 
@@ -19,8 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...t.solutions.items.flatMap((item) =>
       withLanguages(`/soluciones/${item.slug}`, { changeFrequency: 'monthly', priority: 0.8 }),
     ),
-    ...withLanguages('/aviso-legal', { changeFrequency: 'yearly', priority: 0.2 }),
-    ...withLanguages('/politica-de-privacidad', { changeFrequency: 'yearly', priority: 0.2 }),
-    ...withLanguages('/cookies', { changeFrequency: 'yearly', priority: 0.2 }),
+    ...withLanguages(STORE_PATH, { changeFrequency: 'monthly', priority: 0.9 }),
+    // Las páginas legales son noindex: no se listan en el sitemap.
   ];
 }

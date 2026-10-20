@@ -1,6 +1,8 @@
-import type { Dictionary, Locale } from '@/i18n/config';
+import Link from 'next/link';
+import { localePath, type Dictionary, type Locale } from '@/i18n/config';
 import { BookingButton, Reveal, Rich, Section, SectionHeader } from '@/components/ui';
 import { priceFrom } from '@/lib/pricing';
+import { STORE_PATH } from '@/config/site';
 
 type T = Dictionary['services'];
 
@@ -39,6 +41,15 @@ export function Services({ lang, t }: { lang: Locale; t: T }) {
         <Reveal className="max-w-[60ch]">
           <h3 className="text-xl font-semibold tracking-tight !text-ink sm:text-2xl">{shops.title}</h3>
           <p className="mt-2 text-[0.9375rem] leading-7 text-slate-600">{shops.text}</p>
+          <Link
+            href={localePath(lang, STORE_PATH)}
+            className="mt-3 inline-flex min-h-[44px] items-center gap-1.5 text-sm font-medium text-brand underline decoration-slate-300 underline-offset-4 hover:decoration-brand"
+          >
+            {shops.more}
+            <svg aria-hidden="true" viewBox="0 0 16 16" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </Link>
         </Reveal>
 
         <ul className="mt-6 grid gap-4 lg:grid-cols-3">
@@ -98,7 +109,7 @@ export function Services({ lang, t }: { lang: Locale; t: T }) {
           <p className="mt-2 text-[0.9375rem] leading-7 text-slate-600">{automation.text}</p>
         </Reveal>
 
-        <Reveal className="mt-6 overflow-hidden rounded-lg border border-obsidian-line bg-obsidian text-slate-400 [color-scheme:dark]">
+        <Reveal className="surface-dark mt-6 overflow-hidden rounded-lg border border-obsidian-line bg-obsidian text-slate-400 [color-scheme:dark]">
           <div className="grid gap-10 p-5 sm:p-8 md:p-10 lg:grid-cols-12 lg:gap-12">
             <div className="lg:col-span-7">
               <h4 className="text-2xl font-semibold tracking-tight text-white sm:text-[1.75rem]">{sprint.name}</h4>
