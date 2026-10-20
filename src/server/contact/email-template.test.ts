@@ -3,7 +3,7 @@ import { buildContactEmail } from './email-template';
 import type { ValidContactRequest } from './validation';
 
 const base: ValidContactRequest = {
-  type: 'sesion',
+  need: '',
   name: 'Ana López',
   company: 'Acme SL',
   email: 'ana@acme.es',
@@ -13,16 +13,20 @@ const base: ValidContactRequest = {
 };
 
 describe('buildContactEmail', () => {
-  it('compone el asunto según el tipo de solicitud', () => {
+  it('compone el asunto con lo que necesita, o «Sesión estratégica» si no lo indicó', () => {
     expect(buildContactEmail(base).subject).toBe('Nueva solicitud: Sesión estratégica · Acme SL');
-    expect(buildContactEmail({ ...base, type: 'auditoria' }).subject).toBe(
-      'Nueva solicitud: Auditoría digital gratuita · Acme SL',
-    );
+    expect(buildContactEmail({ ...base, need: 'tienda' }).subject).toBe('Nueva solicitud: Tienda online · Acme SL');
+  });
+
+  it('incluye la necesidad en el texto y en el HTML', () => {
+    expect(buildContactEmail(base).text).toContain('Necesita: Sin indicar');
+    const { text, html } = buildContactEmail({ ...base, need: 'automatizacion' });
+    expect(text).toContain('Necesita: Automatizar un proceso');
+    expect(html).toContain('<b>Necesita:</b> Automatizar un proceso');
   });
 
   it('incluye todos los datos y la etiqueta de urgencia en la versión de texto', () => {
     const { text } = buildContactEmail(base);
-    expect(text).toContain('Tipo: Sesión estratégica');
     expect(text).toContain('Nombre: Ana López');
     expect(text).toContain('Empresa: Acme SL');
     expect(text).toContain('Email: ana@acme.es');

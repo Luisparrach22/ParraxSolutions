@@ -1,6 +1,7 @@
 /**
  * English content (en). Same shape as es.ts: the `Dictionary` type enforces it.
- * Register: direct, professional, short sentences, results before technology.
+ * Register: direct, professional, first person singular (Luis works alone),
+ * short sentences, results before technology. No specific countries.
  *
  * Placeholder convention: any text between [brackets] renders as a visible
  * marker (<Rich /> component) so nobody publishes an unconfirmed detail by mistake.
@@ -26,6 +27,7 @@ export const en: Dictionary = {
     mainNav: "Main",
     breadcrumb: "Breadcrumb",
     instagram: "Parrax Solutions on Instagram",
+    newTab: "(opens in a new tab)",
   },
 
   nav: {
@@ -38,12 +40,12 @@ export const en: Dictionary = {
     cta: "Book a strategy session",
     ctaShort: "Book a session",
     ctaSub: "20-minute session, free",
-    writeUs: "Or write to us at",
+    writeUs: "Or write to me at",
     menuTitle: "Navigation",
     noCommitment: "No commitment",
-    reviewTitle: "Want to review how you operate?",
-    reviewText: "Request a free digital audit in 20 minutes.",
-    reviewLink: "Request an audit",
+    reviewTitle: "Prefer to write?",
+    reviewText: "Tell me about your case through the form and I'll reply within 24–48 business hours.",
+    reviewLink: "Go to the form",
   },
 
   hero: {
@@ -51,7 +53,7 @@ export const en: Dictionary = {
     titleA: "Websites that bring in clients and software",
     titleB: "that removes manual work.",
     subtitle:
-      "We design your website or landing page and build the system that connects your operation. One team, from the first visit to the invoice.",
+      "I design your website or landing page and build the system that connects your operation. One person accountable, from the first visit to the invoice.",
     ctaPrimary: "Request a digital audit",
     ctaSecondary: "See services",
     reassurance: [
@@ -111,7 +113,7 @@ export const en: Dictionary = {
       },
       {
         title: "Tools that don't talk to each other",
-        text: "The store, the POS, the CRM and the bank each live on their own. Nobody has the full picture of the business.",
+        text: "The online store, the till, the CRM and the bank each live on their own. Nobody has the full picture of the business.",
         icon: "disconnect",
       },
       {
@@ -124,7 +126,7 @@ export const en: Dictionary = {
 
   solutions: {
     eyebrow: "Services",
-    title: "What we do",
+    title: "What I do",
     intro:
       "Every project starts with a concrete business problem, not with a technology.",
     more: "Learn more",
@@ -159,23 +161,23 @@ export const en: Dictionary = {
       },
       {
         slug: "aplicaciones-web-y-moviles",
-        kicker: "Web and mobile apps",
-        title: "Your own app for your team and your clients",
-        text: "Client portals, field-team apps and internal tools in the browser, iOS and Android.",
+        kicker: "Web apps and portals",
+        title: "Your own web app for your team and your clients",
+        text: "Client portals and internal tools that run in the browser, on a computer or a phone.",
         visual: "apps",
       },
       {
         slug: "modernizacion-de-procesos",
         kicker: "Legacy process modernization",
         title: "From the critical Excel file to a reliable system",
-        text: "We migrate spreadsheets and old systems to a tool with permissions, history and backups, without stopping your operation.",
+        text: "I migrate spreadsheets and old systems to a tool with permissions, history and backups, without stopping your operation.",
         visual: "legacy",
       },
       {
         slug: "consultoria-tecnologica",
         kicker: "Technology consulting",
         title: "Sound technical decisions, on any stack",
-        text: "We review what you already have, help you choose, and work with the technology that fits best, not the one that's comfortable for us.",
+        text: "I review what you already have and help you choose the technology that best fits your business and budget.",
         visual: "consulting",
       },
     ],
@@ -189,12 +191,12 @@ export const en: Dictionary = {
     outcomeTitle: "What changes in your day-to-day",
     ctaTitle: "Shall we look at it applied to your case?",
     ctaPrimary: "Book a strategy session",
-    ctaSecondary: "See our method",
+    ctaSecondary: "See how I work",
     ctaText:
-      "In a 20-minute session we review your situation and tell you honestly whether this is what you need.",
+      "In a 20-minute session I review your situation and tell you honestly whether this is what you need.",
     pages: {
       "paginas-web-y-landing-pages": {
-        lead: "We design and build your corporate website or the landing page for your next campaign, so that whoever arrives understands what you offer and gets in touch.",
+        lead: "I design and build your corporate website or the landing page for your next campaign, so that whoever arrives understands what you offer and gets in touch.",
         includes: [
           "Custom design with your brand, no generic templates",
           "Copy and structure focused on getting the visitor to contact you",
@@ -226,9 +228,9 @@ export const en: Dictionary = {
           "One place to work, with reliable data and no dependence on a specific person being available.",
       },
       "integraciones-y-apis": {
-        lead: "We connect the tools you already use so they share information without anyone having to export, copy and paste.",
+        lead: "I connect the tools you already use so they share information without anyone having to export, copy and paste.",
         includes: [
-          "Connection between online store, POS, payment gateway, accounting and CRM",
+          "Connection between online store, point of sale, payment gateway, accounting and CRM",
           "Automatic synchronization with error handling and retries",
           "A log of every operation so you know what happened and when",
           "Your own APIs if you need third parties to connect to you",
@@ -242,7 +244,7 @@ export const en: Dictionary = {
           "Data travels between systems on its own and the numbers add up the first time.",
       },
       "automatizacion-de-procesos": {
-        lead: "We identify the repetitive tasks that eat up your team's hours and turn them into automatic, traceable processes.",
+        lead: "I identify the repetitive tasks that eat up your team's hours and turn them into automatic, traceable processes.",
         includes: [
           "Process map with the time each manual task takes",
           "Automation of approvals, notifications, reports and data handoffs",
@@ -258,12 +260,12 @@ export const en: Dictionary = {
           "Your team spends its time on what requires judgment, not on moving data around.",
       },
       "aplicaciones-web-y-moviles": {
-        lead: "We design and build web and mobile applications for internal use or for your clients, connected to the rest of your systems.",
+        lead: "I design and build web applications for internal use or for your clients, connected to the rest of your systems.",
         includes: [
           "Interface design centered on the people who will use it every day",
-          "Web, iOS and Android app from a single codebase when it fits",
+          "A web app that runs in any browser, including on a phone",
           "Client portals with secure access to orders, documents or tickets",
-          "Publication in app stores and maintenance",
+          "Launch and optional maintenance",
         ],
         fit: [
           "Your clients call or write to check things they could see on their own",
@@ -274,7 +276,7 @@ export const en: Dictionary = {
           "Fewer calls, less paper and a professional experience with your brand.",
       },
       "modernizacion-de-procesos": {
-        lead: "We turn the critical spreadsheet or old program your company depends on into a modern, secure and maintainable system.",
+        lead: "I turn the critical spreadsheet or old program your company depends on into a modern, secure and maintainable system.",
         includes: [
           "Analysis of the current logic, including the rules nobody documented",
           "Data migration with validation and a parallel-run period",
@@ -290,7 +292,7 @@ export const en: Dictionary = {
           "The same process you already know, without the risk and with room to grow.",
       },
       "consultoria-tecnologica": {
-        lead: "We support you in technology decisions with an independent view: what to build, what to buy and what to leave as it is.",
+        lead: "I support you in technology decisions with an independent view: what to build, what to buy and what to leave as it is.",
         includes: [
           "Audit of tools, processes and license costs",
           "Technology roadmap prioritized by business impact",
@@ -312,27 +314,27 @@ export const en: Dictionary = {
     eyebrow: "Method",
     title: "Four phases. No surprises.",
     intro:
-      "Whether it's a landing page, a management system or an automation, we always work the same way. Each phase ends with something concrete that you review before moving on.",
+      "Whether it's a landing page, an online store or an automation, I always work the same way. Each phase ends with something concrete that you review before moving on.",
     deliverableLabel: "Deliverable",
     steps: [
       {
         name: "Understand",
-        text: "We analyze your business, your clients and your processes to find out what you really need and what you don't.",
+        text: "I analyze your business, your clients and your processes to find out what you really need and what you don't.",
         deliverable: "Proposal with scope, timeline and fixed price",
       },
       {
         name: "Design",
-        text: "We shape the solution with you: how it will look, how it will work and how it fits with what you already use.",
-        deliverable: "Design or prototype you approve before we build",
+        text: "I shape the solution with you: how it will look, how it will work and how it fits with what you already use.",
+        deliverable: "Design or prototype you approve before I build",
       },
       {
         name: "Build",
-        text: "We develop in stages and show you real progress from the start, so we can correct course in time.",
+        text: "I develop in stages and show you real progress from the start, so we can correct course in time.",
         deliverable: "Versions you can test",
       },
       {
         name: "Launch and support",
-        text: "We go live, train your team and stay by your side to maintain and improve it.",
+        text: "I take it live, show your team how to use it and, if you need it, handle the maintenance.",
         deliverable: "Project up and running, and documented",
       },
     ],
@@ -341,23 +343,23 @@ export const en: Dictionary = {
   why: {
     eyebrow: "Why Parrax",
     title: "Your software. Your data. Your decision.",
-    intro: "We work so that you depend on us as little as possible.",
+    intro: "I work so that you depend on me as little as possible.",
     items: [
       {
         title: "You own the code",
-        text: "You receive the source code and the intellectual property, by contract. If you want to switch teams tomorrow, you can.",
+        text: "You receive the source code and the intellectual property, by contract. If tomorrow you'd rather have someone else maintain it, you can.",
       },
       {
         title: "No per-user fees",
         text: "Give your whole team access without the bill growing with every new user.",
       },
       {
-        title: "You talk to the people who build it",
-        text: "No middlemen. The person who designs and programs your project is your direct contact.",
+        title: "You talk to the person who builds it",
+        text: "No middlemen: I design and program your project, and I'm your direct contact.",
       },
       {
-        title: "Secure and GDPR-compliant",
-        text: "Role-based permissions, encrypted backups and privacy by design.",
+        title: "Security and privacy by design",
+        text: "Role-based permissions, backups and access to personal data limited to those who need it.",
       },
     ],
     compare: {
@@ -387,31 +389,52 @@ export const en: Dictionary = {
     cta: "Request a digital audit",
   },
 
+  about: {
+    eyebrow: "Who's behind it",
+    title: "You talk to me from start to finish",
+    role: "Founder of Parrax Solutions",
+    photoAlt: "Luis Parra, founder of Parrax Solutions",
+    photoMissing: "[TODO_LUIS: photo]",
+    paragraphs: [
+      "I'm Luis Parra. I design, build and maintain every project myself: the person who replies to your message is the person who will build it.",
+      "I come from an industrial background, where a badly solved process shows up in operations every day. That's why I start by understanding how your business works before proposing any technology.",
+      "I build websites and online stores, and I automate the tasks that are done by hand today: orders, notifications, reports and connections between tools.",
+      "I work remotely with companies in any country, in Spanish or English, by video call.",
+    ],
+    linkedin: "See my LinkedIn profile",
+    linkedinMissing: "[TODO_LUIS: LinkedIn link]",
+    newTab: "(opens in a new tab)",
+  },
+
   contact: {
     eyebrow: "Contact",
-    title: "Tell us what you want to solve",
+    title: "Tell me what you want to solve",
     intro:
-      "A first 20-minute conversation, no cost and no commitment. You tell us what you need and we tell you honestly whether we can help.",
+      "A first 20-minute conversation, no cost and no commitment. You tell me what you need and I tell you honestly whether I can help.",
     stepsTitle: "What happens next",
     steps: [
-      "We write back within 24–48 business hours to find a time that suits you.",
-      "We talk for 20 minutes by video call or phone to understand your case.",
-      "If it's a fit, we send you a written proposal with scope, timeline and price.",
-      "If you decide to continue, we analyze your case in depth and meet regularly to review progress.",
+      "I write back within 24–48 business hours to find a time that suits you.",
+      "We talk for 20 minutes by video call to understand your case.",
+      "If it's a fit, I send you a written proposal with scope, timeline and a fixed price.",
+      "If you decide to continue, we start with the progress reviews set out in the proposal.",
     ],
     calendar: {
       title: "Prefer to book directly?",
-      text: "Pick a slot in our calendar for a 20-minute session.",
+      text: "Pick a slot in my calendar for a 20-minute session.",
       cta: "Book a 20-min session",
     },
-    directEmail: "Or write to us at",
+    directEmail: "Or write to me at",
     instagramLabel: "Parrax Solutions on Instagram",
     form: {
-      typeLegend: "What are you interested in",
-      types: [
-        { value: "sesion", label: "Strategy session" },
-        { value: "auditoria", label: "Free digital audit (20 min)" },
+      needLegend: "What do you need?",
+      optional: "optional",
+      needs: [
+        { value: "web", label: "Website or landing page" },
+        { value: "tienda", label: "Online store" },
+        { value: "automatizacion", label: "Automate a process" },
+        { value: "otro", label: "Other" },
       ],
+      honeypot: "Leave this field empty",
       name: "Name",
       namePh: "First and last name",
       company: "Company",
@@ -420,7 +443,7 @@ export const en: Dictionary = {
       emailPh: "you@company.com",
       message: "What do you want to solve?",
       messagePh:
-        "For example: “We manage orders in three Excel files and invoice by hand in another program”.",
+        "For example: “I get orders from the online store and type them by hand into the invoicing program”.",
       urgencyLegend: "How urgent is it?",
       urgency: [
         { value: "explorando", label: "I'm exploring" },
@@ -429,31 +452,31 @@ export const en: Dictionary = {
       ],
       privacyA: "I have read and accept the",
       privacyLink: "privacy policy",
-      privacyB: ". We will use your data only to respond to your request.",
+      privacyB: ". I will use your data only to respond to your request.",
       submit: "Send request",
       sending: "Sending…",
       required: "required",
       errors: {
-        name: "Enter your name so we know who to reply to.",
+        name: "Enter your name so I know who to reply to.",
         company: "Enter your company name.",
         email:
           "Check the email: something seems to be missing (example: you@company.com).",
-        message: "Tell us in at least 20 characters what you want to solve.",
+        message: "Tell me in at least 20 characters what you want to solve.",
         urgency: "Choose an urgency option.",
-        privacy: "We need your consent to be able to reply to you.",
+        privacy: "I need your consent to be able to reply to you.",
         summary: "Check the highlighted fields before sending.",
         server:
-          "We couldn't send the form. Try again or write to us by email.",
+          "The form couldn't be sent. Try again or write to me by email.",
         rateLimited:
-          "We've received several requests in a row from your connection. Wait a few minutes or write to us by email.",
+          "Several requests arrived in a row from your connection. Wait a few minutes or write to me by email.",
         validation:
           "Some data is not valid. Check the fields and try again.",
         network:
-          "We couldn't reach the server. Check your connection and try again.",
+          "The server couldn't be reached. Check your connection and try again.",
       },
       success: {
         title: "Request received",
-        text: "Thank you. We'll write to you within 24–48 business hours to arrange the session.",
+        text: "Thank you. I'll write to you within 24–48 business hours to arrange the session.",
         again: "Send another request",
       },
     },
@@ -463,7 +486,7 @@ export const en: Dictionary = {
     title: "Page not found",
     code: "Error 404",
     heading: "This page isn't connected to anything.",
-    text: "The link may have changed or the address may have a typo. We'll take you back to where systems are actually running.",
+    text: "The link may have changed or the address may have a typo. Head back to where systems are actually running.",
     home: "Back to home",
     solutions: "See solutions",
   },
@@ -497,7 +520,7 @@ export const en: Dictionary = {
             href: "/soluciones/automatizacion-de-procesos",
           },
           {
-            label: "Web and mobile apps",
+            label: "Web apps and portals",
             href: "/soluciones/aplicaciones-web-y-moviles",
           },
           {
@@ -525,7 +548,7 @@ export const en: Dictionary = {
         ],
       },
     ],
-    location: "Spain · Venezuela · Projects worldwide",
+    location: "I work remotely with companies in any country",
     legalLine: "Parrax Solutions · Technology consulting & development",
     rights: "All rights reserved.",
   },

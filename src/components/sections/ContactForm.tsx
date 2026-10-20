@@ -4,12 +4,12 @@ import Link from 'next/link';
 import { useEffect, useId, useRef, useState, type FormEvent, type ReactNode } from 'react';
 import { localePath, type Dictionary, type Locale } from '@/i18n/config';
 import { cn } from '@/lib/cn';
-import { CONTACT_LIMITS, CONTACT_REQUEST_TIMEOUT_MS, invalidContactFields, type ContactField, type ContactResponse, type ContactType } from '@/lib/contact-schema';
+import { CONTACT_LIMITS, CONTACT_REQUEST_TIMEOUT_MS, invalidContactFields, type ContactField, type ContactResponse } from '@/lib/contact-schema';
 import { Button, NodeDot, Rich } from '@/components/ui';
 
 type FormT = Dictionary['contact']['form'];
 type Values = {
-  type: string;
+  need: string; // opcional: '' = sin indicar
   name: string;
   company: string;
   email: string;
@@ -23,12 +23,6 @@ type SubmitError = 'server' | 'rateLimited' | 'validation' | 'network';
 type Errors = Partial<Record<Field, string>>;
 
 const FIELD_ORDER: Field[] = ['name', 'company', 'email', 'message', 'urgency', 'privacy'];
-
-/** Anclas de los CTA que preseleccionan el tipo de solicitud. */
-const ANCHOR_TYPES: Record<string, ContactType> = {
-  '#solicitar-auditoria': 'auditoria',
-  '#agendar-sesion': 'sesion',
-};
 
 function validate(v: Values, t: FormT): Errors {
   const invalid = invalidContactFields({
@@ -47,7 +41,7 @@ export function ContactForm({ lang, t }: { lang: Locale; t: FormT }) {
   const formRef = useRef<HTMLFormElement>(null);
   const successRef = useRef<HTMLDivElement>(null);
   const [values, setValues] = useState<Values>({
-    type: 'sesion',
+    need: '',
     name: '',
     company: '',
     email: '',
@@ -63,18 +57,6 @@ export function ContactForm({ lang, t }: { lang: Locale; t: FormT }) {
 
   const errors = validate(values, t);
   const show = (f: Field) => (touched[f] || submitted) && errors[f];
-
-  // Los CTA apuntan a #solicitar-auditoria o #agendar-sesion y preseleccionan el tipo.
-  // La navegación interna (scrollToAnchor) emite hashchange, así que basta con escuchar ese evento.
-  useEffect(() => {
-    const sync = () => {
-      const type = ANCHOR_TYPES[window.location.hash];
-      if (type) setValues((v) => (v.type === type ? v : { ...v, type }));
-    };
-    sync();
-    window.addEventListener('hashchange', sync);
-    return () => window.removeEventListener('hashchange', sync);
-  }, []);
 
   useEffect(() => {
     if (status !== 'success' || !successRef.current) return;
@@ -119,8 +101,7 @@ export function ContactForm({ lang, t }: { lang: Locale; t: FormT }) {
   }
 
   function reset() {
-    // Se conserva el tipo elegido (OPT-002).
-    setValues((v) => ({ type: v.type, name: '', company: '', email: '', message: '', urgency: '', privacy: false, website: '' }));
+    setValues(() => ({ need: '', name: '', company: '', email: '', message: '', urgency: '', privacy: false, website: '' }));
     setTouched({});
     setSubmitted(false);
     setStatus('idle');
@@ -154,18 +135,20 @@ export function ContactForm({ lang, t }: { lang: Locale; t: FormT }) {
         </p>
       )}
 
-      {/* Tipo de solicitud */}
+      {/* Qué necesita (opcional): llega en el email para preparar la sesión */}
       <fieldset>
-        <legend className="text-sm font-medium text-white">{t.typeLegend}</legend>
+        <legend className="text-sm font-medium text-white">
+          {t.needLegend} <span className="font-normal text-slate-400">({t.optional})</span>
+        </legend>
         <div className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2">
-          {t.types.map((opt) => (
+          {t.needs.map((opt) => (
             <Choice
               key={opt.value}
-              name="type"
+              name="need"
               value={opt.value}
               label={opt.label}
-              checked={values.type === opt.value}
-              onChange={() => set('type', opt.value)}
+              checked={values.need === opt.value}
+              onChange={() => set('need', opt.value)}
             />
           ))}
         </div>
@@ -208,7 +191,7 @@ export function ContactForm({ lang, t }: { lang: Locale; t: FormT }) {
       {/* Honeypot: oculto a personas y lectores de pantalla */}
       <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">
         <label>
-          Web
+          {t.honeypot}
           <input tabIndex={-1} autoComplete="off" value={values.website} onChange={(e) => set('website', e.target.value)} />
         </label>
       </div>

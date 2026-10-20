@@ -8,7 +8,7 @@ type RouteModule = typeof import('./route');
 let POST: RouteModule['POST'];
 
 const validBody = {
-  type: 'auditoria',
+  need: 'tienda',
   name: 'Ana López',
   company: 'Acme SL',
   email: 'ana@acme.es',
@@ -53,7 +53,7 @@ describe('POST /api/contact · respuestas', () => {
     expect(sendContactEmail).toHaveBeenCalledOnce();
     const [mail, replyTo] = sendContactEmail.mock.calls[0];
     expect(replyTo).toBe('ana@acme.es');
-    expect(mail.subject).toBe('Nueva solicitud: Auditoría digital gratuita · Acme SL');
+    expect(mail.subject).toBe('Nueva solicitud: Tienda online · Acme SL');
   });
 
   it('registra la solicitud sin volcar el mensaje ni el email en el log', async () => {

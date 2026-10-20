@@ -71,7 +71,7 @@ describe('diccionarios', () => {
     expect(d.problems.items.map((i) => i.icon)).toEqual(es.problems.items.map((i) => i.icon));
     expect(d.nav.links.map((x) => x.href)).toEqual(es.nav.links.map((x) => x.href));
     expect(d.footer.columns.map((c) => c.links.map((x) => x.href))).toEqual(es.footer.columns.map((c) => c.links.map((x) => x.href)));
-    expect(d.contact.form.types.map((x) => x.value)).toEqual(es.contact.form.types.map((x) => x.value));
+    expect(d.contact.form.needs.map((x) => x.value)).toEqual(es.contact.form.needs.map((x) => x.value));
     expect(d.contact.form.urgency.map((x) => x.value)).toEqual(es.contact.form.urgency.map((x) => x.value));
     expect(Object.keys(d.solutionDetails.pages)).toEqual(Object.keys(es.solutionDetails.pages));
   });

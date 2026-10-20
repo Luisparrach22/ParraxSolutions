@@ -4,8 +4,9 @@
  * importar desde componentes de cliente.
  */
 
-export const CONTACT_TYPES = ['sesion', 'auditoria'] as const;
-export type ContactType = (typeof CONTACT_TYPES)[number];
+/** Respuestas del campo opcional «¿Qué necesitas?». Vacío = sin indicar. */
+export const NEED_VALUES = ['web', 'tienda', 'automatizacion', 'otro'] as const;
+export type Need = (typeof NEED_VALUES)[number];
 
 export const URGENCY_VALUES = ['explorando', '3-meses', 'urgente'] as const;
 export type Urgency = (typeof URGENCY_VALUES)[number];
@@ -48,6 +49,11 @@ export type ContactFields = {
 /** Compara contra la lista explícita: no acepta claves heredadas como "toString" (SEC-004). */
 export function isUrgency(value: string): value is Urgency {
   return (URGENCY_VALUES as readonly string[]).includes(value);
+}
+
+/** Compara contra la lista explícita, igual que isUrgency (SEC-004). */
+export function isNeed(value: string): value is Need {
+  return (NEED_VALUES as readonly string[]).includes(value);
 }
 
 const inRange = (value: string, { min = 0, max }: { min?: number; max: number }) =>

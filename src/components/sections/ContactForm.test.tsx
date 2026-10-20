@@ -1,9 +1,8 @@
 // @vitest-environment jsdom
 import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
-import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import type { AnchorHTMLAttributes } from 'react';
 import { es } from '@/content/es';
-import { Button } from '@/components/ui';
 import { ContactForm } from './ContactForm';
 
 // next/link necesita el router de Next; en aislamiento basta con un <a>.
@@ -111,7 +110,7 @@ describe('ContactForm · envío', () => {
     expect(init.headers).toEqual({ 'Content-Type': 'application/json' });
     expect(init.signal).toBeInstanceOf(AbortSignal);
     expect(JSON.parse(init.body as string)).toEqual({
-      type: 'sesion',
+      need: '',
       name: 'Ana López',
       company: 'Acme SL',
       email: 'ana@acme.es',
@@ -191,58 +190,36 @@ describe('ContactForm · envío', () => {
   });
 });
 
-describe('ContactForm · tipo de solicitud', () => {
-  it('por defecto selecciona «sesión»', () => {
-    render(<ContactForm lang="es" t={t} />);
-    expect((screen.getByLabelText(t.types[0].label) as HTMLInputElement).checked).toBe(true);
-  });
-
-  it('preselecciona «auditoría» si se llega con #solicitar-auditoria', () => {
-    window.location.hash = '#solicitar-auditoria';
-    render(<ContactForm lang="es" t={t} />);
-    expect((screen.getByLabelText(t.types[1].label) as HTMLInputElement).checked).toBe(true);
-  });
-
-  it('cambia el tipo al pulsar un CTA (Button) que apunta a #solicitar-auditoria', async () => {
-    vi.stubGlobal('matchMedia', () => ({ matches: false }));
-    render(
-      <>
-        <Button href="#solicitar-auditoria">Solicitar auditoría</Button>
-        <section id="solicitar-auditoria" />
-        <ContactForm lang="es" t={t} />
-      </>,
-    );
-    fireEvent.click(screen.getByText('Solicitar auditoría'));
-    await waitFor(() => expect((screen.getByLabelText(t.types[1].label) as HTMLInputElement).checked).toBe(true));
-  });
-
-  it('vuelve a «sesión» con un hashchange a #agendar-sesion', async () => {
-    window.location.hash = '#solicitar-auditoria';
-    render(<ContactForm lang="es" t={t} />);
-    window.history.pushState(null, '', '#agendar-sesion');
-    window.dispatchEvent(new HashChangeEvent('hashchange'));
-    await waitFor(() => expect((screen.getByLabelText(t.types[0].label) as HTMLInputElement).checked).toBe(true));
-  });
-
-  it('no depende del texto del enlace: un enlace a #contacto no cambia el tipo (ARQ-003)', () => {
-    window.location.hash = '#solicitar-auditoria';
-    render(
-      <>
-        <a href="#contacto">Agendar sesión</a>
-        <ContactForm lang="es" t={t} />
-      </>,
-    );
-    fireEvent.click(screen.getByText('Agendar sesión'));
-    expect((screen.getByLabelText(t.types[1].label) as HTMLInputElement).checked).toBe(true);
-  });
-
-  it('«Enviar otra solicitud» conserva el tipo elegido (OPT-002)', async () => {
+describe('ContactForm · ¿Qué necesitas? (opcional)', () => {
+  it('no preselecciona ninguna opción y permite enviar sin elegir', async () => {
     fetchMock.mockResolvedValue(new Response('{"ok":true}', { status: 200 }));
     render(<ContactForm lang="es" t={t} />);
-    fireEvent.click(screen.getByLabelText(t.types[1].label));
+    for (const opt of t.needs) {
+      expect((screen.getByLabelText(opt.label) as HTMLInputElement).checked).toBe(false);
+    }
+    fillValidForm();
+    submit();
+    expect(await screen.findByText(t.success.title)).toBeTruthy();
+    expect(JSON.parse((fetchMock.mock.calls[0] as [string, RequestInit])[1].body as string).need).toBe('');
+  });
+
+  it('envía la opción elegida', async () => {
+    fetchMock.mockResolvedValue(new Response('{"ok":true}', { status: 200 }));
+    render(<ContactForm lang="es" t={t} />);
+    fireEvent.click(screen.getByLabelText(t.needs[1].label));
+    fillValidForm();
+    submit();
+    await screen.findByText(t.success.title);
+    expect(JSON.parse((fetchMock.mock.calls[0] as [string, RequestInit])[1].body as string).need).toBe(t.needs[1].value);
+  });
+
+  it('«Enviar otra solicitud» deja el formulario en blanco, también la necesidad', async () => {
+    fetchMock.mockResolvedValue(new Response('{"ok":true}', { status: 200 }));
+    render(<ContactForm lang="es" t={t} />);
+    fireEvent.click(screen.getByLabelText(t.needs[1].label));
     fillValidForm();
     submit();
     fireEvent.click(await screen.findByRole('button', { name: t.success.again }));
-    expect((screen.getByLabelText(t.types[1].label) as HTMLInputElement).checked).toBe(true);
+    expect((screen.getByLabelText(t.needs[1].label) as HTMLInputElement).checked).toBe(false);
   });
 });

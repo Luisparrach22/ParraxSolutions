@@ -1,7 +1,8 @@
-import { invalidContactFields, type ContactType, type Urgency } from '@/lib/contact-schema';
+import { invalidContactFields, isNeed, type Need, type Urgency } from '@/lib/contact-schema';
 
 export type ContactRequest = {
-  type: ContactType;
+  /** Opcional: '' si no se indicó o no es una opción conocida. */
+  need: Need | '';
   name: string;
   company: string;
   email: string;
@@ -20,7 +21,7 @@ export type ValidContactRequest = ContactRequest & { urgency: Urgency };
 export function parseContactRequest(body: Record<string, unknown>): ContactRequest {
   const str = (k: string) => (typeof body[k] === 'string' ? (body[k] as string).trim() : '');
   return {
-    type: str('type') === 'auditoria' ? 'auditoria' : 'sesion',
+    need: isNeed(str('need')) ? (str('need') as Need) : '',
     name: str('name'),
     company: str('company'),
     email: str('email'),

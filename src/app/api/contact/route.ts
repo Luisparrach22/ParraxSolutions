@@ -61,7 +61,7 @@ export async function POST(request: Request) {
   }
 
   // Registro mínimo (sin volcar el mensaje completo en logs: minimización RGPD)
-  console.info('[contacto] nueva solicitud', { type: data.type, company: data.company, urgency: data.urgency, at: new Date().toISOString() });
+  console.info('[contacto] nueva solicitud', { need: data.need, company: data.company, urgency: data.urgency, at: new Date().toISOString() });
 
   return ok();
 }

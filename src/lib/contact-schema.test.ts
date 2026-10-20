@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { es } from '@/content/es';
-import { CONTACT_TYPES, URGENCY_VALUES, invalidContactFields, isUrgency, type ContactFields } from './contact-schema';
+import { NEED_VALUES, URGENCY_VALUES, invalidContactFields, isNeed, isUrgency, type ContactFields } from './contact-schema';
 
 const valid: ContactFields = {
   name: 'Ana',
@@ -14,7 +14,13 @@ const valid: ContactFields = {
 describe('contact-schema', () => {
   it('las opciones del diccionario coinciden con las aceptadas por el servidor', () => {
     expect(es.contact.form.urgency.map((o) => o.value)).toEqual([...URGENCY_VALUES]);
-    expect(es.contact.form.types.map((o) => o.value)).toEqual([...CONTACT_TYPES]);
+    expect(es.contact.form.needs.map((o) => o.value)).toEqual([...NEED_VALUES]);
+  });
+
+  it('isNeed solo acepta las opciones de la lista', () => {
+    expect(isNeed('tienda')).toBe(true);
+    expect(isNeed('')).toBe(false);
+    expect(isNeed('toString')).toBe(false);
   });
 
   it('cada campo inválido del diccionario tiene un mensaje de error', () => {

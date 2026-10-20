@@ -1,6 +1,7 @@
 /**
- * Contenido en español (es-ES). Registro: "tú" profesional, frases cortas,
- * resultados antes que tecnología.
+ * Contenido en español neutro (España y Latinoamérica). Registro: "tú" profesional,
+ * primera persona del singular (Luis trabaja solo), frases cortas, resultados
+ * antes que tecnología. Sin países concretos ni localismos.
  *
  * Convención de placeholders: cualquier texto entre [corchetes] se renderiza
  * como un marcador visible (componente <Rich />) para que nadie publique
@@ -26,6 +27,7 @@ export const es = {
     mainNav: "Principal",
     breadcrumb: "Miga de pan",
     instagram: "Instagram de Parrax Solutions",
+    newTab: "(se abre en una pestaña nueva)",
   },
 
   nav: {
@@ -38,12 +40,12 @@ export const es = {
     cta: "Agendar sesión estratégica",
     ctaShort: "Agendar sesión",
     ctaSub: "Sesión de 20 min, sin coste",
-    writeUs: "O escríbenos a",
+    writeUs: "O escríbeme a",
     menuTitle: "Navegación",
     noCommitment: "Sin compromiso",
-    reviewTitle: "¿Quieres revisar tu operativa?",
-    reviewText: "Solicita una auditoría digital gratuita en 20 minutos.",
-    reviewLink: "Solicitar auditoría",
+    reviewTitle: "¿Prefieres escribirme?",
+    reviewText: "Cuéntame tu caso por el formulario y te respondo en 24–48 h laborables.",
+    reviewLink: "Ir al formulario",
   },
 
   hero: {
@@ -51,7 +53,7 @@ export const es = {
     titleA: "Webs que traen clientes y software",
     titleB: "que elimina el trabajo manual.",
     subtitle:
-      "Diseñamos tu página web o landing page y construimos el sistema que conecta tu operación. Un solo equipo, de la primera visita a la factura.",
+      "Diseño tu página web o landing page y construyo el sistema que conecta tu operación. Una sola persona responsable, de la primera visita a la factura.",
     ctaPrimary: "Solicitar auditoría digital",
     ctaSecondary: "Ver servicios",
     reassurance: [
@@ -111,7 +113,7 @@ export const es = {
       },
       {
         title: "Herramientas que no se hablan",
-        text: "La tienda, el TPV, el CRM y el banco van por separado. La foto completa del negocio no la tiene nadie.",
+        text: "La tienda online, la caja, el CRM y el banco van por separado. La foto completa del negocio no la tiene nadie.",
         icon: "disconnect",
       },
       {
@@ -124,7 +126,7 @@ export const es = {
 
   solutions: {
     eyebrow: "Servicios",
-    title: "Lo que hacemos",
+    title: "Lo que hago",
     intro:
       "Cada proyecto empieza por un problema de negocio concreto, no por una tecnología.",
     more: "Ver más",
@@ -140,7 +142,7 @@ export const es = {
         slug: "sistemas-de-gestion",
         kicker: "Sistemas de gestión a medida",
         title: "Toda tu operación en un único sistema",
-        text: "Pedidos, inventario, clientes y facturación en una herramienta diseñada alrededor de cómo trabajáis, no al revés.",
+        text: "Pedidos, inventario, clientes y facturación en una herramienta diseñada alrededor de cómo trabaja tu equipo, no al revés.",
         visual: "system",
       },
       {
@@ -159,23 +161,23 @@ export const es = {
       },
       {
         slug: "aplicaciones-web-y-moviles",
-        kicker: "Apps web y móviles",
-        title: "Una app propia para tu equipo y tus clientes",
-        text: "Portales de cliente, apps para el equipo de campo y herramientas internas en navegador, iOS y Android.",
+        kicker: "Apps web y portales",
+        title: "Una app web propia para tu equipo y tus clientes",
+        text: "Portales de cliente y herramientas internas que funcionan en el navegador, desde la computadora o el teléfono.",
         visual: "apps",
       },
       {
         slug: "modernizacion-de-procesos",
         kicker: "Modernización de procesos heredados",
         title: "Del Excel crítico a un sistema fiable",
-        text: "Migramos hojas de cálculo y sistemas antiguos a una herramienta con permisos, histórico y copias, sin parar la operación.",
+        text: "Migro hojas de cálculo y sistemas antiguos a una herramienta con permisos, histórico y copias, sin parar la operación.",
         visual: "legacy",
       },
       {
         slug: "consultoria-tecnologica",
         kicker: "Consultoría tecnológica",
         title: "Decisiones técnicas con criterio, en cualquier stack",
-        text: "Revisamos lo que ya tienes, te ayudamos a elegir y trabajamos con la tecnología que mejor encaje, no con la que nos resulte cómoda.",
+        text: "Reviso lo que ya tienes y te ayudo a elegir la tecnología que mejor encaja con tu negocio y tu presupuesto.",
         visual: "consulting",
       },
     ],
@@ -189,12 +191,12 @@ export const es = {
     outcomeTitle: "Qué cambia en tu día a día",
     ctaTitle: "¿Lo vemos aplicado a tu caso?",
     ctaPrimary: "Agendar sesión estratégica",
-    ctaSecondary: "Conocer nuestro método",
+    ctaSecondary: "Ver cómo trabajo",
     ctaText:
-      "En una sesión de 20 minutos revisamos tu situación y te decimos con honestidad si esto es lo que necesitas.",
+      "En una sesión de 20 minutos reviso tu situación y te digo con honestidad si esto es lo que necesitas.",
     pages: {
       "paginas-web-y-landing-pages": {
-        lead: "Diseñamos y desarrollamos tu web corporativa o la landing page de tu próxima campaña, pensadas para que quien llega entienda qué ofreces y te contacte.",
+        lead: "Diseño y desarrollo tu web corporativa o la landing page de tu próxima campaña, pensadas para que quien llega entienda qué ofreces y te contacte.",
         includes: [
           "Diseño a medida con tu marca, sin plantillas genéricas",
           "Textos y estructura orientados a que el visitante te contacte",
@@ -226,9 +228,9 @@ export const es = {
           "Un único lugar para trabajar, con datos fiables y sin depender de que una persona concreta esté disponible.",
       },
       "integraciones-y-apis": {
-        lead: "Conectamos las herramientas que ya usas para que compartan información sin que nadie tenga que exportar, copiar y pegar.",
+        lead: "Conecto las herramientas que ya usas para que compartan información sin que nadie tenga que exportar, copiar y pegar.",
         includes: [
-          "Conexión entre tienda online, TPV, pasarela de pago, contabilidad y CRM",
+          "Conexión entre tienda online, punto de venta, pasarela de pago, contabilidad y CRM",
           "Sincronización automática con control de errores y reintentos",
           "Registro de cada operación para saber qué pasó y cuándo",
           "APIs propias si necesitas que terceros se conecten contigo",
@@ -242,7 +244,7 @@ export const es = {
           "Los datos viajan solos entre sistemas y los números cuadran a la primera.",
       },
       "automatizacion-de-procesos": {
-        lead: "Identificamos las tareas repetitivas que consumen horas de tu equipo y las convertimos en procesos automáticos y trazables.",
+        lead: "Identifico las tareas repetitivas que consumen horas de tu equipo y las convierto en procesos automáticos y trazables.",
         includes: [
           "Mapa de procesos con el tiempo que consume cada tarea manual",
           "Automatización de aprobaciones, avisos, informes y traspasos de datos",
@@ -258,12 +260,12 @@ export const es = {
           "Tu equipo dedica su tiempo a lo que requiere criterio, no a mover datos.",
       },
       "aplicaciones-web-y-moviles": {
-        lead: "Diseñamos y desarrollamos aplicaciones web y móviles para uso interno o para tus clientes, conectadas con el resto de tus sistemas.",
+        lead: "Diseño y desarrollo aplicaciones web para uso interno o para tus clientes, conectadas con el resto de tus sistemas.",
         includes: [
           "Diseño de interfaz centrado en quien la va a usar a diario",
-          "Aplicación web, iOS y Android a partir de una misma base cuando encaja",
+          "Aplicación web que funciona en cualquier navegador, también desde el teléfono",
           "Portales de cliente con acceso seguro a pedidos, documentos o incidencias",
-          "Publicación en tiendas de aplicaciones y mantenimiento",
+          "Puesta en marcha y mantenimiento opcional",
         ],
         fit: [
           "Tus clientes te llaman o escriben para consultar cosas que podrían ver solos",
@@ -274,7 +276,7 @@ export const es = {
           "Menos llamadas, menos papel y una experiencia profesional con tu marca.",
       },
       "modernizacion-de-procesos": {
-        lead: "Convertimos la hoja de cálculo crítica o el programa antiguo del que depende tu empresa en un sistema moderno, seguro y mantenible.",
+        lead: "Convierto la hoja de cálculo crítica o el programa antiguo del que depende tu empresa en un sistema moderno, seguro y mantenible.",
         includes: [
           "Análisis de la lógica actual, incluidas las reglas que nadie documentó",
           "Migración de datos con validación y periodo de convivencia",
@@ -290,7 +292,7 @@ export const es = {
           "El mismo proceso que ya conoces, sin el riesgo y con espacio para crecer.",
       },
       "consultoria-tecnologica": {
-        lead: "Te acompañamos en decisiones tecnológicas con una visión independiente: qué construir, qué comprar y qué dejar como está.",
+        lead: "Te acompaño en decisiones tecnológicas con una visión independiente: qué construir, qué comprar y qué dejar como está.",
         includes: [
           "Auditoría de herramientas, procesos y costes de licencias",
           "Hoja de ruta tecnológica priorizada por impacto en el negocio",
@@ -315,27 +317,27 @@ export const es = {
     eyebrow: "Método",
     title: "Cuatro fases. Sin sorpresas.",
     intro:
-      "Da igual que sea una landing page, un sistema de gestión o una automatización: trabajamos siempre igual. Cada fase termina con algo concreto que revisas antes de seguir.",
+      "Da igual que sea una landing page, una tienda online o una automatización: trabajo siempre igual. Cada fase termina con algo concreto que revisas antes de seguir.",
     deliverableLabel: "Entregable",
     steps: [
       {
         name: "Entender",
-        text: "Analizamos tu negocio, tus clientes y tus procesos para saber qué necesitas de verdad y qué no.",
+        text: "Analizo tu negocio, tus clientes y tus procesos para saber qué necesitas de verdad y qué no.",
         deliverable: "Propuesta con alcance, plazo y precio cerrado",
       },
       {
         name: "Diseñar",
-        text: "Damos forma a la solución contigo: cómo se verá, cómo funcionará y cómo encaja con lo que ya usas.",
+        text: "Doy forma a la solución contigo: cómo se verá, cómo funcionará y cómo encaja con lo que ya usas.",
         deliverable: "Diseño o prototipo que validas antes de construir",
       },
       {
         name: "Construir",
-        text: "Desarrollamos por etapas y te enseñamos avances reales desde el principio, para corregir el rumbo a tiempo.",
+        text: "Desarrollo por etapas y te enseño avances reales desde el principio, para corregir el rumbo a tiempo.",
         deliverable: "Versiones que puedes probar",
       },
       {
         name: "Lanzar y acompañar",
-        text: "Lo ponemos en marcha, formamos a tu equipo y seguimos a tu lado para mantenerlo y mejorarlo.",
+        text: "Lo pongo en marcha, explico a tu equipo cómo usarlo y, si lo necesitas, me encargo del mantenimiento.",
         deliverable: "Proyecto funcionando y documentado",
       },
     ],
@@ -344,11 +346,11 @@ export const es = {
   why: {
     eyebrow: "Por qué Parrax",
     title: "Tu software. Tus datos. Tu decisión.",
-    intro: "Trabajamos para que dependas de nosotros lo menos posible.",
+    intro: "Trabajo para que dependas de mí lo menos posible.",
     items: [
       {
         title: "El código es tuyo",
-        text: "Recibes el código fuente y la propiedad intelectual, por contrato. Si mañana quieres cambiar de equipo, puedes.",
+        text: "Recibes el código fuente y la propiedad intelectual, por contrato. Si mañana prefieres que lo mantenga otra persona, puedes.",
       },
       {
         title: "Sin cuotas por usuario",
@@ -356,11 +358,11 @@ export const es = {
       },
       {
         title: "Hablas con quien lo construye",
-        text: "Sin intermediarios. Quien diseña y programa tu proyecto es tu contacto directo.",
+        text: "Sin intermediarios: yo diseño y programo tu proyecto, y soy tu contacto directo.",
       },
       {
-        title: "Seguro y conforme al RGPD",
-        text: "Permisos por rol, copias de seguridad cifradas y privacidad desde el diseño.",
+        title: "Seguridad y privacidad desde el diseño",
+        text: "Permisos por rol, copias de seguridad y acceso a datos personales limitado a quien lo necesita.",
       },
     ],
     compare: {
@@ -390,40 +392,61 @@ export const es = {
     cta: "Solicitar auditoría digital",
   },
 
+  about: {
+    eyebrow: "Quién está detrás",
+    title: "Hablas conmigo de principio a fin",
+    role: "Fundador de Parrax Solutions",
+    photoAlt: "Luis Parra, fundador de Parrax Solutions",
+    photoMissing: "[TODO_LUIS: foto]",
+    paragraphs: [
+      "Soy Luis Parra. Diseño, programo y mantengo cada proyecto yo mismo: quien responde a tu mensaje es quien va a construirlo.",
+      "Vengo del entorno industrial, donde un proceso mal resuelto se nota cada día en la operación. Por eso empiezo por entender cómo trabaja tu negocio antes de proponer ninguna tecnología.",
+      "Hago webs y tiendas online, y automatizo las tareas que hoy se hacen a mano: pedidos, avisos, informes y conexiones entre herramientas.",
+      "Trabajo en remoto con empresas de cualquier país, en español o en inglés, por videollamada.",
+    ],
+    linkedin: "Ver mi perfil en LinkedIn",
+    linkedinMissing: "[TODO_LUIS: enlace a LinkedIn]",
+    newTab: "(se abre en una pestaña nueva)",
+  },
+
   contact: {
     eyebrow: "Contacto",
-    title: "Cuéntanos qué quieres resolver",
+    title: "Cuéntame qué quieres resolver",
     intro:
-      "Una primera charla de 20 minutos, sin coste ni compromiso. Nos cuentas qué necesitas y te decimos con sinceridad si podemos ayudarte.",
+      "Una primera charla de 20 minutos, sin coste ni compromiso. Me cuentas qué necesitas y te digo con sinceridad si puedo ayudarte.",
     stepsTitle: "Qué pasa después",
     steps: [
-      "Te escribimos en 24–48 h laborables para buscar un hueco que te venga bien.",
-      "Hablamos 20 minutos por videollamada o teléfono para conocer tu caso.",
-      "Si encaja, te enviamos una propuesta por escrito con alcance, plazo y precio.",
-      "Si decides seguir, analizamos tu caso a fondo y nos reunimos con regularidad para revisar avances.",
+      "Te escribo en 24–48 h laborables para buscar un hueco que te venga bien.",
+      "Hablamos 20 minutos por videollamada para conocer tu caso.",
+      "Si encaja, te envío una propuesta por escrito con alcance, plazo y precio cerrado.",
+      "Si decides seguir, empezamos con las revisiones de avance que fijemos en la propuesta.",
     ],
     calendar: {
       title: "¿Prefieres reservar directamente?",
-      text: "Elige un hueco en nuestro calendario para una sesión de 20 minutos.",
+      text: "Elige un hueco en mi calendario para una sesión de 20 minutos.",
       cta: "Agendar sesión de 20 min",
     },
-    directEmail: "O escríbenos a",
+    directEmail: "O escríbeme a",
     instagramLabel: "Instagram de Parrax Solutions",
     form: {
-      typeLegend: "Qué te interesa",
-      types: [
-        { value: "sesion", label: "Sesión estratégica" },
-        { value: "auditoria", label: "Auditoría digital gratuita (20 min)" },
+      needLegend: "¿Qué necesitas?",
+      optional: "opcional",
+      needs: [
+        { value: "web", label: "Web o landing" },
+        { value: "tienda", label: "Tienda online" },
+        { value: "automatizacion", label: "Automatizar un proceso" },
+        { value: "otro", label: "Otro" },
       ],
+      honeypot: "Deja este campo vacío",
       name: "Nombre",
       namePh: "Nombre y apellido",
       company: "Empresa",
       companyPh: "Nombre de tu empresa",
       email: "Email de trabajo",
-      emailPh: "tu@empresa.es",
+      emailPh: "tu@empresa.com",
       message: "¿Qué quieres resolver?",
       messagePh:
-        "Por ejemplo: «Gestionamos los pedidos en tres Excel y facturamos a mano en otro programa».",
+        "Por ejemplo: «Recibo los pedidos de la tienda online y los paso a mano al programa de facturación».",
       urgencyLegend: "¿Con qué urgencia?",
       urgency: [
         { value: "explorando", label: "Estoy explorando" },
@@ -432,7 +455,7 @@ export const es = {
       ],
       privacyA: "He leído y acepto la",
       privacyLink: "política de privacidad",
-      privacyB: ". Usaremos tus datos solo para responder a tu solicitud.",
+      privacyB: ". Usaré tus datos solo para responder a tu solicitud.",
       submit: "Enviar solicitud",
       sending: "Enviando…",
       required: "obligatorio",
@@ -440,23 +463,23 @@ export const es = {
         name: "Escribe tu nombre para saber a quién responder.",
         company: "Indica el nombre de tu empresa.",
         email:
-          "Revisa el email: parece que falta algo (ejemplo: tu@empresa.es).",
-        message: "Cuéntanos en al menos 20 caracteres qué quieres resolver.",
+          "Revisa el email: parece que falta algo (ejemplo: tu@empresa.com).",
+        message: "Cuéntame en al menos 20 caracteres qué quieres resolver.",
         urgency: "Elige una opción de urgencia.",
-        privacy: "Necesitamos tu consentimiento para poder responderte.",
+        privacy: "Necesito tu consentimiento para poder responderte.",
         summary: "Revisa los campos marcados antes de enviar.",
         server:
-          "No hemos podido enviar el formulario. Inténtalo de nuevo o escríbenos por email.",
+          "No se ha podido enviar el formulario. Inténtalo de nuevo o escríbeme por email.",
         rateLimited:
-          "Hemos recibido varias solicitudes seguidas desde tu conexión. Espera unos minutos o escríbenos por email.",
+          "Han llegado varias solicitudes seguidas desde tu conexión. Espera unos minutos o escríbeme por email.",
         validation:
           "Algunos datos no son válidos. Revisa los campos e inténtalo de nuevo.",
         network:
-          "No hemos podido conectar con el servidor. Comprueba tu conexión e inténtalo de nuevo.",
+          "No se ha podido conectar con el servidor. Comprueba tu conexión e inténtalo de nuevo.",
       },
       success: {
         title: "Solicitud recibida",
-        text: "Gracias. Te escribiremos en 24–48 h laborables para concretar la sesión.",
+        text: "Gracias. Te escribiré en 24–48 h laborables para concretar la sesión.",
         again: "Enviar otra solicitud",
       },
     },
@@ -466,7 +489,7 @@ export const es = {
     title: "Página no encontrada",
     code: "Error 404",
     heading: "Esta página no está conectada a nada.",
-    text: "Puede que el enlace haya cambiado o que la dirección tenga un error. Te llevamos de vuelta a donde sí hay sistemas funcionando.",
+    text: "Puede que el enlace haya cambiado o que la dirección tenga un error. Vuelve a donde sí hay sistemas funcionando.",
     home: "Volver al inicio",
     solutions: "Ver soluciones",
   },
@@ -500,7 +523,7 @@ export const es = {
             href: "/soluciones/automatizacion-de-procesos",
           },
           {
-            label: "Apps web y móviles",
+            label: "Apps web y portales",
             href: "/soluciones/aplicaciones-web-y-moviles",
           },
           {
@@ -528,7 +551,7 @@ export const es = {
         ],
       },
     ],
-    location: "España · Venezuela · Proyectos en todo el mundo",
+    location: "Trabajo en remoto con empresas de cualquier país",
     legalLine: "Parrax Solutions · Consultoría & desarrollo tecnológico",
     rights: "Todos los derechos reservados.",
   },

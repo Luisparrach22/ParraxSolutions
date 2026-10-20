@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { isValidContactRequest, parseContactRequest, type ContactRequest } from './validation';
 
 const valid: ContactRequest = {
-  type: 'sesion',
+  need: '',
   name: 'Ana López',
   company: 'Acme SL',
   email: 'ana@acme.es',
@@ -24,10 +24,12 @@ describe('parseContactRequest', () => {
     expect(data).toMatchObject({ name: '', company: '', email: '', message: '', urgency: '' });
   });
 
-  it('solo acepta "auditoria" como tipo alternativo; cualquier otro valor es "sesion"', () => {
-    expect(parseContactRequest({ type: 'auditoria' }).type).toBe('auditoria');
-    expect(parseContactRequest({ type: 'otro' }).type).toBe('sesion');
-    expect(parseContactRequest({}).type).toBe('sesion');
+  it('acepta solo las necesidades de la lista; cualquier otro valor queda sin indicar', () => {
+    expect(parseContactRequest({ need: 'tienda' }).need).toBe('tienda');
+    expect(parseContactRequest({ need: ' web ' }).need).toBe('web');
+    expect(parseContactRequest({ need: 'toString' }).need).toBe('');
+    expect(parseContactRequest({ need: 3 }).need).toBe('');
+    expect(parseContactRequest({}).need).toBe('');
   });
 
   it('solo considera aceptada la privacidad con el booleano true', () => {
@@ -42,13 +44,13 @@ describe('parseContactRequest', () => {
       company: 'c'.repeat(500),
       email: 'e'.repeat(500),
       message: 'm'.repeat(5000),
-      type: 'auditoria'.repeat(5),
+      need: 'tienda'.repeat(5),
     });
     expect(data.name).toHaveLength(500);
     expect(data.company).toHaveLength(500);
     expect(data.email).toHaveLength(500);
     expect(data.message).toHaveLength(5000);
-    expect(data.type).toBe('sesion');
+    expect(data.need).toBe('');
   });
 });
 
