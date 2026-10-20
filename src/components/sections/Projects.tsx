@@ -25,7 +25,7 @@ export function Projects({ t }: { t: Dictionary['projects'] }) {
                       className="object-cover object-top"
                     />
                   ) : (
-                    <div className="flex h-full items-center justify-center text-xs text-slate-500">
+                    <div className="flex h-full items-center justify-center text-xs text-slate-600">
                       <Rich text={t.imageMissing} />
                     </div>
                   )}

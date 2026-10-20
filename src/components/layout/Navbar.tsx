@@ -245,7 +245,7 @@ export function Navbar({ lang, t, a11y }: NavbarProps) {
                       className="group flex min-h-[56px] items-center justify-between py-3 text-lg font-medium text-slate-200 transition-colors active:text-white hover:text-white"
                     >
                       <span className="flex items-center gap-3">
-                        <span className="font-mono text-xs text-slate-500">0{i + 1}</span>
+                        <span className="font-mono text-xs text-slate-400">0{i + 1}</span>
                         <span>{link.label}</span>
                       </span>
                       <NodeDot
@@ -281,7 +281,7 @@ export function Navbar({ lang, t, a11y }: NavbarProps) {
             <BookingButton lang={lang} size="lg" className="w-full" onClick={(e) => go(e, e.currentTarget.getAttribute('href') ?? '')}>
               {t.cta}
             </BookingButton>
-            <p className="mt-4 text-center text-sm text-slate-500">
+            <p className="mt-4 text-center text-sm text-slate-400">
               {t.writeUs}{' '}
               <a href={`mailto:${contactEmail}`} className="text-slate-300 underline underline-offset-4">
                 {contactEmail}

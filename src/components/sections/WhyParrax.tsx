@@ -83,7 +83,7 @@ export function WhyParrax({ t }: { t: Dictionary['why'] }) {
               delay={i * 50}
               className="group grid grid-cols-[28px_1fr] gap-3 border-t border-obsidian-line py-6 first:border-t-0 first:pt-0 sm:grid-cols-[40px_1fr] sm:gap-4 sm:py-8 lg:first:pt-2"
             >
-              <span className="font-mono text-xs text-slate-500 sm:text-sm">0{i + 1}</span>
+              <span className="font-mono text-xs text-slate-400 sm:text-sm">0{i + 1}</span>
               <div>
                 <h3 className="text-base font-semibold text-white sm:text-h3">
                   {item.title}

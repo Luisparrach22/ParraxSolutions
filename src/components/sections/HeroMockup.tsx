@@ -93,7 +93,7 @@ export function HeroMockup({ t }: { t: Dictionary['hero']['mockup'] }) {
             {t.rows.map((row) => (
               <li key={row.ref} className="flex items-center justify-between gap-2.5 px-3 py-2 sm:px-3 sm:py-2.5">
                 <div className="flex min-w-0 items-center gap-2 sm:gap-3">
-                  <span className="font-mono text-[10px] text-slate-500 sm:text-[11px] shrink-0">{row.ref}</span>
+                  <span className="font-mono text-[10px] text-slate-400 sm:text-[11px] shrink-0">{row.ref}</span>
                   <span className="truncate text-xs text-slate-300 sm:text-[13px]">{row.text}</span>
                 </div>
                 <Badge variant={row.state === 'active' ? 'node' : 'done'} pulse={row.state === 'active'} className="shrink-0 text-[9px] sm:text-[11px]">

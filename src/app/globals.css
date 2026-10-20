@@ -58,6 +58,10 @@
   .surface-light :focus-visible {
     outline-color: #161B46;
   }
+  /* Panel oscuro dentro de una sección clara: vuelve al foco cian */
+  .surface-light .surface-dark :focus-visible {
+    outline-color: #05D1FF;
+  }
 }
 
 @layer components {

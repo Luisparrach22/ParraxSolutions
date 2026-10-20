@@ -257,7 +257,7 @@ type TextFieldProps = {
 function TextField({ id, field, label, value, placeholder, type = 'text', inputMode, autoComplete, maxLength, multiline, error, required, onChange, onBlur }: TextFieldProps) {
   const errId = `${id}-err`;
   const cls = cn(
-    'mt-2 block w-full rounded border bg-obsidian px-3.5 sm:px-4 text-base sm:text-[0.9375rem] text-white placeholder:text-slate-500 transition-colors',
+    'mt-2 block w-full rounded border bg-obsidian px-3.5 sm:px-4 text-base sm:text-[0.9375rem] text-white placeholder:text-slate-400 transition-colors',
     'focus:border-node focus:outline-none focus-visible:outline-none focus:ring-1 focus:ring-node',
     error ? 'border-red-400' : 'border-slate-700 hover:border-slate-600',
     multiline ? 'min-h-[120px] sm:min-h-[132px] resize-y py-3 leading-6' : 'h-11 sm:h-12',
@@ -286,7 +286,7 @@ function TextField({ id, field, label, value, placeholder, type = 'text', inputM
         <input {...common} type={type} inputMode={inputMode} onChange={(e) => onChange(e.target.value)} />
       )}
       {multiline && maxLength && (
-        <p className="mt-1.5 text-right font-mono text-xs text-slate-500">
+        <p className="mt-1.5 text-right font-mono text-xs text-slate-400">
           {value.length}/{maxLength}
         </p>
       )}

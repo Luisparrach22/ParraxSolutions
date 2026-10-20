@@ -29,7 +29,7 @@ export function Method({ t }: { t: Dictionary['method'] }) {
                 <NodeDot size="xs" />
               </span>
 
-              <p className="font-mono text-xs text-slate-500 lg:mt-6">0{i + 1}</p>
+              <p className="font-mono text-xs text-slate-400 lg:mt-6">0{i + 1}</p>
               <h3 className="mt-1 text-base font-semibold text-white sm:text-h3">{step.name}</h3>
               <p className="mt-1.5 max-w-[42ch] text-sm leading-6 text-slate-400">{step.text}</p>
 
