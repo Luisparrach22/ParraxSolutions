@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 import { useCallback, useEffect, useRef, useState, type MouseEvent } from 'react';
 import { localePath, type Dictionary, type Locale } from '@/i18n/config';
 import { cn } from '@/lib/cn';
-import { Button, Logo, NodeDot } from '@/components/ui';
+import { BookingButton, Logo, NodeDot } from '@/components/ui';
 import { scrollToAnchor } from '@/lib/scroll-to-anchor';
 import { contactEmail, instagram } from '@/config/site';
 import { LanguageSwitcher } from './LanguageSwitcher';
@@ -192,10 +192,10 @@ export function Navbar({ lang, t, a11y }: NavbarProps) {
 
         <div className="flex items-center gap-2.5">
           <LanguageSwitcher lang={lang} label={a11y.language} className="hidden sm:inline-flex" />
-          <Button href={localePath(lang, '/#agendar-sesion')} size="md" className="hidden sm:inline-flex" onClick={(e: MouseEvent<HTMLAnchorElement>) => go(e, localePath(lang, '/#agendar-sesion'))}>
+          <BookingButton lang={lang} size="md" className="hidden sm:inline-flex" onClick={(e) => go(e, e.currentTarget.getAttribute('href') ?? '')}>
             <span className="lg:hidden">{t.ctaShort}</span>
             <span className="hidden lg:inline">{t.cta}</span>
-          </Button>
+          </BookingButton>
           <button
             ref={toggleRef}
             type="button"
@@ -259,7 +259,7 @@ export function Navbar({ lang, t, a11y }: NavbarProps) {
               })}
             </ul>
 
-            {/* Acceso rápido a auditoría en el menú móvil */}
+            {/* Acceso rápido al formulario en el menú móvil */}
             <div className="rounded-lg border border-slate-800 bg-obsidian-raised p-4">
               <span className="inline-block rounded-sm border border-slate-700 px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wider text-node">
                 {t.noCommitment}
@@ -267,8 +267,8 @@ export function Navbar({ lang, t, a11y }: NavbarProps) {
               <p className="mt-2 text-sm font-medium text-white">{t.reviewTitle}</p>
               <p className="mt-1 text-sm text-slate-400">{t.reviewText}</p>
               <Link
-                href={localePath(lang, '/#solicitar-auditoria')}
-                onClick={(e: MouseEvent<HTMLAnchorElement>) => go(e, localePath(lang, '/#solicitar-auditoria'))}
+                href={localePath(lang, '/#contacto')}
+                onClick={(e: MouseEvent<HTMLAnchorElement>) => go(e, localePath(lang, '/#contacto'))}
                 className="mt-3 inline-flex min-h-[44px] items-center gap-1.5 text-sm font-medium text-node hover:underline"
               >
                 <span>{t.reviewLink}</span>
@@ -278,9 +278,9 @@ export function Navbar({ lang, t, a11y }: NavbarProps) {
           </div>
 
           <div className="mt-8 border-t border-obsidian-line pt-6">
-            <Button href={localePath(lang, '/#agendar-sesion')} size="lg" className="w-full" onClick={(e: MouseEvent<HTMLAnchorElement>) => go(e, localePath(lang, '/#agendar-sesion'))}>
+            <BookingButton lang={lang} size="lg" className="w-full" onClick={(e) => go(e, e.currentTarget.getAttribute('href') ?? '')}>
               {t.cta}
-            </Button>
+            </BookingButton>
             <p className="mt-4 text-center text-sm text-slate-500">
               {t.writeUs}{' '}
               <a href={`mailto:${contactEmail}`} className="text-slate-300 underline underline-offset-4">

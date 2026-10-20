@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { siteUrl } from '@/config/site';
 import { alternatesFor, getDictionary, localePath, type Locale } from '@/i18n/config';
-import { Button, NodeDot, Reveal, Section } from '@/components/ui';
+import { BookingButton, Button, NodeDot, Reveal, Section } from '@/components/ui';
 import { jsonLd as serializeJsonLd } from '@/lib/json-ld';
 
 // Los slugs son los mismos en todos los idiomas.
@@ -80,9 +80,9 @@ export function SolutionScreen({ lang, slug }: { lang: Locale; slug: string }) {
           </Reveal>
 
           <Reveal delay={120} className="mt-7 flex flex-col gap-3 sm:flex-row">
-            <Button href={localePath(lang, '/#agendar-sesion')} size="lg" arrow className="w-full sm:w-auto">
+            <BookingButton lang={lang} size="lg" arrow className="w-full sm:w-auto">
               {t.solutionDetails.ctaPrimary}
-            </Button>
+            </BookingButton>
             <Button href={localePath(lang, '/#metodo')} size="lg" variant="ghost" className="w-full sm:w-auto">
               {t.solutionDetails.ctaSecondary}
             </Button>
@@ -144,9 +144,9 @@ export function SolutionScreen({ lang, slug }: { lang: Locale; slug: string }) {
               {t.solutionDetails.ctaText}
             </p>
             <div className="mt-6 flex justify-center">
-              <Button href={localePath(lang, '/#agendar-sesion')} size="lg" arrow className="w-full sm:w-auto">
+              <BookingButton lang={lang} size="lg" arrow className="w-full sm:w-auto">
                 {t.solutionDetails.ctaPrimary}
-              </Button>
+              </BookingButton>
             </div>
           </Reveal>
         </div>

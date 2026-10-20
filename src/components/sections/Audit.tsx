@@ -22,7 +22,7 @@ export function Audit({ t }: { t: Dictionary['audit'] }) {
               </li>
             ))}
           </ul>
-          <Button href="#solicitar-auditoria" size="lg" arrow className="mt-8 w-full sm:w-auto">
+          <Button href="#contacto" size="lg" arrow className="mt-8 w-full sm:w-auto">
             {t.cta}
           </Button>
         </div>

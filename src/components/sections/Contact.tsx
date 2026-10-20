@@ -1,14 +1,14 @@
 import type { Dictionary, Locale } from '@/i18n/config';
-import { Button, NodeDot, Reveal, Rich } from '@/components/ui';
-import { calendarUrl, contactEmail, instagram } from '@/config/site';
+import { BookingButton, NodeDot, Reveal, Rich } from '@/components/ui';
+import { contactEmail, instagram } from '@/config/site';
+import { BOOKING_ANCHOR, hasBookingUrl } from '@/lib/booking';
 import { ContactForm } from './ContactForm';
 
 export function Contact({ lang, t }: { lang: Locale; t: Dictionary['contact'] }) {
   return (
     <section id="contacto" aria-labelledby="contact-title" className="relative overflow-hidden bg-obsidian py-section-sm md:py-section">
-      {/* Anclas para CTAs (preseleccionan el tipo correspondiente en el formulario) */}
-      <span id="solicitar-auditoria" className="absolute top-0" aria-hidden="true" />
-      <span id="agendar-sesion" className="absolute top-0" aria-hidden="true" />
+      {/* Ancla de respaldo de los CTA de reserva cuando no hay calendario configurado */}
+      <span id={BOOKING_ANCHOR} className="absolute top-0" aria-hidden="true" />
       <div aria-hidden="true" className="grid-lines pointer-events-none absolute inset-0 [mask-image:linear-gradient(to_bottom,transparent,#000_30%,#000_70%,transparent)]" />
 
       <div className="container-x relative grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-8">
@@ -39,13 +39,13 @@ export function Contact({ lang, t }: { lang: Locale; t: Dictionary['contact'] })
           </Reveal>
 
           {/* Reserva directa en calendario: solo si hay enlace configurado */}
-          {calendarUrl && (
+          {hasBookingUrl && (
             <Reveal delay={140} className="mt-8 rounded-lg border border-dashed border-slate-700 p-5 sm:mt-10 sm:p-6">
               <p className="font-medium text-white">{t.calendar.title}</p>
               <p className="mt-1 text-sm text-slate-400">{t.calendar.text}</p>
-              <Button href={calendarUrl} variant="ghost" className="mt-5" target="_blank" rel="noopener noreferrer">
+              <BookingButton lang={lang} variant="ghost" className="mt-5">
                 {t.calendar.cta}
-              </Button>
+              </BookingButton>
             </Reveal>
           )}
 

@@ -3,7 +3,8 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { localePath, type Locale } from '@/i18n/config';
+import { getDictionary, localePath, type Locale } from '@/i18n/config';
+import { BOOKING_ANCHOR, bookingLink } from '@/lib/booking';
 import { NodeDot } from '@/components/ui';
 import { scrollToAnchor } from '@/lib/scroll-to-anchor';
 
@@ -37,6 +38,7 @@ export function MobileCtaBar({ lang, label, sub }: { lang: Locale; label: string
   }, [pathname]);
 
   const show = pastHero && !blocked;
+  const booking = bookingLink(lang);
   if (!show) return null;
 
   return (
@@ -49,15 +51,18 @@ export function MobileCtaBar({ lang, label, sub }: { lang: Locale; label: string
           </span>
         </p>
         <Link
-          href={localePath(lang, '/#agendar-sesion')}
+          href={booking.href}
+          {...(booking.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
           onClick={(e) => {
-            if (pathname === localePath(lang, '/') && (scrollToAnchor('agendar-sesion') || scrollToAnchor('contacto'))) {
+            if (booking.external) return;
+            if (pathname === localePath(lang, '/') && (scrollToAnchor(BOOKING_ANCHOR) || scrollToAnchor('contacto'))) {
               e.preventDefault();
             }
           }}
           className="inline-flex min-h-[44px] shrink-0 items-center gap-1.5 rounded bg-node px-4 text-sm font-medium text-obsidian transition-colors active:bg-node-hover"
         >
           {label}
+          {booking.external && <span className="sr-only"> {getDictionary(lang).a11y.newTab}</span>}
           <svg aria-hidden="true" viewBox="0 0 16 16" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.5">
             <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
           </svg>

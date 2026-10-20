@@ -1,4 +1,5 @@
 export { Badge } from './Badge';
+export { BookingButton } from './BookingButton';
 export { Button } from './Button';
 export { Card } from './Card';
 export { Logo } from './Logo';
