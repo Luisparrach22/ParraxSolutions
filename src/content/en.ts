@@ -11,11 +11,11 @@ import type { Dictionary } from "@/i18n/config";
 export const en: Dictionary = {
   meta: {
     siteName: "Parrax Solutions",
-    title: "Parrax Solutions · Websites and custom software for businesses",
+    title: "Parrax Solutions · Websites, online stores and automation for businesses",
     titleTemplate: "%s · Parrax Solutions",
     description:
-      "Custom websites, landing pages, management systems, automations and integrations for businesses in any country. You own the code, with no per-user fees.",
-    ogAlt: "Parrax Solutions — Custom software that connects your operation",
+      "Websites, online stores and process automation for businesses in any country, working remotely. Fixed price, you own the code and no platform fees.",
+    ogAlt: "Parrax Solutions: websites, online stores and automation for businesses",
   },
 
   a11y: {
@@ -187,6 +187,12 @@ export const en: Dictionary = {
   /** Content of the /soluciones/[slug] pages */
   solutionDetails: {
     back: "All solutions",
+    problemTitle: "The typical problem",
+    exampleLabel: "Example",
+    approachTitle: "How I solve it",
+    timelineTitle: "Estimated timeline",
+    faqTitle: "Frequently asked questions",
+    packagesLink: "See packages and prices",
     includesTitle: "What's included",
     fitTitle: "A good fit if…",
     outcomeTitle: "What changes in your day-to-day",
@@ -211,6 +217,44 @@ export const en: Dictionary = {
         ],
         outcome:
           "A website that works for you: every visit has a clear path to contact.",
+        problem: {
+          "title": "A website that exists but brings in no leads",
+          "text": "Many company websites were built years ago from a template and haven't been touched since. They load slowly on a phone, don't explain clearly what you sell, and the form ends up in an inbox nobody checks. People arrive, don't know what to do and leave.",
+          "example": "A service company pays for ads that land on its home page. The visitor finds five menus, no indicative price and a ten-field form. Almost nobody sends it, and the few messages that arrive get lost in the inbox."
+        },
+        approach: [
+          {
+            "title": "I learn who you sell to",
+            "text": "Before designing, we talk about your clients: what they look for, what doubts they have and what makes them decide. That shapes the page structure and the main message."
+          },
+          {
+            "title": "I design and write for the contact",
+            "text": "Each section answers a visitor's question and leads to a clear action: book, call or write. I propose the copy and we refine it together."
+          },
+          {
+            "title": "I build a fast, measurable website",
+            "text": "I develop it with my own code, optimized for phones and search engines, with the form connected to your email or CRM so no lead gets lost."
+          },
+          {
+            "title": "I publish it and show you how to edit it",
+            "text": "I handle the domain, publishing and redirects if you're moving from another site. I show you how to change text and images without depending on me."
+          }
+        ],
+        timeline: "The timeline depends on the number of pages and whether the copy is ready. I give it to you in writing in the proposal, together with the fixed price. [TODO_LUIS: estimated timeline]",
+        faq: [
+          {
+            "q": "Can I edit the website myself?",
+            "a": "Yes. I set the website up so you can change text and images without touching code, and I show you how in the handover session."
+          },
+          {
+            "q": "Do you write the copy?",
+            "a": "I propose the structure and the copy based on what we discuss. You bring the knowledge of your business and review each section before it goes live."
+          },
+          {
+            "q": "What happens to my current website?",
+            "a": "If you already have one, I check which pages get traffic so I can keep their addresses or redirect them, and you don't lose what already ranks in search engines."
+          }
+        ],
       },
       "sistemas-de-gestion": {
         lead: "A management system built for your company replaces the mix of spreadsheets, emails and separate programs you use to run operations today.",
@@ -227,6 +271,44 @@ export const en: Dictionary = {
         ],
         outcome:
           "One place to work, with reliable data and no dependence on a specific person being available.",
+        problem: {
+          "title": "Operations spread across spreadsheets and emails",
+          "text": "As a company grows, each area solves its part as best it can: one spreadsheet for orders, another for stock, email to tell the warehouse and a separate program for invoicing. It works while few people use it, but it gets harder and harder to know what's going on and who changed what.",
+          "example": "A distributor takes orders by phone and email. Someone logs them in a shared sheet, someone else checks stock in another file and, at the end of the day, they're typed by hand into the invoicing program. If someone picks the wrong row, the mistake shows up weeks later."
+        },
+        approach: [
+          {
+            "title": "I map how you work today",
+            "text": "I go through every step of the process with you, the sheets you use and the rules behind them, including the ones nobody has written down."
+          },
+          {
+            "title": "I design the system around your process",
+            "text": "I define the modules, roles and permissions you need, with no filler features. You approve a prototype before I start building."
+          },
+          {
+            "title": "I build it module by module",
+            "text": "I start with the part that removes the most manual work and add modules from there. You can use each one as soon as it's ready."
+          },
+          {
+            "title": "I migrate your data and support the rollout",
+            "text": "I move the data from your current sheets into the system, check that it adds up and support your team through the first weeks of use."
+          }
+        ],
+        timeline: "A management system is built in phases. The proposal details what each phase includes, its timeline and its price, so you decide how far to go. [TODO_LUIS: estimated timeline for a first phase]",
+        faq: [
+          {
+            "q": "Why not use an off-the-shelf ERP?",
+            "a": "If a standard ERP fits the way you work, I'll tell you. A custom system makes sense when your process is part of your edge, or when you pay licenses for many features you don't use."
+          },
+          {
+            "q": "What happens to the data I already have?",
+            "a": "I migrate it from your spreadsheets or current program and check that the totals match before you stop using the old one."
+          },
+          {
+            "q": "Can it grow later?",
+            "a": "Yes. You own the code and it's documented, so modules can be added later, with me or with someone else."
+          }
+        ],
       },
       "integraciones-y-apis": {
         lead: "I connect the tools you already use so they share information without anyone having to export, copy and paste.",
@@ -243,6 +325,48 @@ export const en: Dictionary = {
         ],
         outcome:
           "Data travels between systems on its own and the numbers add up the first time.",
+        problem: {
+          "title": "Tools that don't share data",
+          "text": "The online store knows what was sold, the payment gateway knows what was charged, the CRM knows who the customer is, and accounting needs all of that together. If those tools don't talk to each other, someone on your team becomes the bridge, exporting and importing files.",
+          "example": "Every Monday, someone downloads the online store's sales, matches them in a sheet against the payment gateway's charges and uploads them to the accounting program. It takes the whole morning, and any refund throws the numbers off."
+        },
+        approach: [
+          {
+            "title": "Inventory of tools and data",
+            "text": "I review which tools you use, what data each one holds and which data needs to reach the others. I also check what each tool's API allows."
+          },
+          {
+            "title": "I design the data flow",
+            "text": "I define which data moves from where to where, when, and what happens if it fails. You review it before I start building."
+          },
+          {
+            "title": "I build the integration with error handling",
+            "text": "Every sync is logged, with automatic retries and an alert when something needs a human to look at it."
+          },
+          {
+            "title": "I run it in parallel first",
+            "text": "For a while the manual and the automatic process run side by side, to confirm the data matches before switching off the manual one."
+          }
+        ],
+        timeline: "An integration between two or three tools usually fits into a 2\u2060–\u20603 week Automation Sprint. If more systems are involved, I split it into phases, each with a fixed price.",
+        faq: [
+          {
+            "q": "Do I need to change tools?",
+            "a": "Usually not. The idea is that you keep using what you know and the data moves between those tools on its own."
+          },
+          {
+            "q": "What if a tool has no API?",
+            "a": "I look for the most reliable alternative: scheduled exports or official connectors. If there's no reliable option, I tell you before we start."
+          },
+          {
+            "q": "Who keeps an eye on the integration?",
+            "a": "The integration sends an alert when something fails. If you want me to review and adjust it, there's the optional monthly maintenance."
+          },
+          {
+            "q": "Is it safe to connect my tools?",
+            "a": "I use each tool's official access with the minimum permissions needed, and the keys are stored outside the code. You can revoke them at any time from each tool."
+          }
+        ],
       },
       "automatizacion-de-procesos": {
         lead: "I identify the repetitive tasks that eat up your team's hours and turn them into automatic, traceable processes.",
@@ -259,6 +383,48 @@ export const en: Dictionary = {
         ],
         outcome:
           "Your team spends its time on what requires judgment, not on moving data around.",
+        problem: {
+          "title": "Hours of work that's always done the same way",
+          "text": "Almost every company has tasks repeated every day or week with the same steps: copying an order, sending a notice, preparing a report, requesting an approval. They don't need judgment, but they do take time, and they depend on someone remembering to do them.",
+          "example": "When an order comes into the online store, someone copies it into the invoicing program, creates the invoice, emails it and tells the warehouse. It's a few minutes per order, but with dozens of orders a day it becomes someone's whole job."
+        },
+        approach: [
+          {
+            "title": "We pick one specific process",
+            "text": "In the first session we identify which repetitive task costs you the most time or the most mistakes. We start there, without trying to automate everything at once."
+          },
+          {
+            "title": "I map it step by step",
+            "text": "I document the process as it's done today, exceptions included, and propose how it would look automated."
+          },
+          {
+            "title": "I automate it with logs and alerts",
+            "text": "I build the workflow so it runs on its own, records every step and alerts you when something needs a person."
+          },
+          {
+            "title": "I hand it over documented",
+            "text": "At the end you have the workflow in production, the documentation and a handover session with your team, with a 30-day warranty."
+          }
+        ],
+        timeline: "Each process is handled as an Automation Sprint: 2\u2060–\u20603 weeks and a fixed price. If you then want to automate another process, it becomes a new sprint.",
+        faq: [
+          {
+            "q": "Which processes can be automated?",
+            "a": "The ones that always follow the same steps and use data that already lives in some tool: orders, invoices, notices, reports, customer onboarding or approvals."
+          },
+          {
+            "q": "What if I already tried no-code tools?",
+            "a": "They're a good option for simple workflows. When the process has exceptions, volume or several tools involved, it usually needs a sturdier solution, and that's what I build."
+          },
+          {
+            "q": "What if the process changes?",
+            "a": "Since you receive the code and the documentation, it can be adapted. You can ask me for it as a one-off or include it in the monthly maintenance."
+          },
+          {
+            "q": "How do I know the automation is working?",
+            "a": "Every run is logged: you can see what was processed, when and with what result. If something fails, you get an alert with the details so you can decide what to do."
+          }
+        ],
       },
       "aplicaciones-web-y-moviles": {
         lead: "I design and build web applications for internal use or for your clients, connected to the rest of your systems.",
@@ -275,6 +441,48 @@ export const en: Dictionary = {
         ],
         outcome:
           "Fewer calls, less paper and a professional experience with your brand.",
+        problem: {
+          "title": "Clients and team relying on calls and messages",
+          "text": "When information only lives in your office, clients have to call or write to find out how their order is going, and the team working on site sends photos and notes by messaging apps that someone later types up.",
+          "example": "A maintenance company gets calls every day from clients asking when the technician will arrive. The technicians, in turn, send their work reports by messaging app, and someone in the office copies them into a spreadsheet so they can be invoiced."
+        },
+        approach: [
+          {
+            "title": "I define who uses it and for what",
+            "text": "I talk to the people who will use the app, clients or team, to understand what they need to see and do, and from which device."
+          },
+          {
+            "title": "I design a simple interface",
+            "text": "I show you a clickable prototype before coding, so the screens are validated with the people who will use them every day."
+          },
+          {
+            "title": "I build it as a web app",
+            "text": "It runs in the browser on any computer or phone, with no app stores involved, and connects to your current systems."
+          },
+          {
+            "title": "I take it live",
+            "text": "I publish the app, set up access and leave you the documentation. Ongoing maintenance is optional."
+          }
+        ],
+        timeline: "It depends on the number of screens and the connections to other systems. I split it into phases with a fixed timeline and price in the proposal. [TODO_LUIS: estimated timeline]",
+        faq: [
+          {
+            "q": "Is it an app you download from a store?",
+            "a": "No. It's a web app: it opens in the browser and can be added to the phone's home screen. That way you skip the app store publishing process."
+          },
+          {
+            "q": "Do my clients need a username and password?",
+            "a": "It depends on what they'll see. For private data, such as orders or documents, access is secure and each client only sees their own."
+          },
+          {
+            "q": "Does it connect with what I already use?",
+            "a": "Yes, that's the point: the app reads and writes to your management system, CRM or current sheets, without duplicating data."
+          },
+          {
+            "q": "How many users can it have?",
+            "a": "You don't pay per user: you can give your whole team and your clients access without the cost growing with each new account. Hosting is sized to actual usage."
+          }
+        ],
       },
       "modernizacion-de-procesos": {
         lead: "I turn the critical spreadsheet or old program your company depends on into a modern, secure and maintainable system.",
@@ -291,6 +499,48 @@ export const en: Dictionary = {
         ],
         outcome:
           "The same process you already know, without the risk and with room to grow.",
+        problem: {
+          "title": "One critical file everything depends on",
+          "text": "Many companies have a spreadsheet or an old program nobody dares to touch. It holds years of formulas, macros and rules only one person understands, keeps no change history and, if it gets corrupted, there's no recent copy.",
+          "example": "A company prices its quotes with a fifteen-tab Excel file full of macros. Only one person knows how to update it. When that person is away, quotes are delayed and nobody dares to change a price."
+        },
+        approach: [
+          {
+            "title": "I understand the current logic",
+            "text": "I review the file or program in depth and document every rule, including the ones nobody ever wrote down."
+          },
+          {
+            "title": "I design the system that replaces it",
+            "text": "I keep the process your team already knows and add permissions, change history and backups."
+          },
+          {
+            "title": "I migrate the data with validation",
+            "text": "I move the data into the new system and check that the results match the original file."
+          },
+          {
+            "title": "I run both side by side for a while",
+            "text": "The new and old systems run in parallel until you've confirmed everything adds up. That way operations never stop."
+          }
+        ],
+        timeline: "It depends on how complex the file or program is. After reviewing it I give you a fixed timeline and price in writing. [TODO_LUIS: estimated timeline]",
+        faq: [
+          {
+            "q": "Will I have to learn a new way of working?",
+            "a": "As little as possible. The goal is to keep the process that works and remove the risk, without forcing you to change how you work."
+          },
+          {
+            "q": "What about years of historical data?",
+            "a": "It's migrated to the new system and validated. If some data is better archived, I suggest how to keep it."
+          },
+          {
+            "q": "What if the old program is no longer supported?",
+            "a": "That's one of the most common situations. I extract the data and logic that are still useful and move them into a maintainable system."
+          },
+          {
+            "q": "How long do both systems run side by side?",
+            "a": "As long as it takes for you to confirm the results match on real cases. We agree on it in the proposal, and the old system isn't switched off until you confirm."
+          }
+        ],
       },
       "consultoria-tecnologica": {
         lead: "I support you in technology decisions with an independent view: what to build, what to buy and what to leave as it is.",
@@ -307,8 +557,119 @@ export const en: Dictionary = {
         ],
         outcome:
           "Clear, well-justified decisions aligned with your budget.",
+        problem: {
+          "title": "Technology decisions without an independent opinion",
+          "text": "Choosing software or a vendor, or deciding whether to build something custom, is an expensive decision to correct. Often the only opinion available is from whoever wants to sell it to you.",
+          "example": "A company gets three very different quotes to replace its order system and can't compare them: each vendor proposes a different technology and none explains what happens to the data if they want to switch later."
+        },
+        approach: [
+          {
+            "title": "I review what you have",
+            "text": "I analyze your tools, your processes and what you pay in licenses to understand what works, what's redundant and what's missing."
+          },
+          {
+            "title": "I give you options with pros and cons",
+            "text": "I explain the alternatives in plain language: what to build, what to buy and what to leave as it is, with the approximate cost of each."
+          },
+          {
+            "title": "I prioritize by impact",
+            "text": "I deliver a roadmap ordered by what saves you the most work or money, so you can move forward step by step."
+          },
+          {
+            "title": "I support you in the decision",
+            "text": "If you need it, I review vendor proposals and help you ask the right questions before you sign."
+          }
+        ],
+        timeline: "A review with a roadmap comes with a fixed scope and price. [TODO_LUIS: consulting timeline and format]",
+        faq: [
+          {
+            "q": "Will you always recommend something custom?",
+            "a": "No. If a standard tool solves your problem, I'll tell you, even if that means I don't build anything."
+          },
+          {
+            "q": "Do you work with any technology?",
+            "a": "I review your situation whatever your current technology is. To build I use modern web technologies, but the recommendation is based on what fits your business."
+          },
+          {
+            "q": "What do I get at the end?",
+            "a": "A document with the diagnosis, the options and a prioritized roadmap, plus a session to answer your questions."
+          },
+          {
+            "q": "Does the consulting tie me to hiring you for development?",
+            "a": "No. The roadmap is yours and you can carry it out with me, with another vendor or with your own team."
+          },
+          {
+            "q": "Can you review a quote I already have?",
+            "a": "Yes. I review the proposal, scope and terms, and tell you which questions to ask before signing."
+          }
+        ],
       },
     },
+  },
+
+  /** Página /servicios/tiendas-online (intención comercial, sin país). */
+  storePage: {
+    "slug": "tiendas-online",
+    "metaTitle": "Custom online store for small businesses, no monthly fees",
+    "metaDescription": "Custom online store development for small businesses: catalog, cart, payments and order management. You own the code and pay no monthly platform fees.",
+    "kicker": "Custom online stores",
+    "title": "Your custom online store, with no monthly platform fees",
+    "lead": "I build online stores for small businesses with a catalog, cart, online payments and order management. The code is yours and you don't pay a platform subscription to sell.",
+    "includes": [
+      "Product catalog with photos, variants and stock",
+      "Cart and checkout with an online payment gateway",
+      "Dashboard to manage orders and products",
+      "Order confirmation emails and customer notices",
+      "Optional: shipping by zone and connection to your invoicing software"
+    ],
+    "fit": [
+      "You pay several subscriptions and apps every month to keep your store running",
+      "You type store orders by hand into your invoicing software",
+      "You want your own store that you can adapt without depending on a platform"
+    ],
+    "outcome": "A store that's yours, connected to the way you work and with no monthly platform fee.",
+    "problem": {
+      "title": "Paying every month for a store that isn't yours",
+      "text": "Online store platforms are quick to start with, but they charge a monthly subscription, often a fee per sale and extras for every feature you need. And the store lives in their system: if you want to leave, you take your products in a file, but not the store.",
+      "example": "A small business starts on a subscription platform. Over time it adds paid apps for shipping, invoices and notices, each with its own fee. It ends up paying several subscriptions a month and still typing orders by hand into its invoicing software."
+    },
+    "approach": [
+      {
+        "title": "We define what you sell and how",
+        "text": "Products, variants, payment methods, shipping zones and taxes. With that we pick the right package: Online store or Store + operations."
+      },
+      {
+        "title": "I design the store with your brand",
+        "text": "A clear store that's fast on a phone, with product pages that answer your customers' questions before they buy."
+      },
+      {
+        "title": "I connect it to your operations",
+        "text": "Payment gateway, confirmation emails and order dashboard. If you need it, also shipping by zone, automatic notices and invoicing integration."
+      },
+      {
+        "title": "I publish it and show you how to run it",
+        "text": "I take the store live, show you how to manage products and orders, and you receive the code and access credentials."
+      }
+    ],
+    "timeline": "The timeline depends on the number of products and integrations. I set it in the proposal, together with the fixed price. [TODO_LUIS: estimated timeline]",
+    "faq": [
+      {
+        "q": "Are there really no monthly fees?",
+        "a": "You don't pay a platform subscription to have the store. There are third-party costs you pay directly to each provider: hosting, the domain and the payment gateway's fee on each charge."
+      },
+      {
+        "q": "Can I add and edit products myself?",
+        "a": "Yes. The dashboard lets you create products, change prices and stock, and manage orders without touching code."
+      },
+      {
+        "q": "Which payment gateway can I use?",
+        "a": "Whichever works best in your country and with your customers. We choose it together when defining the project, based on the fees and payment methods you need."
+      },
+      {
+        "q": "Can I migrate my current store?",
+        "a": "Yes. I move products, customers and orders from your current platform and keep the important addresses so you don't lose search engine rankings."
+      }
+    ]
   },
 
   method: {
@@ -392,6 +753,7 @@ export const en: Dictionary = {
     shops: {
       title: "Websites and online stores",
       text: "Three fixed-scope packages with no monthly platform fees: the store is yours.",
+      more: "How I build a custom online store",
       guarantee: "Fixed price in writing. Two rounds of changes included. You own the code.",
       packages: [
         {
@@ -657,11 +1019,12 @@ export const en: Dictionary = {
   footer: {
     heading: "Footer",
     tagline:
-      "Websites, custom software and automation for businesses, wherever they are.",
+      "Websites, online stores and automation for businesses, wherever they are.",
     columns: [
       {
         title: "Solutions",
         links: [
+          { label: "Online stores", href: "/servicios/tiendas-online" },
           {
             label: "Websites and landing pages",
             href: "/soluciones/paginas-web-y-landing-pages",

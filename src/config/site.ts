@@ -51,3 +51,6 @@ export const projectLinks: Record<string, { url: string; image: string }> = {
   /** TODO_LUIS: enlace (vídeo o demo) y captura de la demo de automatización pedido → factura. */
   automation: { url: '', image: '' },
 };
+
+/** Página comercial de tiendas online (misma ruta en todos los idiomas, con prefijo /en en inglés). */
+export const STORE_PATH = '/servicios/tiendas-online';

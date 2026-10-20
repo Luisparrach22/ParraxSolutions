@@ -15,7 +15,6 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { MobileCtaBar } from "@/components/layout/MobileCtaBar";
 import "@/app/globals.css";
-import { jsonLd } from "@/lib/json-ld";
 
 /**
  * Layout raíz compartido por los dos árboles de rutas (app/(es) y app/en).
@@ -81,18 +80,6 @@ export const rootViewport: Viewport = {
 export function RootShell({ lang, children }: { lang: Locale; children: ReactNode }) {
   const t = getDictionary(lang);
 
-  const organizationJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "Parrax Solutions",
-    url: siteUrl,
-    logo: `${siteUrl}/svg/LogoLightSinFondo.svg`,
-    description: t.meta.description,
-    areaServed: "Worldwide",
-    address: { "@type": "PostalAddress", addressCountry: "ES" },
-    knowsLanguage: [...locales],
-    // TODO: añadir email, teléfono, sameAs (LinkedIn) y dirección cuando estén confirmados
-  };
 
   return (
     <html
@@ -100,14 +87,6 @@ export function RootShell({ lang, children }: { lang: Locale; children: ReactNod
       className={inter.variable}
       suppressHydrationWarning
     >
-      <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: jsonLd(organizationJsonLd),
-          }}
-        />
-      </head>
       <body suppressHydrationWarning>
         <a
           href="#contenido"

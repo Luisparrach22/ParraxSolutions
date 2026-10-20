@@ -44,7 +44,7 @@ describe('alternatesFor', () => {
   it('declara canónica, hreflang y x-default', () => {
     expect(alternatesFor('en', '/cookies')).toEqual({
       canonical: '/en/cookies',
-      languages: { 'es-ES': '/cookies', en: '/en/cookies', 'x-default': '/cookies' },
+      languages: { es: '/cookies', en: '/en/cookies', 'x-default': '/cookies' },
     });
   });
 });

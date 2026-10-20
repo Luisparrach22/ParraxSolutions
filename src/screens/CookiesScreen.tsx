@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 import { LegalPage } from '@/components/layout/LegalPage';
-import { alternatesFor, type Locale } from '@/i18n/config';
+import type { Locale } from '@/i18n/config';
+import { pageMetadata } from '@/lib/metadata';
 
 const content: Record<Locale, { title: string; description: string; subtitle: string; body: ReactNode }> = {
   es: {
@@ -72,12 +73,7 @@ const content: Record<Locale, { title: string; description: string; subtitle: st
 
 export function cookiesMetadata(lang: Locale): Metadata {
   const c = content[lang];
-  return {
-    title: `${c.title} · Parrax Solutions`,
-    description: c.description,
-    alternates: alternatesFor(lang, '/cookies'),
-    robots: { index: false, follow: true },
-  };
+  return pageMetadata({ lang, path: '/cookies', title: c.title, description: c.description, noindex: true });
 }
 
 export function CookiesScreen({ lang }: { lang: Locale }) {

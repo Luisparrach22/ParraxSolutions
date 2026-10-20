@@ -16,8 +16,9 @@ export const defaultLocale: Locale = 'es';
 /** Cabecera de petición con la que src/proxy.ts le indica el idioma a global-not-found. */
 export const LOCALE_HEADER = 'x-locale';
 
-export const htmlLang: Record<Locale, string> = { es: 'es-ES', en: 'en' };
-export const ogLocale: Record<Locale, string> = { es: 'es_ES', en: 'en_US' };
+// Español genérico (sin país): el mercado es global (es, no es-ES).
+export const htmlLang: Record<Locale, string> = { es: 'es', en: 'en' };
+export const ogLocale: Record<Locale, string> = { es: 'es', en: 'en' };
 /** Nombre de cada idioma en su propio idioma (para el selector). */
 export const localeNames: Record<Locale, string> = { es: 'Español', en: 'English' };
 

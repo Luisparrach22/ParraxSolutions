@@ -8,14 +8,16 @@
  * por error un dato no confirmado.
  */
 
+import type { ServiceDetail, StorePage } from "./types";
+
 export const es = {
   meta: {
     siteName: "Parrax Solutions",
-    title: "Parrax Solutions · Páginas web y software a medida para empresas",
+    title: "Parrax Solutions · Webs, tiendas online y automatización para empresas",
     titleTemplate: "%s · Parrax Solutions",
     description:
-      "Páginas web, landing pages, sistemas de gestión, automatizaciones e integraciones a medida para empresas de cualquier país. El código es tuyo, sin cuotas por usuario.",
-    ogAlt: "Parrax Solutions — Software a medida que conecta tu operación",
+      "Webs, tiendas online y automatización de procesos para empresas de cualquier país, en remoto. Precio cerrado, el código es tuyo y sin cuotas de plataforma.",
+    ogAlt: "Parrax Solutions: webs, tiendas online y automatización para empresas",
   },
 
   a11y: {
@@ -187,6 +189,12 @@ export const es = {
   /** Contenido de las páginas /soluciones/[slug] */
   solutionDetails: {
     back: "Todas las soluciones",
+    problemTitle: "El problema típico",
+    exampleLabel: "Ejemplo",
+    approachTitle: "Cómo lo resuelvo",
+    timelineTitle: "Plazo orientativo",
+    faqTitle: "Preguntas frecuentes",
+    packagesLink: "Ver paquetes y precios",
     includesTitle: "Qué incluye",
     fitTitle: "Encaja si…",
     outcomeTitle: "Qué cambia en tu día a día",
@@ -211,6 +219,44 @@ export const es = {
         ],
         outcome:
           "Una web que trabaja por ti: cada visita tiene un camino claro hacia el contacto.",
+        problem: {
+          "title": "Una web que existe, pero no genera contactos",
+          "text": "Muchas webs de empresa se hicieron hace años con una plantilla y no se han tocado desde entonces. Cargan lento en el teléfono, no explican con claridad qué vendes y el formulario termina en un correo que nadie revisa. La gente entra, no entiende qué hacer y se va.",
+          "example": "Una empresa de servicios paga anuncios que llevan a su página de inicio. El visitante encuentra cinco menús, ningún precio orientativo y un formulario de diez campos. Casi nadie llega a enviarlo, y los pocos mensajes que llegan se pierden en la bandeja de entrada."
+        },
+        approach: [
+          {
+            "title": "Entiendo a quién le vendes",
+            "text": "Antes de diseñar hablamos de tus clientes: qué buscan, qué dudas tienen y qué les hace decidirse. Con eso defino la estructura de la página y el mensaje principal."
+          },
+          {
+            "title": "Diseño y escribo pensando en el contacto",
+            "text": "Cada sección responde a una pregunta del visitante y lleva a una acción clara: reservar, llamar o escribir. Te propongo los textos y los ajustamos juntos."
+          },
+          {
+            "title": "Construyo una web rápida y medible",
+            "text": "La desarrollo con código propio, optimizada para el teléfono y para buscadores, con el formulario conectado a tu email o tu CRM para que ningún contacto se pierda."
+          },
+          {
+            "title": "La publico y te enseño a editarla",
+            "text": "Me encargo del dominio, la publicación y las redirecciones si vienes de otra web. Te explico cómo cambiar textos e imágenes sin depender de mí."
+          }
+        ],
+        timeline: "El plazo depende del número de páginas y de si los textos ya están listos. Te lo doy por escrito en la propuesta, junto con el precio cerrado. [TODO_LUIS: plazo orientativo]",
+        faq: [
+          {
+            "q": "¿Puedo editar la web yo mismo?",
+            "a": "Sí. Te dejo la web preparada para que cambies textos e imágenes sin tocar código, y te enseño a hacerlo en la sesión de entrega."
+          },
+          {
+            "q": "¿Tú escribes los textos?",
+            "a": "Te propongo la estructura y los textos a partir de lo que hablamos. Tú aportas el conocimiento de tu negocio y revisas cada sección antes de publicar."
+          },
+          {
+            "q": "¿Qué pasa con mi web actual?",
+            "a": "Si ya tienes una, reviso qué páginas reciben visitas para mantener sus direcciones o redirigirlas, y así no perder lo que ya tienes posicionado en buscadores."
+          }
+        ],
       },
       "sistemas-de-gestion": {
         lead: "Un sistema de gestión hecho para tu empresa sustituye la combinación de hojas de cálculo, correos y programas sueltos con la que se gestiona hoy la operación.",
@@ -227,6 +273,44 @@ export const es = {
         ],
         outcome:
           "Un único lugar para trabajar, con datos fiables y sin depender de que una persona concreta esté disponible.",
+        problem: {
+          "title": "La operación repartida entre hojas de cálculo y correos",
+          "text": "Cuando una empresa crece, cada área resuelve su parte como puede: una hoja de cálculo para pedidos, otra para stock, el correo para avisar a almacén y un programa aparte para facturar. Funciona mientras pocas personas lo usan, pero cada vez cuesta más saber qué está pasando y quién cambió qué.",
+          "example": "Un distribuidor recibe pedidos por teléfono y por email. Alguien los apunta en una hoja compartida, otra persona revisa el stock en otro archivo y, al final del día, se pasan a mano al programa de facturación. Si alguien se equivoca de fila, el error aparece semanas después."
+        },
+        approach: [
+          {
+            "title": "Mapeo cómo trabajas hoy",
+            "text": "Reviso contigo cada paso del proceso, las hojas que usas y las reglas que hay detrás, incluidas las que nadie ha escrito."
+          },
+          {
+            "title": "Diseño el sistema alrededor de tu proceso",
+            "text": "Defino los módulos, los roles y los permisos que necesitas, sin funciones de relleno. Validas un prototipo antes de que empiece a construir."
+          },
+          {
+            "title": "Construyo por módulos",
+            "text": "Empiezo por la parte que más trabajo manual te quita y voy sumando módulos. Puedes usar cada uno en cuanto está listo."
+          },
+          {
+            "title": "Migro tus datos y acompaño el arranque",
+            "text": "Paso los datos de tus hojas actuales al sistema, compruebo que cuadran y acompaño a tu equipo en las primeras semanas de uso."
+          }
+        ],
+        timeline: "Un sistema de gestión se construye por fases. En la propuesta te detallo qué incluye cada fase, su plazo y su precio, para que decidas hasta dónde llegar. [TODO_LUIS: plazo orientativo de una primera fase]",
+        faq: [
+          {
+            "q": "¿Por qué no usar un ERP del mercado?",
+            "a": "Si un ERP estándar encaja con tu forma de trabajar, te lo diré. Un sistema a medida tiene sentido cuando tu proceso es parte de tu ventaja o cuando pagas licencias por muchas funciones que no usas."
+          },
+          {
+            "q": "¿Qué pasa con los datos que ya tengo?",
+            "a": "Los migro desde tus hojas de cálculo o tu programa actual y compruebo que los totales coinciden antes de dejar de usar lo antiguo."
+          },
+          {
+            "q": "¿Puede crecer después?",
+            "a": "Sí. El código es tuyo y está documentado, así que se pueden añadir módulos más adelante, conmigo o con otra persona."
+          }
+        ],
       },
       "integraciones-y-apis": {
         lead: "Conecto las herramientas que ya usas para que compartan información sin que nadie tenga que exportar, copiar y pegar.",
@@ -243,6 +327,48 @@ export const es = {
         ],
         outcome:
           "Los datos viajan solos entre sistemas y los números cuadran a la primera.",
+        problem: {
+          "title": "Herramientas que no comparten datos",
+          "text": "La tienda online sabe qué se vendió, la pasarela de pago sabe qué se cobró, el CRM sabe quién es el cliente y contabilidad necesita todo eso junto. Si esas herramientas no se hablan, alguien de tu equipo hace de puente exportando e importando archivos.",
+          "example": "Cada lunes, una persona descarga las ventas de la tienda online, las cruza en una hoja con los cobros de la pasarela de pago y las sube al programa de contabilidad. Le lleva la mañana entera, y cualquier devolución descuadra los números."
+        },
+        approach: [
+          {
+            "title": "Inventario de herramientas y datos",
+            "text": "Reviso qué herramientas usas, qué datos tiene cada una y cuáles necesitan llegar a las demás. También compruebo qué permite la API de cada herramienta."
+          },
+          {
+            "title": "Diseño el flujo de datos",
+            "text": "Defino qué dato viaja de dónde a dónde, cuándo y qué pasa si falla. Lo revisas antes de que empiece a construir."
+          },
+          {
+            "title": "Construyo la integración con control de errores",
+            "text": "Cada sincronización queda registrada, con reintentos automáticos y un aviso cuando algo necesita revisión humana."
+          },
+          {
+            "title": "La pongo en marcha en paralelo",
+            "text": "Durante un tiempo conviven el proceso manual y el automático, para comprobar que los datos coinciden antes de apagar el manual."
+          }
+        ],
+        timeline: "Una integración entre dos o tres herramientas suele encajar en un Sprint de automatización de 2\u2060–\u20603 semanas. Si hay más sistemas implicados, lo divido en fases con precio cerrado cada una.",
+        faq: [
+          {
+            "q": "¿Necesito cambiar de herramientas?",
+            "a": "Normalmente no. La idea es que sigas usando lo que ya conoces y que los datos se muevan solos entre esas herramientas."
+          },
+          {
+            "q": "¿Qué pasa si una herramienta no tiene API?",
+            "a": "Busco la alternativa más fiable: exportaciones programadas o conectores oficiales. Si no hay una opción fiable, te lo digo antes de empezar."
+          },
+          {
+            "q": "¿Quién vigila que la integración siga funcionando?",
+            "a": "La integración avisa cuando algo falla. Si quieres que yo me encargue de revisarla y ajustarla, está el mantenimiento mensual opcional."
+          },
+          {
+            "q": "¿Es seguro conectar mis herramientas?",
+            "a": "Uso los accesos oficiales de cada herramienta con los permisos mínimos necesarios, y las claves se guardan fuera del código. Puedes revocarlas en cualquier momento desde cada herramienta."
+          }
+        ],
       },
       "automatizacion-de-procesos": {
         lead: "Identifico las tareas repetitivas que consumen horas de tu equipo y las convierto en procesos automáticos y trazables.",
@@ -259,6 +385,48 @@ export const es = {
         ],
         outcome:
           "Tu equipo dedica su tiempo a lo que requiere criterio, no a mover datos.",
+        problem: {
+          "title": "Horas de trabajo que siempre se hacen igual",
+          "text": "En casi todas las empresas hay tareas que se repiten cada día o cada semana con los mismos pasos: copiar un pedido, enviar un aviso, preparar un informe, pedir una aprobación. No requieren criterio, pero sí tiempo, y dependen de que alguien se acuerde de hacerlas.",
+          "example": "Cuando entra un pedido en la tienda online, alguien lo copia en el programa de facturación, genera la factura, la envía por email y avisa a almacén. Son pocos minutos por pedido, pero con decenas de pedidos al día se convierte en el trabajo de una persona."
+        },
+        approach: [
+          {
+            "title": "Elegimos un proceso concreto",
+            "text": "En la sesión inicial identificamos qué tarea repetitiva te cuesta más tiempo o más errores. Empezamos por esa, sin intentar automatizarlo todo a la vez."
+          },
+          {
+            "title": "Lo dibujo paso a paso",
+            "text": "Documento el proceso tal y como se hace hoy, con sus excepciones, y te propongo cómo quedaría automatizado."
+          },
+          {
+            "title": "Lo automatizo con registro y avisos",
+            "text": "Construyo el flujo para que se ejecute solo, deje constancia de cada paso y te avise cuando algo requiera a una persona."
+          },
+          {
+            "title": "Te lo entrego documentado",
+            "text": "Al terminar tienes el flujo en producción, la documentación y una sesión de traspaso con tu equipo, con 30 días de garantía."
+          }
+        ],
+        timeline: "Cada proceso se trabaja como un Sprint de automatización: 2\u2060–\u20603 semanas y precio cerrado. Si después quieres automatizar otro proceso, se plantea como un sprint nuevo.",
+        faq: [
+          {
+            "q": "¿Qué procesos se pueden automatizar?",
+            "a": "Los que siguen siempre los mismos pasos y usan datos que ya están en alguna herramienta: pedidos, facturas, avisos, informes, altas de clientes o aprobaciones."
+          },
+          {
+            "q": "¿Y si ya probé herramientas sin código?",
+            "a": "Son una buena opción para flujos sencillos. Cuando el proceso tiene excepciones, volumen o varias herramientas implicadas, suele hacer falta una solución más robusta, y eso es lo que construyo."
+          },
+          {
+            "q": "¿Qué pasa si el proceso cambia?",
+            "a": "Como recibes el código y la documentación, se puede adaptar. Puedes encargármelo de forma puntual o incluirlo en el mantenimiento mensual."
+          },
+          {
+            "q": "¿Cómo sé que la automatización funciona?",
+            "a": "Cada ejecución queda registrada: puedes ver qué se procesó, cuándo y con qué resultado. Si algo falla, recibes un aviso con el detalle para decidir qué hacer."
+          }
+        ],
       },
       "aplicaciones-web-y-moviles": {
         lead: "Diseño y desarrollo aplicaciones web para uso interno o para tus clientes, conectadas con el resto de tus sistemas.",
@@ -275,6 +443,48 @@ export const es = {
         ],
         outcome:
           "Menos llamadas, menos papel y una experiencia profesional con tu marca.",
+        problem: {
+          "title": "Clientes y equipo que dependen de llamadas y mensajes",
+          "text": "Cuando la información solo vive en tu oficina, los clientes tienen que llamar o escribir para saber cómo va su pedido, y el equipo que trabaja fuera envía fotos y notas por mensajería que luego alguien pasa a limpio.",
+          "example": "Una empresa de mantenimiento recibe cada día llamadas de clientes que preguntan cuándo llega el técnico. Los técnicos, a su vez, envían los partes de trabajo por mensajería, y alguien en la oficina los copia a una hoja de cálculo para poder facturar."
+        },
+        approach: [
+          {
+            "title": "Defino quién la usa y para qué",
+            "text": "Hablo con las personas que van a usar la app, clientes o equipo, para entender qué necesitan ver y hacer, y desde qué dispositivo."
+          },
+          {
+            "title": "Diseño una interfaz sencilla",
+            "text": "Te enseño un prototipo navegable antes de programar, para validar las pantallas con quien las va a usar a diario."
+          },
+          {
+            "title": "La construyo como app web",
+            "text": "Funciona en el navegador de cualquier computadora o teléfono, sin pasar por tiendas de aplicaciones, y se conecta con tus sistemas actuales."
+          },
+          {
+            "title": "La pongo en marcha",
+            "text": "Publico la app, configuro los accesos y te dejo la documentación. El mantenimiento posterior es opcional."
+          }
+        ],
+        timeline: "Depende del número de pantallas y de las conexiones con otros sistemas. Lo divido en fases con plazo y precio cerrados en la propuesta. [TODO_LUIS: plazo orientativo]",
+        faq: [
+          {
+            "q": "¿Es una app que se descarga de una tienda?",
+            "a": "No. Es una app web: se abre desde el navegador y se puede añadir a la pantalla de inicio del teléfono. Así evitas el proceso de publicación en tiendas de aplicaciones."
+          },
+          {
+            "q": "¿Mis clientes necesitan usuario y contraseña?",
+            "a": "Depende de lo que vayan a ver. Para datos privados, como pedidos o documentos, el acceso es seguro y cada cliente ve solo lo suyo."
+          },
+          {
+            "q": "¿Se conecta con lo que ya uso?",
+            "a": "Sí, ese es el objetivo: que la app lea y escriba en tu sistema de gestión, tu CRM o tus hojas actuales, sin duplicar datos."
+          },
+          {
+            "q": "¿Cuántos usuarios puede tener?",
+            "a": "No pagas por usuario: puedes dar acceso a todo tu equipo y a tus clientes sin que el coste crezca con cada alta. El alojamiento se dimensiona según el uso real."
+          }
+        ],
       },
       "modernizacion-de-procesos": {
         lead: "Convierto la hoja de cálculo crítica o el programa antiguo del que depende tu empresa en un sistema moderno, seguro y mantenible.",
@@ -291,6 +501,48 @@ export const es = {
         ],
         outcome:
           "El mismo proceso que ya conoces, sin el riesgo y con espacio para crecer.",
+        problem: {
+          "title": "Un archivo crítico del que depende todo",
+          "text": "Muchas empresas tienen una hoja de cálculo o un programa antiguo que nadie se atreve a tocar. Acumula años de fórmulas, macros y reglas que solo entiende una persona, no guarda histórico de cambios y, si se corrompe, no hay una copia reciente.",
+          "example": "Una empresa calcula sus presupuestos con un Excel de quince pestañas lleno de macros. Solo una persona sabe actualizarlo. Cuando esa persona no está, los presupuestos se retrasan y nadie se atreve a cambiar un precio."
+        },
+        approach: [
+          {
+            "title": "Entiendo la lógica actual",
+            "text": "Reviso el archivo o el programa a fondo y documento cada regla, incluidas las que nadie escribió nunca."
+          },
+          {
+            "title": "Diseño el sistema que lo sustituye",
+            "text": "Mantengo el proceso que tu equipo ya conoce y le añado permisos, histórico de cambios y copias de seguridad."
+          },
+          {
+            "title": "Migro los datos con validación",
+            "text": "Paso los datos al nuevo sistema y compruebo que los resultados coinciden con los del archivo original."
+          },
+          {
+            "title": "Hago convivir los dos durante un tiempo",
+            "text": "El sistema nuevo y el antiguo funcionan en paralelo hasta que compruebas que todo cuadra. Así la operación no se detiene."
+          }
+        ],
+        timeline: "Depende de la complejidad del archivo o del programa. Después de revisarlo te doy un plazo y un precio cerrados por escrito. [TODO_LUIS: plazo orientativo]",
+        faq: [
+          {
+            "q": "¿Voy a tener que aprender a trabajar de otra forma?",
+            "a": "Lo menos posible. El objetivo es mantener el proceso que funciona y quitarle el riesgo, sin obligarte a cambiar tu forma de trabajar."
+          },
+          {
+            "q": "¿Qué pasa con los años de datos históricos?",
+            "a": "Se migran al nuevo sistema y se validan. Si hay datos que conviene dejar archivados, te propongo cómo conservarlos."
+          },
+          {
+            "q": "¿Y si el programa antiguo ya no tiene soporte?",
+            "a": "Es una de las situaciones más habituales. Extraigo los datos y la lógica que siguen siendo útiles y los paso a un sistema mantenible."
+          },
+          {
+            "q": "¿Cuánto tiempo conviven los dos sistemas?",
+            "a": "El necesario para que compruebes que los resultados coinciden en casos reales. Lo acordamos en la propuesta, y el sistema antiguo no se apaga hasta que tú lo confirmas."
+          }
+        ],
       },
       "consultoria-tecnologica": {
         lead: "Te acompaño en decisiones tecnológicas con una visión independiente: qué construir, qué comprar y qué dejar como está.",
@@ -307,12 +559,123 @@ export const es = {
         ],
         outcome:
           "Decisiones claras, justificadas y alineadas con tu presupuesto.",
+        problem: {
+          "title": "Decisiones tecnológicas sin una opinión independiente",
+          "text": "Elegir un software o un proveedor, o decidir si construir algo a medida, es una decisión cara de corregir. Muchas veces la única opinión disponible es la de quien te lo quiere vender.",
+          "example": "Una empresa recibe tres presupuestos muy distintos para renovar su sistema de pedidos y no sabe compararlos: cada proveedor propone una tecnología diferente y ninguno explica qué pasa con los datos si después quiere cambiar."
+        },
+        approach: [
+          {
+            "title": "Reviso lo que tienes",
+            "text": "Analizo tus herramientas, tus procesos y lo que pagas en licencias para entender qué funciona, qué sobra y qué falta."
+          },
+          {
+            "title": "Te doy opciones con pros y contras",
+            "text": "Te explico las alternativas en lenguaje claro: qué construir, qué comprar y qué dejar como está, con el coste aproximado de cada una."
+          },
+          {
+            "title": "Priorizo por impacto",
+            "text": "Te entrego una hoja de ruta ordenada según lo que más trabajo o dinero te ahorra, para que avances paso a paso."
+          },
+          {
+            "title": "Te acompaño en la decisión",
+            "text": "Si lo necesitas, reviso las propuestas de proveedores y te ayudo a hacer las preguntas correctas antes de firmar."
+          }
+        ],
+        timeline: "Una revisión con hoja de ruta se plantea con alcance y precio cerrados. [TODO_LUIS: plazo y formato de la consultoría]",
+        faq: [
+          {
+            "q": "¿Me vas a recomendar siempre algo a medida?",
+            "a": "No. Si una herramienta estándar resuelve tu problema, te lo diré, aunque eso signifique que no construya nada."
+          },
+          {
+            "q": "¿Trabajas con cualquier tecnología?",
+            "a": "Reviso tu situación sea cual sea tu tecnología actual. Para construir uso tecnologías web modernas, pero la recomendación se basa en lo que encaja con tu negocio."
+          },
+          {
+            "q": "¿Qué recibo al final?",
+            "a": "Un documento con el diagnóstico, las opciones y una hoja de ruta priorizada, más una sesión para resolver tus dudas."
+          },
+          {
+            "q": "¿La consultoría me obliga a contratar el desarrollo contigo?",
+            "a": "No. La hoja de ruta es tuya y puedes ejecutarla conmigo, con otro proveedor o con tu propio equipo."
+          },
+          {
+            "q": "¿Puedes revisar un presupuesto que ya tengo?",
+            "a": "Sí. Reviso la propuesta, el alcance y las condiciones, y te digo qué preguntas hacer antes de firmar."
+          }
+        ],
       },
     } as Record<
       string,
-      { lead: string; includes: string[]; fit: string[]; outcome: string }
+      ServiceDetail
     >,
   },
+
+  /** Página /servicios/tiendas-online (intención comercial, sin país). */
+  storePage: {
+    "slug": "tiendas-online",
+    "metaTitle": "Tienda online a medida para pymes, sin cuotas mensuales",
+    "metaDescription": "Desarrollo de tiendas online a medida para pymes: catálogo, carrito, pagos y gestión de pedidos. El código es tuyo y no pagas cuotas mensuales de plataforma.",
+    "kicker": "Tiendas online a medida",
+    "title": "Tu tienda online a medida, sin cuotas mensuales de plataforma",
+    "lead": "Desarrollo tiendas online para pymes con catálogo, carrito, pagos online y gestión de pedidos. El código queda a tu nombre y no pagas una suscripción a una plataforma por vender.",
+    "includes": [
+      "Catálogo de productos con fotos, variantes y stock",
+      "Carrito y pago con pasarela de pago online",
+      "Panel para gestionar pedidos y productos",
+      "Emails de confirmación y avisos al cliente",
+      "Opcional: envíos por zona y conexión con tu programa de facturación"
+    ],
+    "fit": [
+      "Pagas varias suscripciones y aplicaciones cada mes para que tu tienda funcione",
+      "Pasas a mano los pedidos de la tienda a tu programa de facturación",
+      "Quieres una tienda propia que puedas adaptar sin depender de una plataforma"
+    ],
+    "outcome": "Una tienda que es tuya, conectada con tu forma de trabajar y sin cuota mensual de plataforma.",
+    "problem": {
+      "title": "Pagar cada mes por una tienda que no es tuya",
+      "text": "Las plataformas de tienda online son rápidas para empezar, pero cobran una suscripción mensual, a menudo una comisión por venta y extras por cada función que necesitas. Además, la tienda vive en su sistema: si quieres irte, te llevas los productos en un archivo, pero no la tienda.",
+      "example": "Una pyme empieza con una plataforma de suscripción. Con el tiempo añade aplicaciones de pago para envíos, facturas y avisos, cada una con su cuota. Acaba pagando varias suscripciones al mes y sigue pasando los pedidos a mano a su programa de facturación."
+    },
+    "approach": [
+      {
+        "title": "Definimos qué vendes y cómo",
+        "text": "Productos, variantes, formas de pago, zonas de envío e impuestos. Con eso elegimos el paquete que encaja: Tienda online o Tienda + operación."
+      },
+      {
+        "title": "Diseño la tienda con tu marca",
+        "text": "Una tienda clara y rápida en el teléfono, con fichas de producto que responden a las dudas de tus clientes antes de comprar."
+      },
+      {
+        "title": "La conecto con tu operación",
+        "text": "Pasarela de pago, emails de confirmación y panel de pedidos. Si lo necesitas, también envíos por zona, avisos automáticos y conexión con facturación."
+      },
+      {
+        "title": "La publico y te enseño a gestionarla",
+        "text": "Dejo la tienda en producción, te enseño a gestionar productos y pedidos, y recibes el código y los accesos."
+      }
+    ],
+    "timeline": "El plazo depende del número de productos y de las integraciones. Lo fijo en la propuesta, junto con el precio cerrado. [TODO_LUIS: plazo orientativo]",
+    "faq": [
+      {
+        "q": "¿De verdad no hay cuotas mensuales?",
+        "a": "No pagas una suscripción a una plataforma por tener la tienda. Sí hay costes de terceros que pagas directamente a cada proveedor: el alojamiento, el dominio y la comisión de la pasarela de pago por cada cobro."
+      },
+      {
+        "q": "¿Podré añadir y editar productos yo mismo?",
+        "a": "Sí. El panel de gestión te permite crear productos, cambiar precios y stock y gestionar pedidos sin tocar código."
+      },
+      {
+        "q": "¿Qué pasarela de pago puedo usar?",
+        "a": "La que mejor funcione en tu país y con tus clientes. La elegimos juntos al definir el proyecto, según las comisiones y los métodos de pago que necesites."
+      },
+      {
+        "q": "¿Puedo migrar mi tienda actual?",
+        "a": "Sí. Paso productos, clientes y pedidos desde tu plataforma actual y mantengo las direcciones importantes para no perder posicionamiento en buscadores."
+      }
+    ]
+  } as StorePage,
 
   method: {
     eyebrow: "Método",
@@ -395,6 +758,7 @@ export const es = {
     shops: {
       title: "Webs y tiendas online",
       text: "Tres paquetes de alcance cerrado y sin cuotas mensuales de plataforma: la tienda es tuya.",
+      more: "Cómo trabajo una tienda online a medida",
       guarantee: "Precio cerrado por escrito. Dos rondas de cambios incluidas. El código es tuyo.",
       packages: [
         {
@@ -660,11 +1024,12 @@ export const es = {
   footer: {
     heading: "Pie de página",
     tagline:
-      "Páginas web, software a medida y automatización para empresas, estén donde estén.",
+      "Webs, tiendas online y automatización para empresas, estén donde estén.",
     columns: [
       {
         title: "Soluciones",
         links: [
+          { label: "Tiendas online", href: "/servicios/tiendas-online" },
           {
             label: "Páginas web y landing pages",
             href: "/soluciones/paginas-web-y-landing-pages",

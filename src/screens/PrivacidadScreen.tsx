@@ -2,7 +2,8 @@ import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 import { LegalPage } from '@/components/layout/LegalPage';
 import { Rich } from '@/components/ui';
-import { alternatesFor, type Locale } from '@/i18n/config';
+import type { Locale } from '@/i18n/config';
+import { pageMetadata } from '@/lib/metadata';
 
 const privacyMail = (
   <a href="mailto:privacidad@parraxsolutions.com" className="text-white underline underline-offset-4">
@@ -123,12 +124,7 @@ const content: Record<Locale, { title: string; description: string; subtitle: st
 
 export function privacidadMetadata(lang: Locale): Metadata {
   const c = content[lang];
-  return {
-    title: `${c.title} · Parrax Solutions`,
-    description: c.description,
-    alternates: alternatesFor(lang, '/politica-de-privacidad'),
-    robots: { index: false, follow: true },
-  };
+  return pageMetadata({ lang, path: '/politica-de-privacidad', title: c.title, description: c.description, noindex: true });
 }
 
 export function PrivacidadScreen({ lang }: { lang: Locale }) {

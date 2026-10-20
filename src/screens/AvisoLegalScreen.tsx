@@ -3,7 +3,8 @@ import type { ReactNode } from 'react';
 import { LegalPage } from '@/components/layout/LegalPage';
 import { Rich } from '@/components/ui';
 import { contactEmail } from '@/config/site';
-import { alternatesFor, type Locale } from '@/i18n/config';
+import type { Locale } from '@/i18n/config';
+import { pageMetadata } from '@/lib/metadata';
 
 const mail = (
   <a href={`mailto:${contactEmail}`} className="text-white underline underline-offset-4">
@@ -116,12 +117,7 @@ const content: Record<Locale, { title: string; description: string; subtitle: st
 
 export function avisoLegalMetadata(lang: Locale): Metadata {
   const c = content[lang];
-  return {
-    title: `${c.title} · Parrax Solutions`,
-    description: c.description,
-    alternates: alternatesFor(lang, '/aviso-legal'),
-    robots: { index: false, follow: true },
-  };
+  return pageMetadata({ lang, path: '/aviso-legal', title: c.title, description: c.description, noindex: true });
 }
 
 export function AvisoLegalScreen({ lang }: { lang: Locale }) {
