@@ -8,6 +8,7 @@ import { Projects } from '@/components/sections/Projects';
 import { Method } from '@/components/sections/Method';
 import { WhyParrax } from '@/components/sections/WhyParrax';
 import { About } from '@/components/sections/About';
+import { Faq } from '@/components/sections/Faq';
 import { Contact } from '@/components/sections/Contact';
 
 export const homeMetadata = (lang: Locale): Metadata => ({ alternates: alternatesFor(lang, '/') });
@@ -24,6 +25,7 @@ export function HomeScreen({ lang }: { lang: Locale }) {
       <Method t={t.method} />
       <WhyParrax t={t.why} />
       <About t={t.about} />
+      <Faq t={t.faq} />
       <Contact lang={lang} t={t.contact} />
     </>
   );
