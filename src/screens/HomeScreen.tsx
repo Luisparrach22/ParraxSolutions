@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { alternatesFor, getDictionary, type Locale } from '@/i18n/config';
 import { Hero } from '@/components/sections/Hero';
 import { Problems } from '@/components/sections/Problems';
+import { Services } from '@/components/sections/Services';
 import { Solutions } from '@/components/sections/Solutions';
 import { Method } from '@/components/sections/Method';
 import { WhyParrax } from '@/components/sections/WhyParrax';
@@ -16,6 +17,7 @@ export function HomeScreen({ lang }: { lang: Locale }) {
     <>
       <Hero lang={lang} t={t.hero} />
       <Problems t={t.problems} />
+      <Services lang={lang} t={t.services} />
       <Solutions lang={lang} t={t.solutions} />
       <Method t={t.method} />
       <WhyParrax t={t.why} />
