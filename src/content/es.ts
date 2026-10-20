@@ -32,33 +32,34 @@ export const es = {
 
   nav: {
     links: [
-      { label: "Servicios", href: "#soluciones" },
+      { label: "Servicios", href: "#servicios" },
+      { label: "Proyectos", href: "#proyectos" },
       { label: "Método", href: "#metodo" },
-      { label: "Por qué Parrax", href: "#por-que" },
-      { label: "Contacto", href: "#contacto" },
+      { label: "Quién soy", href: "#quien" },
+      { label: "Preguntas", href: "#preguntas" },
     ],
-    cta: "Agendar sesión estratégica",
-    ctaShort: "Agendar sesión",
+    cta: "Reservar sesión gratuita",
+    ctaShort: "Reservar sesión",
     ctaSub: "Sesión de 20 min, sin coste",
     writeUs: "O escríbeme a",
     menuTitle: "Navegación",
     noCommitment: "Sin compromiso",
     reviewTitle: "¿Prefieres escribirme?",
-    reviewText: "Cuéntame tu caso por el formulario y te respondo en 24–48 h laborables.",
+    reviewText: "Cuéntame tu caso por el formulario y te respondo en 24\u2060–\u206048 h laborables.",
     reviewLink: "Ir al formulario",
   },
 
   hero: {
-    eyebrow: "Webs y software a medida para empresas",
-    titleA: "Webs que traen clientes y software",
-    titleB: "que elimina el trabajo manual.",
+    eyebrow: "Webs, tiendas online y automatización",
+    titleA: "Webs y tiendas online que venden.",
+    titleB: "Automatización para dejar de copiar y pegar.",
     subtitle:
-      "Diseño tu página web o landing page y construyo el sistema que conecta tu operación. Una sola persona responsable, de la primera visita a la factura.",
-    ctaPrimary: "Solicitar auditoría digital",
+      "Construyo tu web o tu tienda online con carrito, pagos y gestión de pedidos, y automatizo los procesos que hoy haces a mano. Precio cerrado, el código es tuyo y sin cuotas de plataforma.",
+    ctaPrimary: "Reservar sesión de 20 min",
     ctaSecondary: "Ver servicios",
     reassurance: [
-      "Sin coste ni compromiso",
-      "Respuesta en 24–48 h laborables",
+      "Sesión estratégica gratuita",
+      "Respuesta en 24\u2060–\u206048 h laborables",
       "El código es tuyo",
     ],
     mockup: {
@@ -66,30 +67,30 @@ export const es = {
       label: "Vista ilustrativa · datos de ejemplo",
       window: "panel.tuempresa.com",
       eyebrow: "Panel",
-      title: "De tu web al presupuesto, sin tocar nada",
+      title: "Del pedido a la factura, sin teclear nada",
       live: "Sincronizado",
-      pipeline: ["Formulario web", "CRM", "Presupuesto"],
+      pipeline: ["Tienda online", "Facturación", "Aviso"],
       pipelineSub: [
-        "Tu web o landing page",
-        "Cliente creado al instante",
-        "Generado y enviado",
+        "Pedido pagado",
+        "Factura generada al instante",
+        "Enviado al cliente",
       ],
       rows: [
         {
-          ref: "WEB-214",
-          text: "Nueva solicitud desde la landing",
-          status: "Recibida",
+          ref: "PED-1042",
+          text: "Pedido pagado en la tienda online",
+          status: "Recibido",
           state: "done",
         },
         {
-          ref: "CRM-381",
-          text: "Cliente creado automáticamente",
+          ref: "FAC-381",
+          text: "Factura creada automáticamente",
           status: "Completado",
           state: "done",
         },
         {
-          ref: "PRE-118",
-          text: "Presupuesto enviado al cliente",
+          ref: "ENV-118",
+          text: "Aviso de envío al cliente",
           status: "En curso",
           state: "active",
         },
@@ -125,10 +126,10 @@ export const es = {
   },
 
   solutions: {
-    eyebrow: "Servicios",
-    title: "Lo que hago",
+    eyebrow: "Proyectos a medida",
+    title: "También puedo ayudarte con…",
     intro:
-      "Cada proyecto empieza por un problema de negocio concreto, no por una tecnología.",
+      "Para cuando lo que necesitas va más allá de una web o de un proceso concreto. Cada proyecto empieza por un problema de negocio, no por una tecnología.",
     more: "Ver más",
     items: [
       {
@@ -190,7 +191,7 @@ export const es = {
     fitTitle: "Encaja si…",
     outcomeTitle: "Qué cambia en tu día a día",
     ctaTitle: "¿Lo vemos aplicado a tu caso?",
-    ctaPrimary: "Agendar sesión estratégica",
+    ctaPrimary: "Reservar sesión gratuita",
     ctaSecondary: "Ver cómo trabajo",
     ctaText:
       "En una sesión de 20 minutos reviso tu situación y te digo con honestidad si esto es lo que necesitas.",
@@ -380,16 +381,131 @@ export const es = {
     },
   },
 
-  audit: {
-    badge: "Oferta de lanzamiento",
-    title: "Auditoría digital gratuita",
-    text: "Antes de hablar de presupuestos queremos conocerte. En una primera charla vemos qué te frena y si tiene sentido trabajar juntos. El análisis a fondo llega después, cuando decidas seguir.",
-    points: [
-      "20 minutos por videollamada o teléfono",
-      "Nos cuentas tu caso y te damos una opinión sincera",
-      "Si encaja, propuesta por escrito con precio cerrado",
+  services: {
+    eyebrow: "Servicios",
+    title: "Dos formas de empezar",
+    intro:
+      "Elige por lo que más te urge hoy: vender online o quitarte trabajo manual de encima. En los dos casos, alcance y precio cerrados por escrito antes de empezar.",
+    from: "Desde",
+    perMonth: "/mes",
+    priceMissing: "[TODO_LUIS: precio]",
+    localCurrency: "Presupuesto en tu moneda local.",
+    timelineLabel: "Plazo orientativo",
+    includesLabel: "Incluye",
+    shops: {
+      title: "Webs y tiendas online",
+      text: "Tres paquetes de alcance cerrado y sin cuotas mensuales de plataforma: la tienda es tuya.",
+      guarantee: "Precio cerrado por escrito. Dos rondas de cambios incluidas. El código es tuyo.",
+      packages: [
+        {
+          key: "landing",
+          name: "Landing o web de presentación",
+          forWho: "Para presentar tu negocio o lanzar una campaña con una página clara que convierta visitas en contactos.",
+          includes: [
+            "Diseño a medida con tu marca",
+            "Textos y estructura orientados al contacto",
+            "Formulario conectado a tu email o CRM",
+            "Carga rápida, adaptada al teléfono y lista para Google",
+          ],
+          timeline: "[TODO_LUIS: plazo]",
+          cta: "Reservar sesión",
+        },
+        {
+          key: "store",
+          name: "Tienda online",
+          forWho: "Para vender tus productos online con tu propia tienda, sin pagar cuotas mensuales de plataforma.",
+          includes: [
+            "Catálogo de productos con fotos, variantes y stock",
+            "Carrito y pago con pasarela de pago online",
+            "Panel para gestionar pedidos y productos",
+            "Emails de confirmación de pedido",
+          ],
+          timeline: "[TODO_LUIS: plazo]",
+          cta: "Reservar sesión",
+        },
+        {
+          key: "storeOps",
+          name: "Tienda + operación",
+          forWho: "Para tiendas que ya venden o van a vender volumen y no quieren gestionar cada pedido a mano.",
+          includes: [
+            "Todo lo de Tienda online",
+            "Envíos con tarifas por zona",
+            "Avisos automáticos al cliente y a tu equipo",
+            "Conexión con tu programa de facturación",
+          ],
+          timeline: "[TODO_LUIS: plazo]",
+          cta: "Reservar sesión",
+        },
+      ],
+    },
+    automation: {
+      title: "Automatización e integraciones",
+      text: "Cuando el negocio ya funciona pero depende de copiar datos de un sitio a otro.",
+      sprint: {
+        name: "Sprint de automatización",
+        title: "Un proceso manual, automatizado en 2\u2060–\u20603 semanas",
+        text: "Elegimos juntos un proceso concreto que hoy te cuesta horas y lo dejo funcionando de forma automática, con registro de cada paso y avisos si algo falla.",
+        exampleLabel: "Ejemplo típico",
+        example:
+          "Cada pedido de la tienda online se copia a mano en el programa de facturación. Al terminar el sprint, la factura se genera sola y el cliente recibe el aviso de envío.",
+        facts: [
+          { label: "Plazo", value: "2\u2060–\u20603 semanas" },
+          { label: "Precio", value: "Cerrado por escrito" },
+        ],
+        deliverablesLabel: "Entregables",
+        deliverables: [
+          "Flujo automatizado funcionando en producción",
+          "Documentación de cómo funciona y qué hacer si falla",
+          "Sesión de traspaso con tu equipo",
+          "30 días de garantía tras la entrega",
+        ],
+        cta: "Reservar sesión de 20 min",
+      },
+      maintenance: {
+        name: "Mantenimiento mensual (opcional)",
+        text: "Una bolsa de horas al mes para vigilar las automatizaciones, ajustar lo que cambie en tus herramientas y añadir mejoras pequeñas. [TODO_LUIS: horas incluidas y condiciones de permanencia]",
+      },
+    },
+  },
+
+  projects: {
+    eyebrow: "Proyectos",
+    title: "Proyectos que puedes revisar",
+    intro:
+      "Todavía no publico casos de clientes, y no voy a poner logos que no tengo. Estos son proyectos propios y demostraciones que puedes abrir y probar.",
+    problemLabel: "Problema",
+    builtLabel: "Qué construí",
+    techLabel: "Tecnología",
+    open: "Ver proyecto",
+    linkMissing: "[TODO_LUIS: enlace]",
+    imageMissing: "[TODO_LUIS: captura]",
+    imageAlt: "Captura de",
+    items: [
+      {
+        key: "store",
+        tag: "Proyecto propio",
+        name: "Tienda online [TODO_LUIS: nombre]",
+        problem: "[TODO_LUIS: qué problema resolvía la tienda]",
+        built: "Tienda online completa: catálogo, carrito, pagos y gestión de pedidos. [TODO_LUIS: detalles]",
+        tech: "[TODO_LUIS: tecnologías]",
+      },
+      {
+        key: "site",
+        tag: "Proyecto propio",
+        name: "parraxsolutions.com",
+        problem: "Necesitaba una web propia rápida, bilingüe y con un formulario de contacto fiable, sin depender de un constructor de webs.",
+        built: "Esta misma web: español e inglés, formulario con validación y protección antispam, y páginas de servicio preparadas para buscadores.",
+        tech: "Next.js, React, TypeScript, Tailwind CSS, Vercel",
+      },
+      {
+        key: "automation",
+        tag: "Proyecto demostrativo",
+        name: "Del pedido a la factura",
+        problem: "Los pedidos de una tienda online se pasan a mano al programa de facturación, con errores y horas perdidas cada semana.",
+        built: "Demostración de un flujo que crea la factura y avisa al cliente en cuanto entra un pedido pagado. [TODO_LUIS: construir la demo o quitar esta tarjeta]",
+        tech: "[TODO_LUIS: tecnologías]",
+      },
     ],
-    cta: "Solicitar auditoría digital",
   },
 
   about: {
@@ -409,6 +525,49 @@ export const es = {
     newTab: "(se abre en una pestaña nueva)",
   },
 
+  faq: {
+    eyebrow: "Preguntas frecuentes",
+    title: "Lo que suelen preguntarme antes de empezar",
+    items: [
+      {
+        q: "¿Cuánto cuesta?",
+        a: "Depende del alcance, pero siempre trabajo con precio cerrado por escrito antes de empezar. En Servicios tienes el precio desde de cada paquete; después de la sesión de 20 minutos te envío la propuesta exacta en tu moneda local.",
+      },
+      {
+        q: "¿Cuánto tarda?",
+        a: "Un Sprint de automatización dura de 2 a 3 semanas. Para webs y tiendas, cada paquete tiene un plazo orientativo, y el plazo definitivo queda fijado en la propuesta.",
+      },
+      {
+        q: "¿El código es mío?",
+        a: "Sí. Al terminar recibes el código fuente y los accesos, y la propiedad queda recogida en el contrato. No pagas cuotas por usuario por lo que construyo. Los servicios de terceros que uses, como el alojamiento, el dominio o la pasarela de pago, los pagas directamente a cada proveedor.",
+      },
+      {
+        q: "¿Qué pasa si quiero cambios?",
+        a: "Los paquetes de web y tienda incluyen dos rondas de cambios. Si después necesitas más, te los presupuesto aparte o los incluimos en el mantenimiento mensual.",
+      },
+      {
+        q: "¿Trabajas con empresas de mi país?",
+        a: "Sí. Trabajo en remoto con empresas de cualquier país, por videollamada, en español o en inglés.",
+      },
+      {
+        q: "¿Cómo funcionan los pagos internacionales?",
+        a: "[TODO_LUIS: métodos de pago aceptados, moneda de facturación y calendario de pagos]",
+      },
+      {
+        q: "¿Qué pasa después de entregar?",
+        a: "Te explico cómo funciona todo y te dejo la documentación. Las automatizaciones tienen 30 días de garantía. Después puedes contratar el mantenimiento mensual o seguir por tu cuenta, porque todo es tuyo.",
+      },
+      {
+        q: "¿Necesito saber de tecnología?",
+        a: "No. Tú me explicas cómo funciona tu negocio y yo me encargo de la parte técnica, sin jerga. Al final te enseño a usar lo que he construido.",
+      },
+      {
+        q: "¿Qué herramientas usas?",
+        a: "Para webs y tiendas, Next.js, React y TypeScript, desplegadas en Vercel o en el alojamiento que prefieras. Para automatizar, conecto las herramientas que ya usas a través de sus APIs. [TODO_LUIS: confirma tus herramientas de automatización]",
+      },
+    ],
+  },
+
   contact: {
     eyebrow: "Contacto",
     title: "Cuéntame qué quieres resolver",
@@ -416,7 +575,7 @@ export const es = {
       "Una primera charla de 20 minutos, sin coste ni compromiso. Me cuentas qué necesitas y te digo con sinceridad si puedo ayudarte.",
     stepsTitle: "Qué pasa después",
     steps: [
-      "Te escribo en 24–48 h laborables para buscar un hueco que te venga bien.",
+      "Te escribo en 24\u2060–\u206048 h laborables para buscar un hueco que te venga bien.",
       "Hablamos 20 minutos por videollamada para conocer tu caso.",
       "Si encaja, te envío una propuesta por escrito con alcance, plazo y precio cerrado.",
       "Si decides seguir, empezamos con las revisiones de avance que fijemos en la propuesta.",
@@ -424,7 +583,7 @@ export const es = {
     calendar: {
       title: "¿Prefieres reservar directamente?",
       text: "Elige un hueco en mi calendario para una sesión de 20 minutos.",
-      cta: "Agendar sesión de 20 min",
+      cta: "Reservar sesión de 20 min",
     },
     directEmail: "O escríbeme a",
     instagramLabel: "Instagram de Parrax Solutions",
@@ -479,7 +638,7 @@ export const es = {
       },
       success: {
         title: "Solicitud recibida",
-        text: "Gracias. Te escribiré en 24–48 h laborables para concretar la sesión.",
+        text: "Gracias. Te escribiré en 24\u2060–\u206048 h laborables para concretar la sesión.",
         again: "Enviar otra solicitud",
       },
     },
@@ -536,9 +695,10 @@ export const es = {
       {
         title: "Empresa",
         links: [
+          { label: "Servicios", href: "/#servicios" },
+          { label: "Proyectos", href: "/#proyectos" },
           { label: "Método", href: "/#metodo" },
-          { label: "Por qué Parrax", href: "/#por-que" },
-          { label: "Auditoría gratuita", href: "/#auditoria" },
+          { label: "Preguntas frecuentes", href: "/#preguntas" },
           { label: "Contacto", href: "/#contacto" },
         ],
       },

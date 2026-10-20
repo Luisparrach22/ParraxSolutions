@@ -174,7 +174,7 @@ export function Navbar({ lang, t, a11y }: NavbarProps) {
                   onClick={(e) => go(e, href)}
                   aria-current={isActive ? 'location' : undefined}
                   className={cn(
-                    'group flex items-center gap-2 rounded px-3 py-2 text-sm transition-colors',
+                    'group flex items-center gap-2 whitespace-nowrap rounded px-2.5 py-2 text-sm transition-colors xl:px-3',
                     isActive ? 'text-white' : 'text-slate-400 hover:text-white',
                   )}
                 >
@@ -193,8 +193,8 @@ export function Navbar({ lang, t, a11y }: NavbarProps) {
         <div className="flex items-center gap-2.5">
           <LanguageSwitcher lang={lang} label={a11y.language} className="hidden sm:inline-flex" />
           <BookingButton lang={lang} size="md" className="hidden sm:inline-flex" onClick={(e) => go(e, e.currentTarget.getAttribute('href') ?? '')}>
-            <span className="lg:hidden">{t.ctaShort}</span>
-            <span className="hidden lg:inline">{t.cta}</span>
+            <span className="xl:hidden">{t.ctaShort}</span>
+            <span className="hidden xl:inline">{t.cta}</span>
           </BookingButton>
           <button
             ref={toggleRef}

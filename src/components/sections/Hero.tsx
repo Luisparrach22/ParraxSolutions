@@ -1,8 +1,8 @@
-import type { Dictionary } from '@/i18n/config';
-import { Button, NodeDot, Rich } from '@/components/ui';
+import type { Dictionary, Locale } from '@/i18n/config';
+import { BookingButton, Button, NodeDot, Rich } from '@/components/ui';
 import { HeroMockup } from './HeroMockup';
 
-export function Hero({ t }: { t: Dictionary['hero'] }) {
+export function Hero({ lang, t }: { lang: Locale; t: Dictionary['hero'] }) {
   return (
     <section aria-labelledby="hero-title" className="relative overflow-hidden bg-obsidian pt-[calc(var(--nav-h)+24px)] md:pt-[calc(var(--nav-h)+80px)]">
       {/* Rejilla técnica sutil, sin manchas de color */}
@@ -17,7 +17,7 @@ export function Hero({ t }: { t: Dictionary['hero'] }) {
             </p>
           </div>
           <div>
-            <h1 id="hero-title" className="mt-4 text-display text-white sm:mt-5">
+            <h1 id="hero-title" className="mt-4 text-display text-white sm:mt-5 lg:text-[clamp(2.5rem,4.2vw,3.25rem)]">
               <span>{t.titleA}</span>{' '}
               <span className="text-slate-400">{t.titleB}</span>
             </h1>
@@ -26,10 +26,10 @@ export function Hero({ t }: { t: Dictionary['hero'] }) {
             <p className="mt-4 max-w-[58ch] text-[0.9375rem] leading-relaxed text-slate-400 sm:mt-5 sm:text-lead">{t.subtitle}</p>
           </div>
           <div className="mt-7 flex flex-col gap-3 sm:mt-8 sm:flex-row">
-            <Button href="#auditoria" size="lg" arrow className="w-full sm:w-auto">
+            <BookingButton lang={lang} size="lg" arrow className="w-full sm:w-auto">
               {t.ctaPrimary}
-            </Button>
-            <Button href="#soluciones" size="lg" variant="ghost" className="w-full sm:w-auto">
+            </BookingButton>
+            <Button href="#servicios" size="lg" variant="ghost" className="w-full sm:w-auto">
               {t.ctaSecondary}
             </Button>
           </div>

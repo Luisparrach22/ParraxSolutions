@@ -32,33 +32,34 @@ export const en: Dictionary = {
 
   nav: {
     links: [
-      { label: "Services", href: "#soluciones" },
+      { label: "Services", href: "#servicios" },
+      { label: "Projects", href: "#proyectos" },
       { label: "Method", href: "#metodo" },
-      { label: "Why Parrax", href: "#por-que" },
-      { label: "Contact", href: "#contacto" },
+      { label: "About", href: "#quien" },
+      { label: "FAQ", href: "#preguntas" },
     ],
-    cta: "Book a strategy session",
+    cta: "Book a free session",
     ctaShort: "Book a session",
     ctaSub: "20-minute session, free",
     writeUs: "Or write to me at",
     menuTitle: "Navigation",
     noCommitment: "No commitment",
     reviewTitle: "Prefer to write?",
-    reviewText: "Tell me about your case through the form and I'll reply within 24–48 business hours.",
+    reviewText: "Tell me about your case through the form and I'll reply within 24\u2060–\u206048 business hours.",
     reviewLink: "Go to the form",
   },
 
   hero: {
-    eyebrow: "Custom websites and software for businesses",
-    titleA: "Websites that bring in clients and software",
-    titleB: "that removes manual work.",
+    eyebrow: "Websites, online stores and automation",
+    titleA: "Websites and online stores that sell.",
+    titleB: "Automation so you can stop copying and pasting.",
     subtitle:
-      "I design your website or landing page and build the system that connects your operation. One person accountable, from the first visit to the invoice.",
-    ctaPrimary: "Request a digital audit",
+      "I build your website or online store with cart, payments and order management, and I automate the processes you do by hand today. Fixed price, you own the code and no platform fees.",
+    ctaPrimary: "Book a 20-min session",
     ctaSecondary: "See services",
     reassurance: [
-      "No cost, no commitment",
-      "Reply within 24–48 business hours",
+      "Free strategy session",
+      "Reply within 24\u2060–\u206048 business hours",
       "You own the code",
     ],
     mockup: {
@@ -66,30 +67,30 @@ export const en: Dictionary = {
       label: "Illustrative view · sample data",
       window: "dashboard.yourcompany.com",
       eyebrow: "Dashboard",
-      title: "From your website to the quote, hands-free",
+      title: "From order to invoice, no typing",
       live: "Synced",
-      pipeline: ["Web form", "CRM", "Quote"],
+      pipeline: ["Online store", "Invoicing", "Notice"],
       pipelineSub: [
-        "Your website or landing page",
-        "Client created instantly",
-        "Generated and sent",
+        "Order paid",
+        "Invoice generated instantly",
+        "Sent to the customer",
       ],
       rows: [
         {
-          ref: "WEB-214",
-          text: "New request from the landing page",
+          ref: "ORD-1042",
+          text: "Order paid in the online store",
           status: "Received",
           state: "done",
         },
         {
-          ref: "CRM-381",
-          text: "Client created automatically",
+          ref: "INV-381",
+          text: "Invoice created automatically",
           status: "Completed",
           state: "done",
         },
         {
-          ref: "PRE-118",
-          text: "Quote sent to the client",
+          ref: "SHP-118",
+          text: "Shipping notice sent to the customer",
           status: "In progress",
           state: "active",
         },
@@ -125,10 +126,10 @@ export const en: Dictionary = {
   },
 
   solutions: {
-    eyebrow: "Services",
-    title: "What I do",
+    eyebrow: "Custom projects",
+    title: "I can also help you with…",
     intro:
-      "Every project starts with a concrete business problem, not with a technology.",
+      "For when what you need goes beyond a website or a single process. Every project starts with a business problem, not with a technology.",
     more: "Learn more",
     items: [
       {
@@ -190,7 +191,7 @@ export const en: Dictionary = {
     fitTitle: "A good fit if…",
     outcomeTitle: "What changes in your day-to-day",
     ctaTitle: "Shall we look at it applied to your case?",
-    ctaPrimary: "Book a strategy session",
+    ctaPrimary: "Book a free session",
     ctaSecondary: "See how I work",
     ctaText:
       "In a 20-minute session I review your situation and tell you honestly whether this is what you need.",
@@ -377,16 +378,131 @@ export const en: Dictionary = {
     },
   },
 
-  audit: {
-    badge: "Launch offer",
-    title: "Free digital audit",
-    text: "Before talking about quotes, we want to get to know you. In a first conversation we look at what's holding you back and whether it makes sense to work together. The in-depth analysis comes later, once you decide to continue.",
-    points: [
-      "20 minutes by video call or phone",
-      "You tell us your case and we give you an honest opinion",
-      "If it's a fit, a written proposal with a fixed price",
+  services: {
+    eyebrow: "Services",
+    title: "Two ways to get started",
+    intro:
+      "Pick what's most urgent today: selling online or taking manual work off your plate. Either way, scope and price are fixed in writing before we start.",
+    from: "From",
+    perMonth: "/month",
+    priceMissing: "[TODO_LUIS: price]",
+    localCurrency: "Quote in your local currency.",
+    timelineLabel: "Estimated timeline",
+    includesLabel: "Includes",
+    shops: {
+      title: "Websites and online stores",
+      text: "Three fixed-scope packages with no monthly platform fees: the store is yours.",
+      guarantee: "Fixed price in writing. Two rounds of changes included. You own the code.",
+      packages: [
+        {
+          key: "landing",
+          name: "Landing page or business website",
+          forWho: "To present your business or launch a campaign with a clear page that turns visits into leads.",
+          includes: [
+            "Custom design with your brand",
+            "Copy and structure built for getting in touch",
+            "Form connected to your email or CRM",
+            "Fast, phone-friendly and ready for Google",
+          ],
+          timeline: "[TODO_LUIS: timeline]",
+          cta: "Book a session",
+        },
+        {
+          key: "store",
+          name: "Online store",
+          forWho: "To sell your products online with your own store, without paying monthly platform fees.",
+          includes: [
+            "Product catalog with photos, variants and stock",
+            "Cart and checkout with an online payment gateway",
+            "Dashboard to manage orders and products",
+            "Order confirmation emails",
+          ],
+          timeline: "[TODO_LUIS: timeline]",
+          cta: "Book a session",
+        },
+        {
+          key: "storeOps",
+          name: "Store + operations",
+          forWho: "For stores that sell, or will sell, in volume and don't want to handle every order by hand.",
+          includes: [
+            "Everything in Online store",
+            "Shipping rates by zone",
+            "Automatic notices to the customer and your team",
+            "Connection to your invoicing software",
+          ],
+          timeline: "[TODO_LUIS: timeline]",
+          cta: "Book a session",
+        },
+      ],
+    },
+    automation: {
+      title: "Automation and integrations",
+      text: "When the business already works but depends on copying data from one place to another.",
+      sprint: {
+        name: "Automation Sprint",
+        title: "One manual process, automated in 2\u2060–\u20603 weeks",
+        text: "Together we pick one specific process that costs you hours today, and I leave it running automatically, with a log of every step and alerts if something fails.",
+        exampleLabel: "Typical example",
+        example:
+          "Every online store order is copied by hand into the invoicing software. After the sprint, the invoice is created on its own and the customer gets the shipping notice.",
+        facts: [
+          { label: "Timeline", value: "2\u2060–\u20603 weeks" },
+          { label: "Price", value: "Fixed in writing" },
+        ],
+        deliverablesLabel: "Deliverables",
+        deliverables: [
+          "Automated workflow running in production",
+          "Documentation on how it works and what to do if it fails",
+          "Handover session with your team",
+          "30-day warranty after delivery",
+        ],
+        cta: "Book a 20-min session",
+      },
+      maintenance: {
+        name: "Monthly maintenance (optional)",
+        text: "A monthly bank of hours to monitor the automations, adjust to changes in your tools and add small improvements. [TODO_LUIS: hours included and commitment terms]",
+      },
+    },
+  },
+
+  projects: {
+    eyebrow: "Projects",
+    title: "Projects you can check out",
+    intro:
+      "I don't publish client cases yet, and I won't show logos I don't have. These are my own projects and demos you can open and try.",
+    problemLabel: "Problem",
+    builtLabel: "What I built",
+    techLabel: "Technology",
+    open: "View project",
+    linkMissing: "[TODO_LUIS: link]",
+    imageMissing: "[TODO_LUIS: screenshot]",
+    imageAlt: "Screenshot of",
+    items: [
+      {
+        key: "store",
+        tag: "Own project",
+        name: "Online store [TODO_LUIS: name]",
+        problem: "[TODO_LUIS: what problem the store solved]",
+        built: "A complete online store: catalog, cart, payments and order management. [TODO_LUIS: details]",
+        tech: "[TODO_LUIS: technologies]",
+      },
+      {
+        key: "site",
+        tag: "Own project",
+        name: "parraxsolutions.com",
+        problem: "I needed my own fast, bilingual website with a reliable contact form, without depending on a website builder.",
+        built: "This very website: Spanish and English, a form with validation and spam protection, and service pages ready for search engines.",
+        tech: "Next.js, React, TypeScript, Tailwind CSS, Vercel",
+      },
+      {
+        key: "automation",
+        tag: "Demo project",
+        name: "From order to invoice",
+        problem: "Online store orders are typed by hand into the invoicing software, with mistakes and hours lost every week.",
+        built: "A demo of a workflow that creates the invoice and notifies the customer as soon as a paid order comes in. [TODO_LUIS: build the demo or remove this card]",
+        tech: "[TODO_LUIS: technologies]",
+      },
     ],
-    cta: "Request a digital audit",
   },
 
   about: {
@@ -406,6 +522,49 @@ export const en: Dictionary = {
     newTab: "(opens in a new tab)",
   },
 
+  faq: {
+    eyebrow: "FAQ",
+    title: "What people usually ask me before starting",
+    items: [
+      {
+        q: "How much does it cost?",
+        a: "It depends on the scope, but I always work with a fixed price in writing before we start. Under Services you'll find the starting price of each package; after the 20-minute session I send you the exact proposal in your local currency.",
+      },
+      {
+        q: "How long does it take?",
+        a: "An Automation Sprint takes 2 to 3 weeks. For websites and stores, each package has an estimated timeline, and the final timeline is set in the proposal.",
+      },
+      {
+        q: "Do I own the code?",
+        a: "Yes. When we finish you receive the source code and the access credentials, and ownership is stated in the contract. You don't pay per-user fees for what I build. Third-party services you use, such as hosting, domain or payment gateway, you pay directly to each provider.",
+      },
+      {
+        q: "What if I want changes?",
+        a: "Website and store packages include two rounds of changes. If you need more afterwards, I quote them separately or we include them in the monthly maintenance.",
+      },
+      {
+        q: "Do you work with companies in my country?",
+        a: "Yes. I work remotely with companies in any country, by video call, in Spanish or English.",
+      },
+      {
+        q: "How do international payments work?",
+        a: "[TODO_LUIS: accepted payment methods, invoicing currency and payment schedule]",
+      },
+      {
+        q: "What happens after delivery?",
+        a: "I walk you through how everything works and leave you the documentation. Automations come with a 30-day warranty. After that you can hire monthly maintenance or carry on by yourself, because everything is yours.",
+      },
+      {
+        q: "Do I need to know about technology?",
+        a: "No. You explain how your business works and I take care of the technical side, without jargon. At the end I show you how to use what I've built.",
+      },
+      {
+        q: "What tools do you use?",
+        a: "For websites and stores, Next.js, React and TypeScript, deployed on Vercel or the hosting you prefer. To automate, I connect the tools you already use through their APIs. [TODO_LUIS: confirm your automation tools]",
+      },
+    ],
+  },
+
   contact: {
     eyebrow: "Contact",
     title: "Tell me what you want to solve",
@@ -413,7 +572,7 @@ export const en: Dictionary = {
       "A first 20-minute conversation, no cost and no commitment. You tell me what you need and I tell you honestly whether I can help.",
     stepsTitle: "What happens next",
     steps: [
-      "I write back within 24–48 business hours to find a time that suits you.",
+      "I write back within 24\u2060–\u206048 business hours to find a time that suits you.",
       "We talk for 20 minutes by video call to understand your case.",
       "If it's a fit, I send you a written proposal with scope, timeline and a fixed price.",
       "If you decide to continue, we start with the progress reviews set out in the proposal.",
@@ -476,7 +635,7 @@ export const en: Dictionary = {
       },
       success: {
         title: "Request received",
-        text: "Thank you. I'll write to you within 24–48 business hours to arrange the session.",
+        text: "Thank you. I'll write to you within 24\u2060–\u206048 business hours to arrange the session.",
         again: "Send another request",
       },
     },
@@ -533,9 +692,10 @@ export const en: Dictionary = {
       {
         title: "Company",
         links: [
+          { label: "Services", href: "/#servicios" },
+          { label: "Projects", href: "/#proyectos" },
           { label: "Method", href: "/#metodo" },
-          { label: "Why Parrax", href: "/#por-que" },
-          { label: "Free audit", href: "/#auditoria" },
+          { label: "FAQ", href: "/#preguntas" },
           { label: "Contact", href: "/#contacto" },
         ],
       },

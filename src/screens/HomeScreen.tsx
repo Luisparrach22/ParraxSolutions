@@ -5,7 +5,6 @@ import { Problems } from '@/components/sections/Problems';
 import { Solutions } from '@/components/sections/Solutions';
 import { Method } from '@/components/sections/Method';
 import { WhyParrax } from '@/components/sections/WhyParrax';
-import { Audit } from '@/components/sections/Audit';
 import { About } from '@/components/sections/About';
 import { Contact } from '@/components/sections/Contact';
 
@@ -15,12 +14,11 @@ export function HomeScreen({ lang }: { lang: Locale }) {
   const t = getDictionary(lang);
   return (
     <>
-      <Hero t={t.hero} />
+      <Hero lang={lang} t={t.hero} />
       <Problems t={t.problems} />
       <Solutions lang={lang} t={t.solutions} />
       <Method t={t.method} />
       <WhyParrax t={t.why} />
-      <Audit t={t.audit} />
       <About t={t.about} />
       <Contact lang={lang} t={t.contact} />
     </>
