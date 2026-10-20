@@ -20,9 +20,9 @@ const content: Record<Locale, { title: string; description: string; subtitle: st
         <section className="space-y-3">
           <h2 className="text-lg font-medium text-white">1. Responsable del tratamiento</h2>
           <ul className="list-inside list-disc space-y-1 text-slate-400">
-            <li><strong>Identidad:</strong> <Rich text="[Nombre / Razón Social del Titular]" /> (Parrax Solutions)</li>
-            <li><strong>NIF/CIF:</strong> <Rich text="[NIF / CIF]" /></li>
-            <li><strong>Dirección:</strong> <Rich text="[Domicilio social completo]" /></li>
+            <li><strong>Identidad:</strong> <Rich text="[TODO_LUIS: nombre completo o razón social del titular]" /> (Parrax Solutions)</li>
+            <li><strong>NIF/CIF:</strong> <Rich text="[TODO_LUIS: NIF / CIF]" /></li>
+            <li><strong>Dirección:</strong> <Rich text="[TODO_LUIS: domicilio fiscal completo]" /></li>
             <li><strong>Email de contacto / DPO:</strong> {privacyMail}</li>
           </ul>
         </section>
@@ -34,7 +34,7 @@ const content: Record<Locale, { title: string; description: string; subtitle: st
           </p>
           <ul className="list-inside list-disc space-y-2 text-slate-400">
             <li>
-              <strong>Gestión de consultas y solicitudes comerciales:</strong> Responder a tu solicitud de información, agendar la sesión estratégica o preparar la auditoría digital solicitada. <em>Base legal: consentimiento del interesado (art. 6.1.a RGPD) y aplicación de medidas precontractuales (art. 6.1.b RGPD).</em>
+              <strong>Gestión de consultas y solicitudes comerciales:</strong> Responder a tu solicitud de información y agendar la sesión estratégica. <em>Base legal: consentimiento del interesado (art. 6.1.a RGPD) y aplicación de medidas precontractuales (art. 6.1.b RGPD).</em>
             </li>
             <li>
               <strong>Prestación y formalización de servicios:</strong> En caso de contratación, gestionar la relación comercial y contractual. <em>Base legal: ejecución del contrato (art. 6.1.b RGPD).</em>
@@ -74,9 +74,9 @@ const content: Record<Locale, { title: string; description: string; subtitle: st
         <section className="space-y-3">
           <h2 className="text-lg font-medium text-white">1. Data controller</h2>
           <ul className="list-inside list-disc space-y-1 text-slate-400">
-            <li><strong>Identity:</strong> <Rich text="[Owner name / Company name]" /> (Parrax Solutions)</li>
-            <li><strong>Tax ID (NIF/CIF):</strong> <Rich text="[Tax ID (NIF / CIF)]" /></li>
-            <li><strong>Address:</strong> <Rich text="[Full registered address]" /></li>
+            <li><strong>Identity:</strong> <Rich text="[TODO_LUIS: owner full name or company name]" /> (Parrax Solutions)</li>
+            <li><strong>Tax ID (NIF/CIF):</strong> <Rich text="[TODO_LUIS: tax ID (NIF / CIF)]" /></li>
+            <li><strong>Address:</strong> <Rich text="[TODO_LUIS: full registered address]" /></li>
             <li><strong>Contact email / DPO:</strong> {privacyMail}</li>
           </ul>
         </section>
@@ -88,7 +88,7 @@ const content: Record<Locale, { title: string; description: string; subtitle: st
           </p>
           <ul className="list-inside list-disc space-y-2 text-slate-400">
             <li>
-              <strong>Handling inquiries and commercial requests:</strong> Responding to your request for information, scheduling the strategy session or preparing the digital audit you requested. <em>Legal basis: consent of the data subject (Art. 6.1.a GDPR) and implementation of pre-contractual measures (Art. 6.1.b GDPR).</em>
+              <strong>Handling inquiries and commercial requests:</strong> Responding to your request for information and scheduling the strategy session. <em>Legal basis: consent of the data subject (Art. 6.1.a GDPR) and implementation of pre-contractual measures (Art. 6.1.b GDPR).</em>
             </li>
             <li>
               <strong>Provision and formalization of services:</strong> If you hire us, managing the commercial and contractual relationship. <em>Legal basis: performance of a contract (Art. 6.1.b GDPR).</em>

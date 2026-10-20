@@ -24,11 +24,11 @@ const content: Record<Locale, { title: string; description: string; subtitle: st
             En cumplimiento del deber de información recogido en el artículo 10 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y del Comercio Electrónico (LSSI-CE), se facilitan los siguientes datos:
           </p>
           <ul className="list-inside list-disc space-y-1 text-slate-400">
-            <li><strong>Denominación social / Titular:</strong> <Rich text="[Nombre / Razón Social del Titular]" /></li>
-            <li><strong>NIF / CIF:</strong> <Rich text="[NIF / CIF]" /></li>
-            <li><strong>Domicilio social / Cobertura:</strong> España · Venezuela</li>
+            <li><strong>Denominación social / Titular:</strong> <Rich text="[TODO_LUIS: nombre completo o razón social del titular]" /></li>
+            <li><strong>NIF / CIF:</strong> <Rich text="[TODO_LUIS: NIF / CIF]" /></li>
+            <li><strong>Domicilio:</strong> <Rich text="[TODO_LUIS: domicilio fiscal completo]" /></li>
             <li><strong>Correo electrónico de contacto:</strong> {mail}</li>
-            <li><strong>Inscripción registral:</strong> <Rich text="[Datos de inscripción en el Registro Mercantil si aplica]" /></li>
+            <li><strong>Inscripción registral:</strong> <Rich text="[TODO_LUIS: datos del Registro Mercantil, o borrar esta línea si eres autónomo]" /></li>
           </ul>
         </section>
 
@@ -74,11 +74,11 @@ const content: Record<Locale, { title: string; description: string; subtitle: st
             In compliance with the duty of information set out in Article 10 of Spanish Law 34/2002 of 11 July on Information Society Services and Electronic Commerce (LSSI-CE), the following details are provided:
           </p>
           <ul className="list-inside list-disc space-y-1 text-slate-400">
-            <li><strong>Company name / Owner:</strong> <Rich text="[Owner name / Company name]" /></li>
-            <li><strong>Tax ID (NIF / CIF):</strong> <Rich text="[Tax ID (NIF / CIF)]" /></li>
-            <li><strong>Registered address / Coverage:</strong> Spain · Venezuela</li>
+            <li><strong>Company name / Owner:</strong> <Rich text="[TODO_LUIS: owner full name or company name]" /></li>
+            <li><strong>Tax ID (NIF / CIF):</strong> <Rich text="[TODO_LUIS: tax ID (NIF / CIF)]" /></li>
+            <li><strong>Address:</strong> <Rich text="[TODO_LUIS: full registered address]" /></li>
             <li><strong>Contact email:</strong> {mail}</li>
-            <li><strong>Commercial registry entry:</strong> <Rich text="[Commercial Registry details, if applicable]" /></li>
+            <li><strong>Commercial registry entry:</strong> <Rich text="[TODO_LUIS: Commercial Registry details, or delete this line if self-employed]" /></li>
           </ul>
         </section>
 
