@@ -7,7 +7,6 @@ import { Hero } from '@/components/sections/Hero';
 import { Problems } from '@/components/sections/Problems';
 import { Services } from '@/components/sections/Services';
 import { Solutions } from '@/components/sections/Solutions';
-import { Projects } from '@/components/sections/Projects';
 import { Method } from '@/components/sections/Method';
 import { WhyParrax } from '@/components/sections/WhyParrax';
 import { About } from '@/components/sections/About';
@@ -52,7 +51,6 @@ export function HomeScreen({ lang }: { lang: Locale }) {
       <Problems t={t.problems} />
       <Services lang={lang} t={t.services} />
       <Solutions lang={lang} t={t.solutions} />
-      <Projects t={t.projects} />
       <Method t={t.method} />
       <WhyParrax t={t.why} />
       <About t={t.about} />

@@ -33,7 +33,6 @@ export const en: Dictionary = {
   nav: {
     links: [
       { label: "Services", href: "#servicios" },
-      { label: "Projects", href: "#proyectos" },
       { label: "Method", href: "#metodo" },
       { label: "About", href: "#quien" },
       { label: "FAQ", href: "#preguntas" },
@@ -192,7 +191,7 @@ export const en: Dictionary = {
     approachTitle: "How I solve it",
     timelineTitle: "Estimated timeline",
     faqTitle: "Frequently asked questions",
-    packagesLink: "See packages and prices",
+    packagesLink: "See packages",
     includesTitle: "What's included",
     fitTitle: "A good fit if…",
     outcomeTitle: "What changes in your day-to-day",
@@ -240,7 +239,7 @@ export const en: Dictionary = {
             "text": "I handle the domain, publishing and redirects if you're moving from another site. I show you how to change text and images without depending on me."
           }
         ],
-        timeline: "The timeline depends on the number of pages and whether the copy is ready. I give it to you in writing in the proposal, together with the fixed price. [TODO_LUIS: estimated timeline]",
+        timeline: "The timeline depends on the number of pages and whether the copy is ready. I give it to you in writing in the proposal, together with the fixed price.",
         faq: [
           {
             "q": "Can I edit the website myself?",
@@ -294,7 +293,7 @@ export const en: Dictionary = {
             "text": "I move the data from your current sheets into the system, check that it adds up and support your team through the first weeks of use."
           }
         ],
-        timeline: "A management system is built in phases. The proposal details what each phase includes, its timeline and its price, so you decide how far to go. [TODO_LUIS: estimated timeline for a first phase]",
+        timeline: "A management system is built in phases. The proposal details what each phase includes, its timeline and its price, so you decide how far to go.",
         faq: [
           {
             "q": "Why not use an off-the-shelf ERP?",
@@ -464,7 +463,7 @@ export const en: Dictionary = {
             "text": "I publish the app, set up access and leave you the documentation. Ongoing maintenance is optional."
           }
         ],
-        timeline: "It depends on the number of screens and the connections to other systems. I split it into phases with a fixed timeline and price in the proposal. [TODO_LUIS: estimated timeline]",
+        timeline: "It depends on the number of screens and the connections to other systems. I split it into phases with a fixed timeline and price in the proposal.",
         faq: [
           {
             "q": "Is it an app you download from a store?",
@@ -522,7 +521,7 @@ export const en: Dictionary = {
             "text": "The new and old systems run in parallel until you've confirmed everything adds up. That way operations never stop."
           }
         ],
-        timeline: "It depends on how complex the file or program is. After reviewing it I give you a fixed timeline and price in writing. [TODO_LUIS: estimated timeline]",
+        timeline: "It depends on how complex the file or program is. After reviewing it I give you a fixed timeline and price in writing.",
         faq: [
           {
             "q": "Will I have to learn a new way of working?",
@@ -580,7 +579,7 @@ export const en: Dictionary = {
             "text": "If you need it, I review vendor proposals and help you ask the right questions before you sign."
           }
         ],
-        timeline: "A review with a roadmap comes with a fixed scope and price. [TODO_LUIS: consulting timeline and format]",
+        timeline: "A review with a roadmap comes with a fixed scope and price.",
         faq: [
           {
             "q": "Will you always recommend something custom?",
@@ -651,7 +650,7 @@ export const en: Dictionary = {
         "text": "I take the store live, show you how to manage products and orders, and you receive the code and access credentials."
       }
     ],
-    "timeline": "The timeline depends on the number of products and integrations. I set it in the proposal, together with the fixed price. [TODO_LUIS: estimated timeline]",
+    "timeline": "The timeline depends on the number of products and integrations. I set it in the proposal, together with the fixed price.",
     "faq": [
       {
         "q": "Are there really no monthly fees?",
@@ -744,10 +743,6 @@ export const en: Dictionary = {
     title: "Two ways to get started",
     intro:
       "Pick what's most urgent today: selling online or taking manual work off your plate. Either way, scope and price are fixed in writing before we start.",
-    from: "From",
-    perMonth: "/month",
-    priceMissing: "[TODO_LUIS: price]",
-    localCurrency: "Quote in your local currency.",
     timelineLabel: "Estimated timeline",
     includesLabel: "Includes",
     shops: {
@@ -766,7 +761,7 @@ export const en: Dictionary = {
             "Form connected to your email or CRM",
             "Fast, phone-friendly and ready for Google",
           ],
-          timeline: "[TODO_LUIS: timeline]",
+          timeline: "Defined in the proposal",
           cta: "Book a session",
         },
         {
@@ -779,7 +774,7 @@ export const en: Dictionary = {
             "Dashboard to manage orders and products",
             "Order confirmation emails",
           ],
-          timeline: "[TODO_LUIS: timeline]",
+          timeline: "Defined in the proposal",
           cta: "Book a session",
         },
         {
@@ -792,7 +787,7 @@ export const en: Dictionary = {
             "Automatic notices to the customer and your team",
             "Connection to your invoicing software",
           ],
-          timeline: "[TODO_LUIS: timeline]",
+          timeline: "Defined in the proposal",
           cta: "Book a session",
         },
       ],
@@ -822,49 +817,9 @@ export const en: Dictionary = {
       },
       maintenance: {
         name: "Monthly maintenance (optional)",
-        text: "A monthly bank of hours to monitor the automations, adjust to changes in your tools and add small improvements. [TODO_LUIS: hours included and commitment terms]",
+        text: "A monthly bank of hours to monitor the automations, adjust to changes in your tools and add small improvements.",
       },
     },
-  },
-
-  projects: {
-    eyebrow: "Projects",
-    title: "Projects you can check out",
-    intro:
-      "I don't publish client cases yet, and I won't show logos I don't have. These are my own projects and demos you can open and try.",
-    problemLabel: "Problem",
-    builtLabel: "What I built",
-    techLabel: "Technology",
-    open: "View project",
-    linkMissing: "[TODO_LUIS: link]",
-    imageMissing: "[TODO_LUIS: screenshot]",
-    imageAlt: "Screenshot of",
-    items: [
-      {
-        key: "store",
-        tag: "Own project",
-        name: "Online store [TODO_LUIS: name]",
-        problem: "[TODO_LUIS: what problem the store solved]",
-        built: "A complete online store: catalog, cart, payments and order management. [TODO_LUIS: details]",
-        tech: "[TODO_LUIS: technologies]",
-      },
-      {
-        key: "site",
-        tag: "Own project",
-        name: "parraxsolutions.com",
-        problem: "I needed my own fast, bilingual website with a reliable contact form, without depending on a website builder.",
-        built: "This very website: Spanish and English, a form with validation and spam protection, and service pages ready for search engines.",
-        tech: "Next.js, React, TypeScript, Tailwind CSS, Vercel",
-      },
-      {
-        key: "automation",
-        tag: "Demo project",
-        name: "From order to invoice",
-        problem: "Online store orders are typed by hand into the invoicing software, with mistakes and hours lost every week.",
-        built: "A demo of a workflow that creates the invoice and notifies the customer as soon as a paid order comes in. [TODO_LUIS: build the demo or remove this card]",
-        tech: "[TODO_LUIS: technologies]",
-      },
-    ],
   },
 
   about: {
@@ -872,7 +827,6 @@ export const en: Dictionary = {
     title: "You talk to me from start to finish",
     role: "Founder of Parrax Solutions",
     photoAlt: "Luis Parra, founder of Parrax Solutions",
-    photoMissing: "[TODO_LUIS: photo]",
     paragraphs: [
       "I'm Luis Parra. I design, build and maintain every project myself: the person who replies to your message is the person who will build it.",
       "I come from an industrial background, where a badly solved process shows up in operations every day. That's why I start by understanding how your business works before proposing any technology.",
@@ -880,7 +834,6 @@ export const en: Dictionary = {
       "I work remotely with companies in any country, in Spanish or English, by video call.",
     ],
     linkedin: "See my LinkedIn profile",
-    linkedinMissing: "[TODO_LUIS: LinkedIn link]",
     newTab: "(opens in a new tab)",
   },
 
@@ -890,7 +843,7 @@ export const en: Dictionary = {
     items: [
       {
         q: "How much does it cost?",
-        a: "It depends on the scope, but I always work with a fixed price in writing before we start. Under Services you'll find the starting price of each package; after the 20-minute session I send you the exact proposal in your local currency.",
+        a: "It depends on the scope, but I always work with a fixed price in writing before we start. After the 20-minute session I send you the exact proposal in your local currency.",
       },
       {
         q: "How long does it take?",
@@ -1056,7 +1009,6 @@ export const en: Dictionary = {
         title: "Company",
         links: [
           { label: "Services", href: "/#servicios" },
-          { label: "Projects", href: "/#proyectos" },
           { label: "Method", href: "/#metodo" },
           { label: "FAQ", href: "/#preguntas" },
           { label: "Contact", href: "/#contacto" },

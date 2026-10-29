@@ -3,15 +3,15 @@ import type { Dictionary } from '@/i18n/config';
 import { NodeDot, Reveal, Rich, Section, SectionHeader } from '@/components/ui';
 import { founder } from '@/config/site';
 
-/** «Quién está detrás»: una persona real, con foto y perfil verificable. */
+/** «Quién está detrás»: foto y LinkedIn solo se muestran cuando están configurados en `founder`. */
 export function About({ t }: { t: Dictionary['about'] }) {
   return (
     <Section id="quien" labelledBy="about-title" className="border-t border-obsidian-line">
       <div className="grid grid-cols-1 gap-10 md:grid-cols-12 md:gap-8 lg:gap-12">
         <Reveal className="md:col-span-5 lg:col-span-4">
           <figure>
-            <div className="relative aspect-square w-full max-w-[320px] overflow-hidden rounded-lg border border-obsidian-line bg-obsidian-raised md:max-w-none">
-              {founder.photo ? (
+            {founder.photo && (
+              <div className="relative aspect-square w-full max-w-[320px] overflow-hidden rounded-lg border border-obsidian-line bg-obsidian-raised md:max-w-none">
                 <Image
                   src={founder.photo}
                   alt={t.photoAlt}
@@ -19,19 +19,9 @@ export function About({ t }: { t: Dictionary['about'] }) {
                   sizes="(min-width: 1024px) 340px, (min-width: 768px) 40vw, 320px"
                   className="object-cover"
                 />
-              ) : (
-                // Sin foto todavía: marcador visible para no publicarlo así por error
-                <div className="grid-lines flex h-full w-full flex-col items-center justify-center gap-4 p-6 text-center">
-                  <span aria-hidden="true" className="text-5xl font-semibold tracking-tight text-slate-600">
-                    LP
-                  </span>
-                  <span className="text-xs text-slate-400">
-                    <Rich text={t.photoMissing} />
-                  </span>
-                </div>
-              )}
-            </div>
-            <figcaption className="mt-4">
+              </div>
+            )}
+            <figcaption className={founder.photo ? 'mt-4' : undefined}>
               <p className="flex items-center gap-2 font-semibold text-white">
                 <NodeDot size="xs" />
                 {founder.name}
@@ -48,8 +38,8 @@ export function About({ t }: { t: Dictionary['about'] }) {
               <p key={p}>{p}</p>
             ))}
           </Reveal>
-          <Reveal delay={120} className="mt-7">
-            {founder.linkedin ? (
+          {founder.linkedin && (
+            <Reveal delay={120} className="mt-7">
               <a
                 href={founder.linkedin}
                 target="_blank"
@@ -62,12 +52,8 @@ export function About({ t }: { t: Dictionary['about'] }) {
                 {t.linkedin}
                 <span className="sr-only"> {t.newTab}</span>
               </a>
-            ) : (
-              <p className="text-sm text-slate-400">
-                <Rich text={t.linkedinMissing} />
-              </p>
-            )}
-          </Reveal>
+            </Reveal>
+          )}
         </div>
       </div>
     </Section>

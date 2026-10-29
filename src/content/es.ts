@@ -35,7 +35,6 @@ export const es = {
   nav: {
     links: [
       { label: "Servicios", href: "#servicios" },
-      { label: "Proyectos", href: "#proyectos" },
       { label: "Método", href: "#metodo" },
       { label: "Quién soy", href: "#quien" },
       { label: "Preguntas", href: "#preguntas" },
@@ -194,7 +193,7 @@ export const es = {
     approachTitle: "Cómo lo resuelvo",
     timelineTitle: "Plazo orientativo",
     faqTitle: "Preguntas frecuentes",
-    packagesLink: "Ver paquetes y precios",
+    packagesLink: "Ver paquetes",
     includesTitle: "Qué incluye",
     fitTitle: "Encaja si…",
     outcomeTitle: "Qué cambia en tu día a día",
@@ -242,7 +241,7 @@ export const es = {
             "text": "Me encargo del dominio, la publicación y las redirecciones si vienes de otra web. Te explico cómo cambiar textos e imágenes sin depender de mí."
           }
         ],
-        timeline: "El plazo depende del número de páginas y de si los textos ya están listos. Te lo doy por escrito en la propuesta, junto con el precio cerrado. [TODO_LUIS: plazo orientativo]",
+        timeline: "El plazo depende del número de páginas y de si los textos ya están listos. Te lo doy por escrito en la propuesta, junto con el precio cerrado.",
         faq: [
           {
             "q": "¿Puedo editar la web yo mismo?",
@@ -296,7 +295,7 @@ export const es = {
             "text": "Paso los datos de tus hojas actuales al sistema, compruebo que cuadran y acompaño a tu equipo en las primeras semanas de uso."
           }
         ],
-        timeline: "Un sistema de gestión se construye por fases. En la propuesta te detallo qué incluye cada fase, su plazo y su precio, para que decidas hasta dónde llegar. [TODO_LUIS: plazo orientativo de una primera fase]",
+        timeline: "Un sistema de gestión se construye por fases. En la propuesta te detallo qué incluye cada fase, su plazo y su precio, para que decidas hasta dónde llegar.",
         faq: [
           {
             "q": "¿Por qué no usar un ERP del mercado?",
@@ -466,7 +465,7 @@ export const es = {
             "text": "Publico la app, configuro los accesos y te dejo la documentación. El mantenimiento posterior es opcional."
           }
         ],
-        timeline: "Depende del número de pantallas y de las conexiones con otros sistemas. Lo divido en fases con plazo y precio cerrados en la propuesta. [TODO_LUIS: plazo orientativo]",
+        timeline: "Depende del número de pantallas y de las conexiones con otros sistemas. Lo divido en fases con plazo y precio cerrados en la propuesta.",
         faq: [
           {
             "q": "¿Es una app que se descarga de una tienda?",
@@ -524,7 +523,7 @@ export const es = {
             "text": "El sistema nuevo y el antiguo funcionan en paralelo hasta que compruebas que todo cuadra. Así la operación no se detiene."
           }
         ],
-        timeline: "Depende de la complejidad del archivo o del programa. Después de revisarlo te doy un plazo y un precio cerrados por escrito. [TODO_LUIS: plazo orientativo]",
+        timeline: "Depende de la complejidad del archivo o del programa. Después de revisarlo te doy un plazo y un precio cerrados por escrito.",
         faq: [
           {
             "q": "¿Voy a tener que aprender a trabajar de otra forma?",
@@ -582,7 +581,7 @@ export const es = {
             "text": "Si lo necesitas, reviso las propuestas de proveedores y te ayudo a hacer las preguntas correctas antes de firmar."
           }
         ],
-        timeline: "Una revisión con hoja de ruta se plantea con alcance y precio cerrados. [TODO_LUIS: plazo y formato de la consultoría]",
+        timeline: "Una revisión con hoja de ruta se plantea con alcance y precio cerrados.",
         faq: [
           {
             "q": "¿Me vas a recomendar siempre algo a medida?",
@@ -656,7 +655,7 @@ export const es = {
         "text": "Dejo la tienda en producción, te enseño a gestionar productos y pedidos, y recibes el código y los accesos."
       }
     ],
-    "timeline": "El plazo depende del número de productos y de las integraciones. Lo fijo en la propuesta, junto con el precio cerrado. [TODO_LUIS: plazo orientativo]",
+    "timeline": "El plazo depende del número de productos y de las integraciones. Lo fijo en la propuesta, junto con el precio cerrado.",
     "faq": [
       {
         "q": "¿De verdad no hay cuotas mensuales?",
@@ -749,10 +748,6 @@ export const es = {
     title: "Dos formas de empezar",
     intro:
       "Elige por lo que más te urge hoy: vender online o quitarte trabajo manual de encima. En los dos casos, alcance y precio cerrados por escrito antes de empezar.",
-    from: "Desde",
-    perMonth: "/mes",
-    priceMissing: "[TODO_LUIS: precio]",
-    localCurrency: "Presupuesto en tu moneda local.",
     timelineLabel: "Plazo orientativo",
     includesLabel: "Incluye",
     shops: {
@@ -771,7 +766,7 @@ export const es = {
             "Formulario conectado a tu email o CRM",
             "Carga rápida, adaptada al teléfono y lista para Google",
           ],
-          timeline: "[TODO_LUIS: plazo]",
+          timeline: "Se define en la propuesta",
           cta: "Reservar sesión",
         },
         {
@@ -784,7 +779,7 @@ export const es = {
             "Panel para gestionar pedidos y productos",
             "Emails de confirmación de pedido",
           ],
-          timeline: "[TODO_LUIS: plazo]",
+          timeline: "Se define en la propuesta",
           cta: "Reservar sesión",
         },
         {
@@ -797,7 +792,7 @@ export const es = {
             "Avisos automáticos al cliente y a tu equipo",
             "Conexión con tu programa de facturación",
           ],
-          timeline: "[TODO_LUIS: plazo]",
+          timeline: "Se define en la propuesta",
           cta: "Reservar sesión",
         },
       ],
@@ -827,49 +822,9 @@ export const es = {
       },
       maintenance: {
         name: "Mantenimiento mensual (opcional)",
-        text: "Una bolsa de horas al mes para vigilar las automatizaciones, ajustar lo que cambie en tus herramientas y añadir mejoras pequeñas. [TODO_LUIS: horas incluidas y condiciones de permanencia]",
+        text: "Una bolsa de horas al mes para vigilar las automatizaciones, ajustar lo que cambie en tus herramientas y añadir mejoras pequeñas.",
       },
     },
-  },
-
-  projects: {
-    eyebrow: "Proyectos",
-    title: "Proyectos que puedes revisar",
-    intro:
-      "Todavía no publico casos de clientes, y no voy a poner logos que no tengo. Estos son proyectos propios y demostraciones que puedes abrir y probar.",
-    problemLabel: "Problema",
-    builtLabel: "Qué construí",
-    techLabel: "Tecnología",
-    open: "Ver proyecto",
-    linkMissing: "[TODO_LUIS: enlace]",
-    imageMissing: "[TODO_LUIS: captura]",
-    imageAlt: "Captura de",
-    items: [
-      {
-        key: "store",
-        tag: "Proyecto propio",
-        name: "Tienda online [TODO_LUIS: nombre]",
-        problem: "[TODO_LUIS: qué problema resolvía la tienda]",
-        built: "Tienda online completa: catálogo, carrito, pagos y gestión de pedidos. [TODO_LUIS: detalles]",
-        tech: "[TODO_LUIS: tecnologías]",
-      },
-      {
-        key: "site",
-        tag: "Proyecto propio",
-        name: "parraxsolutions.com",
-        problem: "Necesitaba una web propia rápida, bilingüe y con un formulario de contacto fiable, sin depender de un constructor de webs.",
-        built: "Esta misma web: español e inglés, formulario con validación y protección antispam, y páginas de servicio preparadas para buscadores.",
-        tech: "Next.js, React, TypeScript, Tailwind CSS, Vercel",
-      },
-      {
-        key: "automation",
-        tag: "Proyecto demostrativo",
-        name: "Del pedido a la factura",
-        problem: "Los pedidos de una tienda online se pasan a mano al programa de facturación, con errores y horas perdidas cada semana.",
-        built: "Demostración de un flujo que crea la factura y avisa al cliente en cuanto entra un pedido pagado. [TODO_LUIS: construir la demo o quitar esta tarjeta]",
-        tech: "[TODO_LUIS: tecnologías]",
-      },
-    ],
   },
 
   about: {
@@ -877,7 +832,6 @@ export const es = {
     title: "Hablas conmigo de principio a fin",
     role: "Fundador de Parrax Solutions",
     photoAlt: "Luis Parra, fundador de Parrax Solutions",
-    photoMissing: "[TODO_LUIS: foto]",
     paragraphs: [
       "Soy Luis Parra. Diseño, programo y mantengo cada proyecto yo mismo: quien responde a tu mensaje es quien va a construirlo.",
       "Vengo del entorno industrial, donde un proceso mal resuelto se nota cada día en la operación. Por eso empiezo por entender cómo trabaja tu negocio antes de proponer ninguna tecnología.",
@@ -885,7 +839,6 @@ export const es = {
       "Trabajo en remoto con empresas de cualquier país, en español o en inglés, por videollamada.",
     ],
     linkedin: "Ver mi perfil en LinkedIn",
-    linkedinMissing: "[TODO_LUIS: enlace a LinkedIn]",
     newTab: "(se abre en una pestaña nueva)",
   },
 
@@ -895,7 +848,7 @@ export const es = {
     items: [
       {
         q: "¿Cuánto cuesta?",
-        a: "Depende del alcance, pero siempre trabajo con precio cerrado por escrito antes de empezar. En Servicios tienes el precio desde de cada paquete; después de la sesión de 20 minutos te envío la propuesta exacta en tu moneda local.",
+        a: "Depende del alcance, pero siempre trabajo con precio cerrado por escrito antes de empezar. Después de la sesión de 20 minutos te envío la propuesta exacta en tu moneda local.",
       },
       {
         q: "¿Cuánto tarda?",
@@ -1061,7 +1014,6 @@ export const es = {
         title: "Empresa",
         links: [
           { label: "Servicios", href: "/#servicios" },
-          { label: "Proyectos", href: "/#proyectos" },
           { label: "Método", href: "/#metodo" },
           { label: "Preguntas frecuentes", href: "/#preguntas" },
           { label: "Contacto", href: "/#contacto" },

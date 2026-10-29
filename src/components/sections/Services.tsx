@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { localePath, type Dictionary, type Locale } from '@/i18n/config';
 import { BookingButton, Reveal, Rich, Section, SectionHeader } from '@/components/ui';
-import { priceFrom } from '@/lib/pricing';
 import { STORE_PATH } from '@/config/site';
 
 type T = Dictionary['services'];
@@ -11,20 +10,6 @@ function Check({ className = 'text-brand' }: { className?: string }) {
     <svg aria-hidden="true" viewBox="0 0 16 16" className={`mt-[3px] h-4 w-4 shrink-0 ${className}`} fill="none" stroke="currentColor" strokeWidth="1.75">
       <path d="M3.5 8.5l3 3 6-7" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
-  );
-}
-
-/** Precio «Desde X USD», o el marcador TODO mientras no esté configurado. */
-function Price({ lang, t, priceKey, monthly, tone }: { lang: Locale; t: T; priceKey: string; monthly?: boolean; tone: 'light' | 'dark' }) {
-  const value = priceFrom(priceKey, lang);
-  return (
-    <p className={tone === 'light' ? 'text-slate-600' : 'text-slate-400'}>
-      <span className="text-sm">{t.from} </span>
-      <span className={`text-xl font-semibold tabular-nums tracking-tight ${tone === 'light' ? 'text-ink' : 'text-white'}`}>
-        {value ?? <Rich text={t.priceMissing} />}
-      </span>
-      {monthly && <span className="text-sm">{t.perMonth}</span>}
-    </p>
   );
 }
 
@@ -70,19 +55,11 @@ export function Services({ lang, t }: { lang: Locale; t: T }) {
                 </ul>
 
                 <div className="mt-auto pt-6">
-                  <dl className="flex items-end justify-between gap-4 border-t border-slate-200 pt-5">
-                    <div>
-                      <dt className="text-xs text-slate-500">{t.timelineLabel}</dt>
-                      <dd className="mt-0.5 text-sm font-medium text-ink">
-                        <Rich text={pkg.timeline} />
-                      </dd>
-                    </div>
-                    <div className="text-right">
-                      <dt className="sr-only">{t.from}</dt>
-                      <dd>
-                        <Price lang={lang} t={t} priceKey={pkg.key} tone="light" />
-                      </dd>
-                    </div>
+                  <dl className="border-t border-slate-200 pt-5">
+                    <dt className="text-xs text-slate-500">{t.timelineLabel}</dt>
+                    <dd className="mt-0.5 text-sm font-medium text-ink">
+                      <Rich text={pkg.timeline} />
+                    </dd>
                   </dl>
                   <BookingButton lang={lang} variant="ghost-light" className="mt-5 w-full">
                     {pkg.cta}
@@ -98,7 +75,6 @@ export function Services({ lang, t }: { lang: Locale; t: T }) {
             <Check />
             {shops.guarantee}
           </p>
-          <p className="pl-[26px] text-sm text-slate-600 sm:pl-0">{t.localCurrency}</p>
         </Reveal>
       </div>
 
@@ -128,12 +104,6 @@ export function Services({ lang, t }: { lang: Locale; t: T }) {
                     <dd className="mt-0.5 text-sm font-medium text-white">{f.value}</dd>
                   </div>
                 ))}
-                <div className="col-span-2 sm:col-span-1">
-                  <dt className="sr-only">{t.from}</dt>
-                  <dd>
-                    <Price lang={lang} t={t} priceKey="sprint" tone="dark" />
-                  </dd>
-                </div>
               </dl>
             </div>
 
@@ -161,9 +131,6 @@ export function Services({ lang, t }: { lang: Locale; t: T }) {
               <p className="mt-1 text-sm leading-6">
                 <Rich text={maintenance.text} />
               </p>
-            </div>
-            <div className="shrink-0">
-              <Price lang={lang} t={t} priceKey="maintenance" monthly tone="dark" />
             </div>
           </div>
         </Reveal>
